@@ -25,10 +25,11 @@ class ExportToursForProduction extends Command
             'sort_order' => $c->sort_order,
         ])->toArray();
 
-        $tours = Tour::with(['images', 'itineraries'])->orderBy('id')->get();
+        $tours = Tour::with(['images', 'itineraries', 'reviews'])->orderBy('id')->get();
         $toursData = [];
         $imagesData = [];
         $itinerariesData = [];
+        $reviewsData = [];
 
         foreach ($tours as $tour) {
             $toursData[] = $tour->only([
@@ -57,6 +58,19 @@ class ExportToursForProduction extends Command
                     'sort_order' => $itr->sort_order,
                 ];
             }
+            foreach ($tour->reviews as $rev) {
+                $reviewsData[] = [
+                    'tour_id' => $tour->id,
+                    'name' => $rev->name,
+                    'review_date' => $rev->review_date?->format('Y-m-d'),
+                    'rating' => $rev->rating,
+                    'title' => $rev->title,
+                    'comment' => $rev->comment,
+                    'is_approved' => $rev->is_approved,
+                    'platform' => $rev->platform,
+                    'platform_tour_url' => $rev->platform_tour_url,
+                ];
+            }
         }
 
         $export = [
@@ -65,11 +79,12 @@ class ExportToursForProduction extends Command
             'tours' => $toursData,
             'images' => $imagesData,
             'itineraries' => $itinerariesData,
+            'reviews' => $reviewsData,
         ];
 
         file_put_contents($path, json_encode($export, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 
-        $this->info('Exported ' . count($toursData) . ' tours to ' . $path);
+        $this->info('Exported ' . count($toursData) . ' tours, ' . count($reviewsData) . ' reviews to ' . $path);
         $this->info('Commit this file and run on production: php artisan db:seed --class=ToursFromExportSeeder');
 
         return self::SUCCESS;

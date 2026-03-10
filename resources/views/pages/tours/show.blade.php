@@ -378,7 +378,7 @@
                 $avgRating = (float) $tour->average_rating;
                 $reviewCount = $tour->approvedReviews->count();
             @endphp
-            <div>
+            <div x-data="{ visibleCount: 5 }">
                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
                     <div>
                         <h2 class="text-3xl font-bold text-gray-900">Customer reviews</h2>
@@ -415,9 +415,9 @@
                     @endif
                 </div>
 
-                {{-- Review cards --}}
+                {{-- Review cards: show 5 initially, then 5 more per click --}}
                 <div class="space-y-5 mb-8">
-                    @foreach($reviews as $review)
+                    @foreach($reviews as $index => $review)
                         @php
                             $name = $review->display_name;
                             $words = explode(' ', trim($name), 2);
@@ -427,7 +427,10 @@
                             if ($initials === '') { $initials = '?'; }
                             $displayDate = $review->display_date;
                         @endphp
-                        <div class="border border-gray-100 rounded-xl p-5 md:p-6 bg-white shadow-sm relative" x-data="{ expanded: false }">
+                        <div x-show="{{ $index }} < visibleCount"
+                             x-collapse
+                             class="border border-gray-100 rounded-xl p-5 md:p-6 bg-white shadow-sm relative"
+                             x-data="{ expanded: false }">
                             <x-review-platform-logo :platform="$review->platform" :url="$review->platform_tour_url" />
                             <div class="flex gap-4 {{ $review->platform ? 'pr-12' : '' }}">
                                 <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
@@ -460,6 +463,18 @@
                         </div>
                     @endforeach
                 </div>
+
+                @if($reviewCount > 5)
+                    <div class="flex justify-center mb-8">
+                        <button type="button"
+                                @click="visibleCount = Math.min(visibleCount + 5, {{ $reviewCount }})"
+                                x-show="visibleCount < {{ $reviewCount }}"
+                                x-transition
+                                class="px-6 py-3 bg-brand-btn hover:bg-brand-btn-hover text-white font-medium rounded-lg transition-colors">
+                            Show 5 more reviews
+                        </button>
+                    </div>
+                @endif
 
                 {{-- Leave a review form or login prompt --}}
                 @auth

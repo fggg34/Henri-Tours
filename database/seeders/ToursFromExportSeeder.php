@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Review;
 use App\Models\Tour;
 use App\Models\TourCategory;
 use App\Models\TourImage;
@@ -119,6 +120,26 @@ class ToursFromExportSeeder extends Seeder
             }
         }
 
-        $this->command?->info('Imported ' . count($tourMap) . ' tours successfully.');
+        $reviews = $data['reviews'] ?? [];
+        $reviewsImported = 0;
+        foreach ($reviews as $rev) {
+            $tourId = $tourMap[$rev['tour_id']] ?? null;
+            if ($tourId) {
+                Review::create([
+                    'tour_id' => $tourId,
+                    'name' => $rev['name'] ?? null,
+                    'review_date' => $rev['review_date'] ?? null,
+                    'rating' => (int) ($rev['rating'] ?? 5),
+                    'title' => $rev['title'] ?? null,
+                    'comment' => $rev['comment'] ?? null,
+                    'is_approved' => (bool) ($rev['is_approved'] ?? true),
+                    'platform' => $rev['platform'] ?? null,
+                    'platform_tour_url' => $rev['platform_tour_url'] ?? null,
+                ]);
+                $reviewsImported++;
+            }
+        }
+
+        $this->command?->info('Imported ' . count($tourMap) . ' tours, ' . $reviewsImported . ' reviews successfully.');
     }
 }
