@@ -11,6 +11,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourPackageController;
+use App\Http\Controllers\ConfirmedDeparturesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -32,6 +33,9 @@ Route::post('/bookings', [\App\Http\Controllers\BookingController::class, 'store
 Route::get('/bookings/confirmation/{token}', [\App\Http\Controllers\BookingController::class, 'confirmation'])->name('bookings.confirmation');
 
 Route::get('/packages', [TourPackageController::class, 'index'])->name('tour-packages.index');
+
+Route::get('/confirmed-departures', [ConfirmedDeparturesController::class, 'index'])->name('confirmed-departures');
+Route::post('/confirmed-departures', [ConfirmedDeparturesController::class, 'store'])->middleware('throttle:10,1')->name('confirmed-departures.store');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');

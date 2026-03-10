@@ -21,7 +21,7 @@
             {{-- Desktop Navigation --}}
             <div class="hidden lg:flex lg:items-center lg:gap-1">
                 <a href="{{ route('tours.index') }}" class="px-4 py-2 text-[15px] font-medium text-gray-700 hover:text-brand-navy border-b-2 {{ request()->is('tours*') ? 'border-brand-navy text-brand-navy' : 'border-transparent' }} transition-colors">Our Tours</a>
-                <a href="{{ route('tours.index', ['sort' => 'discount']) }}" class="px-4 py-2 text-[15px] font-medium text-gray-700 hover:text-brand-navy border-b-2 {{ request()->get('sort') === 'discount' ? 'border-brand-navy text-brand-navy' : 'border-transparent' }} transition-colors">Discounted Dates</a>
+                <a href="{{ route('confirmed-departures') }}" class="px-4 py-2 text-[15px] font-medium text-gray-700 hover:text-brand-navy border-b-2 {{ request()->is('confirmed-departures*') ? 'border-brand-navy text-brand-navy' : 'border-transparent' }} transition-colors">Discounted Dates</a>
                 <a href="{{ route('blog.index') }}" class="px-4 py-2 text-[15px] font-medium text-gray-700 hover:text-brand-navy border-b-2 {{ request()->is('blog*') ? 'border-brand-navy text-brand-navy' : 'border-transparent' }} transition-colors">The Inbound Guide</a>
                 <a href="{{ route('contact') }}" class="px-4 py-2 text-[15px] font-medium text-gray-700 hover:text-brand-navy border-b-2 {{ request()->is('contact*') ? 'border-brand-navy text-brand-navy' : 'border-transparent' }} transition-colors">Contact us</a>
             </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="flex-1 overflow-y-auto py-3">
             <a href="{{ route('tours.index') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('tours*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">Our Tours</a>
-            <a href="{{ route('tours.index', ['sort' => 'discount']) }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium text-gray-700 hover:bg-gray-50">Discounted Dates</a>
+            <a href="{{ route('confirmed-departures') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('confirmed-departures*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">Discounted Dates</a>
             <a href="{{ route('blog.index') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('blog*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">The Inbound Guide</a>
             <a href="{{ route('contact') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('contact*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">Contact us</a>
             <a href="{{ route('about') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('about*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">About Us</a>
