@@ -197,6 +197,21 @@ If login works but dashboard pages show **403 Forbidden**:
 
 4. **ModSecurity** – cPanel’s ModSecurity may block requests. In WHM → Security Center → ModSecurity, try disabling for your domain or adding an exception for `/admin/*`.
 
+### Reviews not showing on tour pages (after import)
+
+If you imported reviews but they don't appear: run `php artisan reviews:approve-all` (reviews may be unapproved). Also clear caches: `php artisan view:clear` and `php artisan cache:clear`.
+
+### Duplicate tours (after running import twice)
+
+If you ran `ToursFromExportSeeder` more than once and have duplicate tours:
+
+```bash
+php artisan tours:remove-duplicates --dry-run   # preview
+php artisan tours:remove-duplicates             # apply
+```
+
+Keeps one tour per slug (the one with the most reviews). The seeder is now idempotent—re-running it will not create duplicates.
+
 ## Default accounts (after seed)
 
 - **Admin:** admin@coral-travel.com / password  

@@ -56,7 +56,6 @@ class ToursFromExportSeeder extends Seeder
             $attrs = [
                 'category_id' => $categoryId,
                 'title' => $t['title'],
-                'slug' => $t['slug'],
                 'description' => $t['description'] ?? null,
                 'short_description' => $t['short_description'] ?? null,
                 'price' => $t['price'] ?? 0,
@@ -89,7 +88,7 @@ class ToursFromExportSeeder extends Seeder
                 'available_weekdays' => $t['available_weekdays'] ?? null,
                 'default_daily_capacity' => $t['default_daily_capacity'] ?? null,
             ];
-            $tour = Tour::create($attrs);
+            $tour = Tour::firstOrCreate(['slug' => $t['slug']], array_merge($attrs, ['slug' => $t['slug']]));
             $tourMap[$t['id']] = $tour->id;
         }
 
@@ -97,12 +96,10 @@ class ToursFromExportSeeder extends Seeder
         foreach ($images as $img) {
             $tourId = $tourMap[$img['tour_id']] ?? null;
             if ($tourId) {
-                TourImage::create([
-                    'tour_id' => $tourId,
-                    'path' => $img['path'] ?? '',
-                    'alt' => $img['alt'] ?? null,
-                    'sort_order' => $img['sort_order'] ?? 0,
-                ]);
+                TourImage::firstOrCreate(
+                    ['tour_id' => $tourId, 'path' => $img['path'] ?? ''],
+                    ['alt' => $img['alt'] ?? null, 'sort_order' => $img['sort_order'] ?? 0]
+                );
             }
         }
 
@@ -110,13 +107,14 @@ class ToursFromExportSeeder extends Seeder
         foreach ($itineraries as $itr) {
             $tourId = $tourMap[$itr['tour_id']] ?? null;
             if ($tourId) {
-                TourItinerary::create([
-                    'tour_id' => $tourId,
-                    'day' => $itr['day'] ?? null,
-                    'title' => $itr['title'] ?? '',
-                    'description' => $itr['description'] ?? null,
-                    'sort_order' => $itr['sort_order'] ?? 0,
-                ]);
+                TourItinerary::firstOrCreate(
+                    [
+                        'tour_id' => $tourId,
+                        'day' => $itr['day'] ?? null,
+                        'title' => $itr['title'] ?? '',
+                    ],
+                    ['description' => $itr['description'] ?? null, 'sort_order' => $itr['sort_order'] ?? 0]
+                );
             }
         }
 
@@ -125,18 +123,24 @@ class ToursFromExportSeeder extends Seeder
         foreach ($reviews as $rev) {
             $tourId = $tourMap[$rev['tour_id']] ?? null;
             if ($tourId) {
-                Review::create([
-                    'tour_id' => $tourId,
-                    'name' => $rev['name'] ?? null,
-                    'review_date' => $rev['review_date'] ?? null,
-                    'rating' => (int) ($rev['rating'] ?? 5),
-                    'title' => $rev['title'] ?? null,
-                    'comment' => $rev['comment'] ?? null,
-                    'is_approved' => (bool) ($rev['is_approved'] ?? true),
-                    'platform' => $rev['platform'] ?? null,
-                    'platform_tour_url' => $rev['platform_tour_url'] ?? null,
-                ]);
-                $reviewsImported++;
+                $created = Review::firstOrCreate(
+                    [
+                        'tour_id' => $tourId,
+                        'name' => $rev['name'] ?? null,
+                        'comment' => $rev['comment'] ?? null,
+                        'review_date' => $rev['review_date'] ?? null,
+                    ],
+                    [
+                        'rating' => (int) ($rev['rating'] ?? 5),
+                        'title' => $rev['title'] ?? null,
+                        'is_approved' => (bool) ($rev['is_approved'] ?? true),
+                        'platform' => $rev['platform'] ?? null,
+                        'platform_tour_url' => $rev['platform_tour_url'] ?? null,
+                    ]
+                );
+                if ($created->wasRecentlyCreated) {
+                    $reviewsImported++;
+                }
             }
         }
 
