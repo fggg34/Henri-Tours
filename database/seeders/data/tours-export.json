@@ -1,0 +1,2997 @@
+{
+    "exported_at": "2026-03-10T23:00:50+00:00",
+    "categories": [
+        {
+            "id": 1,
+            "name": "Tours",
+            "slug": "tours",
+            "description": null,
+            "image": null,
+            "sort_order": 0
+        }
+    ],
+    "tours": [
+        {
+            "id": 30,
+            "category_id": 1,
+            "title": "Albanian Alps & Theth Village Day Tour",
+            "slug": "albanian-alps-theth-village-day-tour",
+            "description": "Experience a one-of-a-kind journey with this tour, offering travelers the chance to explore the Albanian Alps and the hidden village within the mountains in a single day. Surrounding Theth village are captivating natural wonders awaiting exploration.\n\nFind the Blue Eye of Theth, hidden in the mountains that surround the village. Embark on a picturesque hike through the jungle, tracing the river for approximately 45 minutes until you reach the secret Blue Eye. Enjoy your time in the magical forest by the river.\n\nA true exploration adventure! Additionally, delve into the region's intriguing history with visits to the historic, Church of Theth, and its iconic Reconciliation Tower. Don't miss this tour, you will remember this day forever!",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 13,
+            "duration_days": 1,
+            "start_time": "07:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 19,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "Hotel pick up and drop off (or nearby)",
+                "English speaking tour leader",
+                "Comfortable transportation with all necessary amenities",
+                "Guided hike to the Blue Eye"
+            ],
+            "not_included": [
+                "Personal expenses",
+                "Food"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-01T00:00:00.000000Z",
+            "availability_end_date": "2026-12-01T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 31,
+            "category_id": 1,
+            "title": "Berat City and Apollonia Park Day Tour",
+            "slug": "berat-city-and-apollonia-park-day-tour-itinerary",
+            "description": "This tour gives travelers the opportunity to explore two different periods in Albanian history: Classical antiquity in Apollonia and Medieval times in Berat.\n\nImmerse yourself in the heart of the country, from exploring the ottoman-built neighborhoods of Berat to mostly Byzantine built castle of Berat to the Greek colony – Roman city of Apollonia. Enjoy a traditional meal with the view of famous 1001 Windows!",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 9,
+            "duration_days": 1,
+            "start_time": "08:30",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 25,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "Hotel pickup and drop-off",
+                "English speaking Tour leader",
+                "Transportation by Air-Conditioned Vehicle",
+                "Entrance fee to Apollonia Archeological Park"
+            ],
+            "not_included": [
+                "Personal expenses"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-25T00:00:00.000000Z",
+            "availability_end_date": "2027-06-01T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 32,
+            "category_id": 1,
+            "title": "Bovilla Lake And Kruja City Day Tour",
+            "slug": "bovilla-lake-and-kruja-city-day-tour",
+            "description": "This tour is unique because it combines the natural beauty of Albania with it's cultural and historic part. The hike to mount Gamti in Bovilla lake is done partially by car. After finishing the small hike, free coffee is served to restore our energies.\n\nA guided tour to Kruja is followed after Bovilla. Regarded as the old capital of Albania, Kruja is one of the most important and historic cities of the nation. As a bonus for nature enthusiast, we will end our tour in Sari Salltik, the peak of Kruja mountain, where Tirana, Kruja, Durres and the Adriatic sea will be in the palm of our hands...",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 8,
+            "duration_days": 1,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 10,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "Hotel pickup and drop-off",
+                "English speaking Tour leader",
+                "Transportation by Air-Conditioned Vehicle",
+                "Kruja Castle"
+            ],
+            "not_included": [
+                "Kruja Castle Museum",
+                "Personal expenses"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-24T00:00:00.000000Z",
+            "availability_end_date": "2027-05-01T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 33,
+            "category_id": 1,
+            "title": "Dajti Cable Car and Shengjergj Waterfall Day Tour",
+            "slug": "dajti-cable-car-and-shengjergj-waterfall-day-tour",
+            "description": "Embark on an unforgettable half-day adventure in Tirana, featuring a scenic ride on the Dajti cable car, a hike to the stunning Shengjergj Waterfall, and a delicious traditional lunch. Experience the perfect blend of outdoor exploration and local flavors in this unique tour.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 6,
+            "duration_days": 1,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 15,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "Hotel pickup and drop-off",
+                "Comfortable transportation with all necessary amenities",
+                "English speaking Tour leader",
+                "Guided hike to Shen Gjergji Waterfall",
+                "Cable Car Tickets"
+            ],
+            "not_included": [
+                "Personal expenses"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-24T00:00:00.000000Z",
+            "availability_end_date": "2027-06-01T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 34,
+            "category_id": 1,
+            "title": "Tirana E-Bike Day Tour",
+            "slug": "tirana-e-bike-day-tour",
+            "description": "We start our exploring day, in the city center, the E-bikes and the Guide will be ready. We will have a moment to adapt the bikes for more comfort during the ride.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 2,
+            "duration_days": 1,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 8,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "English speaking tour guide",
+                "High performance E-Bikes",
+                "Helmets",
+                "Assistance"
+            ],
+            "not_included": [
+                "Personal expenses"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-26T00:00:00.000000Z",
+            "availability_end_date": "2027-06-12T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 35,
+            "category_id": 1,
+            "title": "Gjirokastra & Blue Eye Day Tour",
+            "slug": "gjirokastra-blue-eye-day-tour",
+            "description": "This tour is unique because it mixes the rich history and culture of Albania with its wonderful nature wonders all in a single day. Explore the unique UNESCO protected Gjirokastra city and the Blue Eye.\n\nWith the exclusivity of a private tour, our dedicated guide will cater to your every need, ensuring your experience is personalized and tailored to your preferences. A traditional Albanian lunch is included in the itinerary.\n\nAdditionally, enhance your journey by choosing from optional add-ons such as a visit to Apollonia or a return trip along the scenic Riviera.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 11,
+            "duration_days": 1,
+            "start_time": "08:30",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 7,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "English Speaking Tour Leader",
+                "Full Option transportation vehicle",
+                "Guided Tour of Gjirokastra Caste and Town"
+            ],
+            "not_included": [
+                "Personal expenses",
+                "Food and drinks"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-26T00:00:00.000000Z",
+            "availability_end_date": "2027-04-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 36,
+            "category_id": 1,
+            "title": "North Macedonia: Ohrid & Saint Naum Day Tour",
+            "slug": "north-macedonia-ohrid-day-tour",
+            "description": "Our journey begins in the historic city of Ohrid, where time seems frozen in its enchanting streets. Famous for its 365 churches, each showcasing influences from the Roman to Ottoman eras, Ohrid offers stunning viewpoints, ancient castles, and a rich cultural experience.\n\nWe then drive along the scenic lake perimeter to the 1200-year-old Saint Naum Monastery. This architectural marvel stands as a testament to enduring beauty and history.\n\nCrossing into Albania, we pause at Drilon Park, a tranquil haven where the Drilon River flows gracefully into Lake Ohrid, creating a serene ecosystem adorned with swans.\n\nOur final destination is the charming old town of Lin, perched on a peninsula along Lake Ohrid’s western shores. With its medieval houses and breathtaking views from Mount Qafe Thane, Lin provides a picturesque conclusion to our adventure before returning to Tirana.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 11,
+            "duration_days": 1,
+            "start_time": "07:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 25,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "Pick up and drop off near your hotel",
+                "English speaking tour leader",
+                "Transportation by Air-Conditioned Vehicle",
+                "Guided tour of Ohrid Old Town",
+                "Border crossing tax"
+            ],
+            "not_included": [
+                "Personal expenses"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-26T00:00:00.000000Z",
+            "availability_end_date": "2027-03-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 37,
+            "category_id": 1,
+            "title": "Saranda & Ksamil Islands Day Tour",
+            "slug": "saranda-ksamil-islands-day-tour",
+            "description": "Embark on a memorable coastal adventure in Saranda, where you can soak in the town’s lively atmosphere, seaside promenade, and stunning Ionian views. Continue your journey to Ksamil, famous for its crystal-clear turquoise waters and pristine beaches, offering the perfect setting to relax and unwind. Conclude the experience with a visit to the breathtaking Blue Eye spring, where you can enjoy a refreshing swim in its crystal-blue waters surrounded by unspoiled nature.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 13,
+            "duration_days": 1,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 25,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "Hotel Pick and drop off at or near your hotel",
+                "English speaking tour leader",
+                "Coach transportation with AC",
+                "Entrance ticket to the Blue Eye spring"
+            ],
+            "not_included": [
+                "Sunbeds",
+                "Lunch",
+                "Blue Eye train transport"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-26T00:00:00.000000Z",
+            "availability_end_date": "2027-04-01T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 38,
+            "category_id": 1,
+            "title": "Full Balkan Experience: A 10 Day Tour",
+            "slug": "full-balkan-experience-10-day-tour",
+            "description": "This tour stands out because it gives travelers the opportunity to see how the Eastern European culture and history has developed in 6 different countries in a time efficent 10 day tour. Travelers will witness how Ancient Greece, the Roman Empire, Slavic culture, and the Ottoman Empire have shaped society over the centuries. This journey will explore the major sites that highlight the rich history of each country.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": null,
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Leisure",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-26T00:00:00.000000Z",
+            "availability_end_date": "2027-09-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 39,
+            "category_id": 1,
+            "title": "Kosovo: Prizren & Prishtina Day Tour",
+            "slug": "kosovo-tour-prizren-prishtina",
+            "description": "This tour gives travellers the opportunity to explore and understand how the Albanian culture, history and identity have evolved in Albania's twin country, Kosovo.\nYou will visit the cultural capital (Prizren), exploring important historic landmarks along with the castle of Prizren up the hill and the capital city (Prishtina) where you will understand the geo-political situation of Kosovo and explore the vibrant city centre.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 10,
+            "duration_days": 1,
+            "start_time": "08:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 15,
+            "languages": [
+                "English"
+            ],
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-05-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 40,
+            "category_id": 1,
+            "title": "Montenegro: Budva & Kotor Day Tour",
+            "slug": "montenegro-tour-budva-kotor",
+            "description": "This tour is truly unique, offering travelers the chance to explore the highlights of an entirely different country in just one day from Tirana.\n\nVisit the stunning coastal towns of Budva and Kotor, two medieval cities with rich Venetian heritage. Kotor, a UNESCO World Heritage Site, and Budva, with its charming old town, provide a captivating glimpse into Montenegrin culture and the country’s breathtaking beauty.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 14,
+            "duration_days": 1,
+            "start_time": "08:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 10,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "English Tour Guide",
+                "Comfortable transportation with AC, WIFI",
+                "Guided Visits to sites"
+            ],
+            "not_included": [
+                "Personal Expenses"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-26T00:00:00.000000Z",
+            "availability_end_date": "2027-06-12T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 41,
+            "category_id": 1,
+            "title": "Visit The Balkans In 3 Days",
+            "slug": "visit-the-balkans-in-3-days",
+            "description": "This tour is unique because it gives you the opportunity to see the best of three countries in three days. This is the best choice for travelers who are interested in seeing how the Albanian culture changes and is developed differently in every region.\n\nThis tour gives you the opportunity to visit 2 capital cities, 2 UNESCO world heritage cities and 2 very important historic cities where pivotal events unfolded, shaping the course of history.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "08:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy - Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-27T00:00:00.000000Z",
+            "availability_end_date": "2027-04-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 42,
+            "category_id": 1,
+            "title": "Visit The Balkans In 6 Days",
+            "slug": "visit-the-balkans-in-6-days",
+            "description": "Embark on a memorable 6-day journey through the heart of the Balkans, where history, culture, and nature come together. Starting in Albania, the tour will take you to iconic landmarks such as the ancient Apollonia ruins and the stone city of Gjirokastra.\n\nIn North Macedonia, explore the picturesque town of Ohrid and its ancient treasures.\n\nThe tour continues through Kosovo, where you'll experience the capitals of Skopje and Prishtina, before concluding in the cultural cities of Peja, Prizren, and Kruja. This immersive adventure offers a perfect blend of historical exploration, natural beauty, and local traditions.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "Upon Arrival",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 8,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-27T00:00:00.000000Z",
+            "availability_end_date": "2027-06-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 43,
+            "category_id": 1,
+            "title": "All Of Albania In 8 Days",
+            "slug": "all-of-albania-in-8-days",
+            "description": "This tour is crafted to immerse you in Albania's rich culture, history, nature, and traditions. Explore the majestic northern mountains, home to breathtaking landscapes and natural wonders, before heading south to the pristine, crystal-clear waters of the Albanian Riviera. Visit UNESCO-protected historical sites, each telling its own story, and discover local vineyards where traditional beverages like raki are produced.\n\nExperience the vibrant culture of central Albania, from its historic towns to its welcoming communities. Stay active with hiking, boat tours, and wine tastings, making for an unforgettable journey. By the end of this trip, you won’t just have visited Albania—you’ll feel like a true Albanian!",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-27T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 44,
+            "category_id": 1,
+            "title": "Full Albanian Experience: A 10 Day Tour",
+            "slug": "full-albanian-experience-a-10-day-tour",
+            "description": "This tour stands out for its ability to provide travelers with a FULL Albanian experience, encompassing the breathtaking natural wonders of Albania, the rich tapestry of Albanian culture and historical landmarks, traditional cuisine, beverages, and attire.\n\nParticipants will have the opportunity to meet a local family residing in Berat Castle, among numerous other memorable experiences.\n\nThe tour meticulously covers all major tourist attractions in Albania, along with hidden gems known only to our expert local guides. For those seeking to immerse themselves fully in Albanian life, this tour offers an unparalleled opportunity.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy - Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-27T00:00:00.000000Z",
+            "availability_end_date": "2027-09-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 45,
+            "category_id": 1,
+            "title": "North & South Albania: A 5 Day Tour",
+            "slug": "north-south-albania-in-5-days",
+            "description": "This tour is unique because it offers you the most efficient way to visit all of Albania. You will visit the best tourist destinations in Albania without wasting time at less important sites.\n\nYou will have enough time to fully immerse yourself in the destinations, ensuring a comprehensive experience all within a remarkably time-efficient 5-day journey. According to our statistics, this duration strikes the perfect balance, offering you the most effective way to discover the diverse beauty of Albania.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 15,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy - Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-27T00:00:00.000000Z",
+            "availability_end_date": "2027-06-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 46,
+            "category_id": 1,
+            "title": "North Albania In 2 Days",
+            "slug": "north-albania-in-2-days",
+            "description": "Venture into the stunning Albanian Alps for a full nature exploration adventure. Begin in Shkodra, the cultural capital of the north, and soak in the lively atmosphere of this charming city.\n\nThen, enjoy a scenic drive through picturesque landscapes as you ascend to the heart of the Albanian Alps. The following day, embark on an unforgettable adventure exploring the breathtaking nature of Theth Valley, discovering its stunning views and unique beauty.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "08:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy - Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 47,
+            "category_id": 1,
+            "title": "North Albania in 3 Days",
+            "slug": "north-albania-in-3-days",
+            "description": "Embark on a nature adventure tour that enables you to experience the best parts of the Albanian Alps in 3 Days.\n\nIn this tour you will experience the coldest water in Albania, the highest road in Albania, the most beautiful nature wonder, an amazing hike in the forest, the 400 year old legal court of the north tribes, a boat tour across a mountain river, a secluded village in Theth valley, a first hand experience on the mountain culture and history of Albania and much more…",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy - Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 48,
+            "category_id": 1,
+            "title": "Tour Of South Albania 4 Days",
+            "slug": "tour-of-south-albania-4-days",
+            "description": "This tour offers a wonderful blend of culture and history exploration with relaxing days in the beaches of the Albanian Riviera. Embark on an adventure exploring the South-West part of Albania where all the UNESCO culture heritage sites are along with the most beautiful shorelines of Europe.\n\nYou will learn about the history of Albania from Classical Antiquity to the Medieval Period. Each day, enjoy traditional local food and beverages, explore picturesque sites, and unwind on the beautiful beaches of the renowned Albanian Riviera.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "08:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2025-01-06T00:00:00.000000Z",
+            "availability_end_date": "2027-06-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 49,
+            "category_id": 1,
+            "title": "Long Weekend In Albania",
+            "slug": "long-weekend-in-albania",
+            "description": "If you are looking for a <strong>cheap weekend away</strong>, fully organized and filled with activities, this is the perfect choice for you.\n\nStarting every Thursday and Friday, you can join us on our <strong>group adventure</strong> to Albania!\n\nIncluding a walking tour of the capital city, a welcome dinner with <strong>live folk music</strong> at Albania’s most famous traditional restaurant, a cultural visit to the City of 1001 Windows, an unforgettable nature adventure in the Albanian Alps and a visit to the most beautiful lake in Albania, this tour is designed to give you an affordable escape from everyday life.\n\nFrom <strong>airport pick-up to airport drop-off</strong> this adventure is coordinated fully by our guides and travel agents, so you don’t have to worry about a thing.\n\nYou’ll enjoy traveling in a group, <strong>sharing experiences</strong>, and building lifelong friendships along the way.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "Upon Arrival",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 20,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy - Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2025-01-01T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 50,
+            "category_id": 1,
+            "title": "Albania & Kosovo In 5 Days",
+            "slug": "albania-kosovo-in-5-days",
+            "description": "Embark on a 5 day adventure from Tirana to Prishtina, exploring the highlights of the Albanian lands and learning about how the history and culture of Albanians have developed in each of the countries.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "Upon Arrival",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 51,
+            "category_id": 1,
+            "title": "Albania 6 Day Hike Tour",
+            "slug": "albania-6-day-hike-tour",
+            "description": "Embark on an unforgettable adventure along <strong>the Albanian Alps</strong>. This adventure is designed for travelers who want to visit only the <strong>best - top rated locations</strong> on the northern Albanian mountains on a <strong>fully guided hiking tour</strong>.\n\nGet <strong>hypnotisedby magical nature wonders</strong> such as: The Blue Eye of Theth, Grunas Waterfall, The peaks of the Accursed mountains, Valbona National Park, Shala River and Komani Lake.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "Upon Arrival",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 12,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Hard",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 52,
+            "category_id": 1,
+            "title": "Tour of Yugoslavia in 12 Days",
+            "slug": "tour-of-yugoslavia-12-days",
+            "description": "Embark on a journey through the heart of the Balkans as you explore the lands that once formed the former Yugoslavia. This immersive tour takes you across a region rich in history, culture, and breathtaking natural beauty.\n\nFrom the sun-soaked Adriatic shores of Croatia and Montenegro to the vibrant cultural hubs of Serbia, Slovenia, Bosnia &amp; Herzegovina, North Macedonia, and Kosovo, this journey blends history with breathtaking nature, authentic traditions, and the warmth of Balkan hospitality.\n\nExperience medieval fortresses, UNESCO-listed old towns, crystal-clear lakes, lively squares, and flavors that reflect centuries of shared heritage",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "Upon Arrival",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 8,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Leisure",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 53,
+            "category_id": 1,
+            "title": "All the Balkan Countries: A 16 Day Private Tour",
+            "slug": "all-balkan-in-16-days-2",
+            "description": "This tour is special because it offers you the opportunity to visit EVERY Balkan country, all in 1 trip.\n\nYou will explore and dive deep into the culture of the Balkan region and understand how history, traditions, ethnicities evolved all together as time went on.\n\nEnjoy the highlights of each country from Bulgaria to Slovenia and a perfect blend of nature, culture, history, traditions, and local cuisine.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "Upon Arrival",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 8,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Leisure",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-04-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 54,
+            "category_id": 1,
+            "title": "East Balkans: Albania to Romania in 14 Days",
+            "slug": "14-day-east-balkan-tour",
+            "description": null,
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "Upon Arrival",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 8,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Leisure",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 55,
+            "category_id": 1,
+            "title": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour",
+            "slug": "albania-macedonia-kosovo-montenegro-6-day-tour",
+            "description": "Embark on a memorable 6-day journey through the heart of the Balkans, where history, culture, and nature come together. Starting in Albania, the tour will take you to iconic landmarks such as the ancient Apollonia ruins and the stone city of Gjirokastra.\n\nIn North Macedonia, explore the picturesque town of Ohrid and its ancient treasures.\n\nThe tour continues through Kosovo, where you'll experience the capitals of Skopje and Prishtina, before concluding in the cultural cities of Peja, Prizren, and Kruja. This immersive adventure offers a perfect blend of historical exploration, natural beauty, and local traditions.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": null,
+            "duration_days": null,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 8,
+            "languages": null,
+            "included": null,
+            "not_included": null,
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Leisure",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-06-12T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 56,
+            "category_id": 1,
+            "title": "Berat City Day Tour from Tirana",
+            "slug": "berat-city-day-tour-from-tirana",
+            "description": "Discover the timeless charm of Berat on a guided day trip from Tirana, featuring a visit to the impressive 2,500-year-old Berat Castle, Berat Old Towns and Belshi Lake. Walk through centuries of history as you explore this UNESCO-listed fortress, still home to local residents, and enjoy panoramic views over the city and Osum River. Continue your journey through the Mangalemi and Gorica neighborhoods, famous for their Ottoman-era architecture, stone bridges, and cultural landmarks, while learning about Berat’s unique heritage and traditions from your guide.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 11,
+            "duration_days": 1,
+            "start_time": "08:30",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 25,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "English speaking tour leader",
+                "Comfortable transportation with all necessary amenities",
+                "Guided Tour of Berati Castle",
+                "Visit Mangalemi & Gorica Old towns"
+            ],
+            "not_included": [
+                "Personal expenses",
+                "Lunch"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-05-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 57,
+            "category_id": 1,
+            "title": "Bovilla Lake & Gamti Mountain Hike Day Tour",
+            "slug": "bovilla-lake-gamti-mountain-hike-day-tour",
+            "description": "Admire the majestic mountain peaks, lush landscapes, and the tranquil waters of Lake Bovilla on this\nguided hike along the Gamti Mountain trail. Breathe in Albania’s crisp mountain air as you set off from\nTirana on a scenic adventure. Take in the serene beauty of the lake and its impressive dam, framed by\ndramatic mountain backdrops.\n\nAs you hike, each turn reveals a new, awe-inspiring view, offering a deep\nconnection with nature in its purest form. Enjoy a perfect blend of leisure and discovery, with plenty of\nopportunities for photography enthusiasts to capture the breathtaking scenery.\n\nConclude your journey\nfrom a stunning viewpoint, where you can unwind while admiring the panoramic lake and mountain\nvistas.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 6,
+            "duration_days": 1,
+            "start_time": "09:00",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 19,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "Hotel Pick up / Drop off (max walking distance 10 min depending on logistics",
+                "English Tour leader",
+                "Guided hike to the summit",
+                "Coach transportation with AC"
+            ],
+            "not_included": [
+                "Personal expenses",
+                "Food and drinks"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Moderate",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-04-30T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        },
+        {
+            "id": 58,
+            "category_id": 1,
+            "title": "Shkodra City, Rozafa Castle & Mesi Bridge Day Tour",
+            "slug": "shkodra-city-rozafa-castle-mesi-bridge-day-tour",
+            "description": "Discover the highlights of Shkodra on a guided tour from Tirana. Visit the ancient Rozafa Castle and take in the panoramic views of the city and surrounding landscape. Stroll along the charming Gjuhadol pedestrian street and admire the historic Mesi Bridge. Complete the experience with a visit of the scenic Shkodra Lake. Traditional lunch by the lake option available.",
+            "short_description": null,
+            "price": "0.00",
+            "base_price": null,
+            "currency": "EUR",
+            "duration_hours": 9,
+            "duration_days": 1,
+            "start_time": "08:30",
+            "start_location": null,
+            "end_location": null,
+            "max_group_size": 19,
+            "languages": [
+                "English"
+            ],
+            "included": [
+                "English speaking tour guide",
+                "Comfortable transportation with AC",
+                "Guided tour of Rozafa Castle",
+                "Ticket to Rozafa Castle",
+                "Free time in Shkodra boulevard and lake"
+            ],
+            "not_included": [
+                "Personal expenses",
+                "Everything else not mentioned"
+            ],
+            "what_to_bring": null,
+            "important_notes": null,
+            "season": null,
+            "difficulty": "Easy",
+            "tour_highlights": null,
+            "map_lat": null,
+            "map_lng": null,
+            "meta_title": null,
+            "meta_description": null,
+            "is_featured": false,
+            "is_active": true,
+            "sort_order": 0,
+            "availability_start_date": "2024-12-31T00:00:00.000000Z",
+            "availability_end_date": "2027-07-31T00:00:00.000000Z",
+            "closed_dates": null,
+            "available_weekdays": null,
+            "default_daily_capacity": null
+        }
+    ],
+    "images": [
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/NE-THETH.webp",
+            "alt": "Albanian Alps & Theth Village Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-11-03-at-2.22.07-PM-3.webp",
+            "alt": "Albanian Alps & Theth Village Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour-5.webp",
+            "alt": "Albanian Alps & Theth Village Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour.webp",
+            "alt": "Albanian Alps & Theth Village Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Multi-Day-Tour.avif",
+            "alt": "Albanian Alps & Theth Village Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour-2.webp",
+            "alt": "Albanian Alps & Theth Village Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/434297899_450596070643085_4896814300634479046_n-1.jpg",
+            "alt": "Albanian Alps & Theth Village Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 30,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour-3.webp",
+            "alt": "Albanian Alps & Theth Village Day Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 31,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/3-1-scaled.webp",
+            "alt": "Berat City and Apollonia Park Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 31,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/2-3-scaled.webp",
+            "alt": "Berat City and Apollonia Park Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 31,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/4-1-scaled.webp",
+            "alt": "Berat City and Apollonia Park Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 31,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/401720190_379429391093087_2481373833250432380_n.webp",
+            "alt": "Berat City and Apollonia Park Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 31,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/376699120_342662698103090_3437352577172568506_n-2.webp",
+            "alt": "Berat City and Apollonia Park Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 31,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/457148832_549616284074396_7923270058181087284_n.webp",
+            "alt": "Berat City and Apollonia Park Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 31,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/7-1024x858-1.webp",
+            "alt": "Berat City and Apollonia Park Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 32,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/bovilla.webp",
+            "alt": "Bovilla Lake And Kruja City Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 32,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Bovilla-Lake-And-Kruja-City-Day-Tour.webp",
+            "alt": "Bovilla Lake And Kruja City Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 32,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Bovilla-Lake-And-Kruja-City-Day-Tour-kruja.webp",
+            "alt": "Bovilla Lake And Kruja City Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 32,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Bovilla-Lake-And-Kruja-City-Day-Tour-3.webp",
+            "alt": "Bovilla Lake And Kruja City Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 32,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Bovilla-Lake-And-Kruja-City-Day-Tour-2.webp",
+            "alt": "Bovilla Lake And Kruja City Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 33,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/shutterstock_2433772085-1-scaled.webp",
+            "alt": "Dajti Cable Car and Shengjergj Waterfall Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 33,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Dajti-Cable-Car-and-Shengjergj-Waterfall-Day-Tour-2.webp",
+            "alt": "Dajti Cable Car and Shengjergj Waterfall Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 33,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Dajti-Cable-Car-and-Shengjergj-Waterfall-Day-Tour.webp",
+            "alt": "Dajti Cable Car and Shengjergj Waterfall Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 33,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Dajti-Cable-Car-and-Shengjergj-Waterfall-Day-Tour-3.webp",
+            "alt": "Dajti Cable Car and Shengjergj Waterfall Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 33,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Dajti-Cable-Car-and-Shengjergj-Waterfall-Day-Tour-4.webp",
+            "alt": "Dajti Cable Car and Shengjergj Waterfall Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 33,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Dajti-Cable-Car-and-Shengjergj-Waterfall-Day-Tour-5.webp",
+            "alt": "Dajti Cable Car and Shengjergj Waterfall Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 34,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Tirana-E-Bike-Day-Tour.webp",
+            "alt": "Tirana E-Bike Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 34,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Tirana-E-Bike-Day-Tour-2.webp",
+            "alt": "Tirana E-Bike Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 34,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Tirana-E-Bike-Day-Tour-3.webp",
+            "alt": "Tirana E-Bike Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 34,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Tirana-E-Bike-Day-Tour-4.webp",
+            "alt": "Tirana E-Bike Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 35,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albania-Blue-Eye-Saranda-pool.webp",
+            "alt": "Gjirokastra & Blue Eye Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 35,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/gjirokaster-town-5.webp",
+            "alt": "Gjirokastra & Blue Eye Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 35,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/146-18.webp",
+            "alt": "Gjirokastra & Blue Eye Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 35,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/images.webp",
+            "alt": "Gjirokastra & Blue Eye Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 35,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/gjirokastra-castle-scaled.webp",
+            "alt": "Gjirokastra & Blue Eye Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 35,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/AdobeStock_628453165-scaled-1.webp",
+            "alt": "Gjirokastra & Blue Eye Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 35,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/download.webp",
+            "alt": "Gjirokastra & Blue Eye Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/1-3-3-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/8adbbc847b96591543596ea1c15217df5cc29408f233dfc43d86970fcddda4db.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/2-7-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/3-4-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/4-3-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/5-3-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/shutterstock_1754809559-1-1-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/8-3-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/shutterstock_2554223991-1-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 36,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/6-3-scaled.webp",
+            "alt": "North Macedonia: Ohrid & Saint Naum Day Tour - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 37,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/pexels-photo-32549621.webp",
+            "alt": "Saranda & Ksamil Islands Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 37,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/shutterstock_1527723113-scaled.webp",
+            "alt": "Saranda & Ksamil Islands Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 37,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/free-photo-of-sculpture-of-hand-rising-from-sea-in-ksamil-albania.webp",
+            "alt": "Saranda & Ksamil Islands Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 37,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/vangel-dimo-9KuqI1Zxdxw-unsplash-scaled.webp",
+            "alt": "Saranda & Ksamil Islands Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 37,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/michel-struharova-VBQp2qt5-Vk-unsplash-scaled.webp",
+            "alt": "Saranda & Ksamil Islands Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 37,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/DSC08075.webp",
+            "alt": "Saranda & Ksamil Islands Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 37,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/polina-rytova-s8meKJ9iUT8-unsplash-scaled.webp",
+            "alt": "Saranda & Ksamil Islands Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/1-4-1.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/2-4-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/3-3-2-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/4-2-2-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/5-1-1-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/5.-pas-nr-5.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/6-1-1.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/7-1-1-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/8-4.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/9-3.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/10-2-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 11",
+            "sort_order": 10
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/12-1-1-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 12",
+            "sort_order": 11
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/12-2-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 13",
+            "sort_order": 12
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/13-2-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 14",
+            "sort_order": 13
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/412657488_397725895930103_5596666624758727796_n.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 15",
+            "sort_order": 14
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Can-you-do-a-day-trip-to-Matka-Canyon-from-Skopje.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 16",
+            "sort_order": 15
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/depositphotos_204360204-stock-photo-ohrid-macedonia-view-watchtower-famous.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 17",
+            "sort_order": 16
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/IMG_2635-scaled.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 18",
+            "sort_order": 17
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/licensed-image-2.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 19",
+            "sort_order": 18
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Sales-Marketing-Lustica-Bay-Perast-DJI_04211-3-1-1024x729-jpg.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 20",
+            "sort_order": 19
+        },
+        {
+            "tour_id": 38,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-03-at-11.23.32-AM.webp",
+            "alt": "Full Balkan Experience: A 10 Day Tour - 21",
+            "sort_order": 20
+        },
+        {
+            "tour_id": 39,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Kosovo-Tour-Prizren-Prishtina.webp",
+            "alt": "Kosovo: Prizren & Prishtina Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 39,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Kosovo-Tour-Prizren-Prishtina-2.webp",
+            "alt": "Kosovo: Prizren & Prishtina Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 39,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Kosovo-Tour-Prizren-Prishtina-3.webp",
+            "alt": "Kosovo: Prizren & Prishtina Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 39,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Kosovo-Tour-Prizren-Prishtina-5.webp",
+            "alt": "Kosovo: Prizren & Prishtina Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 40,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Montenegro-Tour-Budva-Kotor.webp",
+            "alt": "Montenegro: Budva & Kotor Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 40,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Montenegro-Tour-Budva-Kotor-7.webp",
+            "alt": "Montenegro: Budva & Kotor Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 40,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Montenegro-Tour-Budva-Kotor-2.webp",
+            "alt": "Montenegro: Budva & Kotor Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 40,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Montenegro-Tour-Budva-Kotor-5.webp",
+            "alt": "Montenegro: Budva & Kotor Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/3-1-1-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/1-3-1-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/2-3-1-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/4-1-1-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/5-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/6-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/7-2-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/8-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/9.webp",
+            "alt": "Visit The Balkans In 3 Days - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 41,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/10-scaled.webp",
+            "alt": "Visit The Balkans In 3 Days - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 42,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Macedonia-Ohrid-Day-Tour-8.webp",
+            "alt": "Visit The Balkans In 6 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 42,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Visit-The-Balkans-In-6-Days-2.webp",
+            "alt": "Visit The Balkans In 6 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 42,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Visit-The-Balkans-In-3-Days-99.webp",
+            "alt": "Visit The Balkans In 6 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 42,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Kosovo-Tour-Prizren-Prishtina-3.webp",
+            "alt": "Visit The Balkans In 6 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 42,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Macedonia-Ohrid-Day-Tour.webp",
+            "alt": "Visit The Balkans In 6 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 42,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/10-Day-Balkan-Adventure-2.webp",
+            "alt": "Visit The Balkans In 6 Days - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Multi-Day-Tours-1.webp",
+            "alt": "All Of Albania In 8 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/llogara-All-Of-Albania-In-8-Days.webp",
+            "alt": "All Of Albania In 8 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/All-Of-Albania-In-8-Days-7.webp",
+            "alt": "All Of Albania In 8 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-South-Albania-In-5-Days-8.webp",
+            "alt": "All Of Albania In 8 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/All-Of-Albania-In-8-Days-8.webp",
+            "alt": "All Of Albania In 8 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/All-Of-Albania-In-8-Days-888.webp",
+            "alt": "All Of Albania In 8 Days - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Syri-kalter-motorr.webp",
+            "alt": "All Of Albania In 8 Days - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/All-Of-Albania-In-8-Days-3.webp",
+            "alt": "All Of Albania In 8 Days - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/All-Of-Albania-In-8-Days-theth.webp",
+            "alt": "All Of Albania In 8 Days - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/All-Of-Albania-In-8-Days-2.webp",
+            "alt": "All Of Albania In 8 Days - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 43,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/All-Of-Albania-In-8-Days-4.webp",
+            "alt": "All Of Albania In 8 Days - 11",
+            "sort_order": 10
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/1-3-1-scaled.webp",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Skenderbeg-square-AlbaniaInbound.com_.jpg",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/2-3-scaled.webp",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/3-1-scaled.webp",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/4-1.webp",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/5.webp",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/6-1-scaled.webp",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 44,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/8-scaled.webp",
+            "alt": "Full Albanian Experience: A 10 Day Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/1-3-2-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/3-1-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/9-2-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/4-1-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/5-4.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/6.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/7-1.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/8-2-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/2-3-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/10-1.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/11-2-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 11",
+            "sort_order": 10
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/12-1.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 12",
+            "sort_order": 11
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/13-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 13",
+            "sort_order": 12
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/14-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 14",
+            "sort_order": 13
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/15-1.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 15",
+            "sort_order": 14
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/16-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 16",
+            "sort_order": 15
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/17-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 17",
+            "sort_order": 16
+        },
+        {
+            "tour_id": 45,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/18-1-scaled.webp",
+            "alt": "North & South Albania: A 5 Day Tour - 18",
+            "sort_order": 17
+        },
+        {
+            "tour_id": 46,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-In-2-Days-3.webp",
+            "alt": "North Albania In 2 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 46,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-In-2-Days-2.webp",
+            "alt": "North Albania In 2 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 46,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Multi-Day-Tour.avif",
+            "alt": "North Albania In 2 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 46,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour-2.webp",
+            "alt": "North Albania In 2 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 46,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-In-2-Days.webp",
+            "alt": "North Albania In 2 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-in-3-Days-4.webp",
+            "alt": "North Albania in 3 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour.webp",
+            "alt": "North Albania in 3 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour-3.webp",
+            "alt": "North Albania in 3 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/varka.webp",
+            "alt": "North Albania in 3 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-in-3-Days.webp",
+            "alt": "North Albania in 3 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-in-3-Days-2.webp",
+            "alt": "North Albania in 3 Days - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Visit-The-Balkans-In-6-Days-krujee.webp",
+            "alt": "North Albania in 3 Days - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Albanian-Alps-Theth-Village-Day-Tour-2.webp",
+            "alt": "North Albania in 3 Days - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-in-3-Days-7.webp",
+            "alt": "North Albania in 3 Days - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 47,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/North-Albania-in-3-Days-89.webp",
+            "alt": "North Albania in 3 Days - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 48,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Tour-Of-South-Albania-4-Days.avif",
+            "alt": "Tour Of South Albania 4 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 48,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Tour-Of-South-Albania-4-Days-2.avif",
+            "alt": "Tour Of South Albania 4 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 48,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Tour-Of-South-Albania-4-Days-3.avif",
+            "alt": "Tour Of South Albania 4 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 48,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Tour-Of-South-Albania-4-Days-5.avif",
+            "alt": "Tour Of South Albania 4 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 48,
+            "path": "https://albaniainbound.com/wp-content/uploads/2025/01/Tour-Of-South-Albania-4-Days-98.avif",
+            "alt": "Tour Of South Albania 4 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 48,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Visit-The-Balkans-In-6-Days-3.webp",
+            "alt": "Tour Of South Albania 4 Days - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 48,
+            "path": "https://albaniainbound.com/wp-content/uploads/2024/12/Full-Albanian-Experience-A-10-Day-Tour-5.webp",
+            "alt": "Tour Of South Albania 4 Days - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 49,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1-3-2.webp",
+            "alt": "Long Weekend In Albania - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 49,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/2-3-2.webp",
+            "alt": "Long Weekend In Albania - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 49,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/5-2.webp",
+            "alt": "Long Weekend In Albania - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 49,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/9.webp",
+            "alt": "Long Weekend In Albania - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 49,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/7-2.webp",
+            "alt": "Long Weekend In Albania - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 50,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/https___frontdoor.travelconline.com_imagenes_L9c86Yy2ObQY1lLsRi-sjYpGs1vBRXIzVX-1.webp",
+            "alt": "Albania & Kosovo In 5 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 50,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/wp-17037082193617973437845297470772-1.webp",
+            "alt": "Albania & Kosovo In 5 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 50,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/71409223-Patriarchate-of-Pec-Women-s-Monastery-UNESCO-World-Heritage-Site-near-Peje-western-Kosovo-1.webp",
+            "alt": "Albania & Kosovo In 5 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 50,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/CvJihAHWgAEOx7V-1.webp",
+            "alt": "Albania & Kosovo In 5 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1-23.webp",
+            "alt": "Albania 6 Day Hike Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/WhatsApp-Image-2025-11-10-at-9.40.32-PM-6.webp",
+            "alt": "Albania 6 Day Hike Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Private-boat-Preka-Tour-3-1.webp",
+            "alt": "Albania 6 Day Hike Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/albania-7021732_1280-1.webp",
+            "alt": "Albania 6 Day Hike Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/20221014-233103-largejpg-1.webp",
+            "alt": "Albania 6 Day Hike Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Theth-Valbona-1-1024x768-1.webp",
+            "alt": "Albania 6 Day Hike Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Boat-Fierze-to-Shala-River-Albania-Miki-Tours-1.webp",
+            "alt": "Albania 6 Day Hike Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 51,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Boat-trip-to-Shala-River-Boat-on-the-water.webp",
+            "alt": "Albania 6 Day Hike Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/2-2.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/3.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/4-2.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/5-1.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/6-5.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/7-6.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/istockphoto-2149829246-612x612-2.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/p0btlpcp-1.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/shutterstock_620901848-2.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 52,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/summer-in-Ljubljana-1.webp",
+            "alt": "Tour of Yugoslavia in 12 Days - 11",
+            "sort_order": 10
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1-3-1.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/2-3-1.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/3-2.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/4-1-1.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/5528518_2354559_ls.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/LjubljanasOldTown_NWONVgNsW-scaled.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/shutterstock_620901848-1.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/shutterstock2460648201-cropped-1.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 53,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Zagreb-and-the-old-town-with-its-cathedral.webp",
+            "alt": "All the Balkan Countries: A 16 Day Private Tour - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1-3-6.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/2-3-5.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/3-1-3-scaled.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/4-1-4.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/5-5.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/6-4.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/7-5.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/8-2.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/9-3.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/432541186_446864794349546_825961213493999428_n-1.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/432609182_446864814349544_394615408781188471_n-1.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 11",
+            "sort_order": 10
+        },
+        {
+            "tour_id": 54,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/432544484_446864734349552_2475378421991995075_n-1-1.webp",
+            "alt": "East Balkans: Albania to Romania in 14 Days - 12",
+            "sort_order": 11
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1-3-5.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/2-2-1-1.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/3-1-2.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/4-1-3.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/5-4.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/7-4.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/8-1.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/9-2-scaled.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/10-scaled.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/11-2-scaled.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 10",
+            "sort_order": 9
+        },
+        {
+            "tour_id": 55,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/12-1-scaled.webp",
+            "alt": "Albania – Macedonia – Kosovo – Montenegro 6 Day Tour - 11",
+            "sort_order": 10
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1-3-4-scaled.webp",
+            "alt": "Berat City Day Tour from Tirana - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/9-1.webp",
+            "alt": "Berat City Day Tour from Tirana - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/2-3-4-scaled.webp",
+            "alt": "Berat City Day Tour from Tirana - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/3-1-1-scaled.webp",
+            "alt": "Berat City Day Tour from Tirana - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/5-3-scaled.webp",
+            "alt": "Berat City Day Tour from Tirana - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/6-3.webp",
+            "alt": "Berat City Day Tour from Tirana - 6",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/7-3.webp",
+            "alt": "Berat City Day Tour from Tirana - 7",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/8.webp",
+            "alt": "Berat City Day Tour from Tirana - 8",
+            "sort_order": 7
+        },
+        {
+            "tour_id": 56,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/12-scaled.webp",
+            "alt": "Berat City Day Tour from Tirana - 9",
+            "sort_order": 8
+        },
+        {
+            "tour_id": 57,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Bovilla2.webp",
+            "alt": "Bovilla Lake & Gamti Mountain Hike Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 57,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Bovilla3-3-scaled.webp",
+            "alt": "Bovilla Lake & Gamti Mountain Hike Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 57,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Bovilla4-scaled.webp",
+            "alt": "Bovilla Lake & Gamti Mountain Hike Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 57,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/Bovilla1-scaled.webp",
+            "alt": "Bovilla Lake & Gamti Mountain Hike Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 58,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/1-3-3-scaled.webp",
+            "alt": "Shkodra City, Rozafa Castle & Mesi Bridge Day Tour - 1",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 58,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/2-3-3-scaled.webp",
+            "alt": "Shkodra City, Rozafa Castle & Mesi Bridge Day Tour - 2",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 58,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/3-1-scaled.webp",
+            "alt": "Shkodra City, Rozafa Castle & Mesi Bridge Day Tour - 3",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 58,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/4-4-scaled.webp",
+            "alt": "Shkodra City, Rozafa Castle & Mesi Bridge Day Tour - 4",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 58,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/kc3o3555-1-scaled.webp",
+            "alt": "Shkodra City, Rozafa Castle & Mesi Bridge Day Tour - 5",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 58,
+            "path": "https://albaniainbound.com/wp-content/uploads/2026/01/5-1-1-scaled.webp",
+            "alt": "Shkodra City, Rozafa Castle & Mesi Bridge Day Tour - 6",
+            "sort_order": 5
+        }
+    ],
+    "itineraries": [
+        {
+            "tour_id": 30,
+            "day": 1,
+            "title": "Gjuhadol, Shkodra City Center",
+            "description": "<ul>\r\n \t<li>The instructor will rendezvous with you at your chosen time and location, where a car will be waiting to kick off the adventure. Midway through the journey to the Albanian Alps and Theth, make a brief stop in Shkodra for a coffee break.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 30,
+            "day": 1,
+            "title": "Qafe Thore, Albanian Alps",
+            "description": "<ul>\r\n \t<li>Before we arrive to Theth, we will stop along the mountain ranges of Albanian Alpes. You will see there a picturesque mountain view, a breathtaking scene that captivates the senses and will fill your hearts with awe and wonder.</li>\r\n \t<li>Imagine standing at a vantage point, surrounded by majestic peaks stretching into the distance, painting a stunning natural panorama.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 30,
+            "day": 1,
+            "title": "The Blue Eye of Theth",
+            "description": "<ul>\r\n \t<li>Arriving in Theth Valley signals the commencement of your nature exploration in this picturesque region. We will continue the journey to the beautiful blue eye. There will be a 45- minute hike (2.5KM).</li>\r\n \t<li>During the hike you will have several beautiful sightseeing stops and water pools. At the finish, you will experience the most magical and beautiful place in Albania. Hidden in the mountains you will find The Blue Eye of Theth. With refreshing air and water temperatures we are going to spend around 2 hours there.</li>\r\n \t<li>Indulge in a delightful lunch featuring traditional North Albanian cuisine.</li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 30,
+            "day": 1,
+            "title": "Theth Village",
+            "description": "<ul>\r\n \t<li>Next, you’ll arrive at the picturesque mountain village of Theth. Take time to explore the traditional homes and interact with the local domestic animals.</li>\r\n \t<li>Visit the iconic Church of Theth and the Reconciliation Tower, a cultural hub for the northern Albanian tribes.</li>\r\n</ul>",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 31,
+            "day": 1,
+            "title": "Journey to Berat: UNESCO \"City of a Thousand Windows\"",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIAxAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Commute</strong>: The journey starts with a scenic 1.5-hour drive to Berat.</span></li>\r\n \t<li data-hveid=\"CAEIAxAB\" data-sae=\"\" data-complete=\"true\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Berat Castle</strong>: Ascend the hill for a walking tour of the 13th-century fortress, learning the history of the ancient city and visiting its various sites, which still contain inhabited houses, churches, and mosque ruins.</span></li>\r\n \t<li data-hveid=\"CAEIAxAC\" data-complete=\"true\" data-processed=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Mangalemi Neighborhood</strong>: Descend to the city center and explore this renowned historic quarter, famous for its white Ottoman-era houses with numerous windows that seem to be stacked on top of each other, giving Berat its nickname.</span></li>\r\n \t<li data-hveid=\"CAEIAxAD\" data-complete=\"true\" data-processed=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">City Center Landmarks</strong>: Explore significant downtown landmarks, including the city gate, the former Pasha's residence, The Sultan's Mosque, and Berat's bustling boulevard.</span></li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 31,
+            "day": 1,
+            "title": "Osumi River and Gorica Bridge",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIBBAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Gorica Bridge and Neighborhood</strong>: Pass by and explore the famous, historic Gorica Bridge (a symbol of the city), which connects the Mangalemi quarter to the old Gorica neighborhood across the Osumi River.</span></li>\r\n \t<li data-hveid=\"CAEIBBAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Traditional Lunch</strong>: Enjoy a traditional Albanian lunch by the Osumi River, offering a great view of the city.</span></li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 31,
+            "day": 1,
+            "title": "Journey to Apollonia Archaeological Park",
+            "description": "<ul class=\"KsbFXc U6u95\" data-complete=\"true\" data-processed=\"true\">\r\n \t<li data-hveid=\"CAEIBhAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Apollonia Departure</strong>: Depart Berat for Apollonia, an ancient Greek trade colony and a vital center for education, philosophy, and arts in antiquity.</span></li>\r\n \t<li data-hveid=\"CAEIBhAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Apollonia Exploration</strong>: Explore the expansive ancient archaeological park and visit several key landmarks within the ruins, which contain Greek, Roman, and medieval heritage.</span></li>\r\n \t<li data-hveid=\"CAEIBhAC\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Key Archaeological Sites</strong>: Tour specific ruins, which may include the Temple of Apollonia (Temple of Artemis), the Monument of Agonothetes (town hall portal), the Amphitheatre/Odeon, the Triumph Arch, and the Archaeological Museum housed within a 13th-century monastery.</span></li>\r\n \t<li data-hveid=\"CAEIBhAD\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Return Journey</strong>: Travel back to your original location, concluding the tour.</span></li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 32,
+            "day": 1,
+            "title": "Lake Bovilla",
+            "description": "<ul>\r\n \t<li>You will experience one of the most fascinating views in Albania. The turquois waters of the lake combined with the lush of greenery from the steep hill created a breathtaking view.</li>\r\n \t<li>Unlike other tours, we drive up the mountain with a car until the road comes to an end. Following a 15 minutes hike, we reach the top of mount Gamti.</li>\r\n \t<li>Having absorbed the breathtaking views from the mountain's apex, we descend to a charming mountainside coffee spot. Here, we'll pause to restore our energy with a coffee before resuming our journey towards Kruja</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 32,
+            "day": 1,
+            "title": "Kruja Bazaar",
+            "description": "<ul>\r\n \t<li>Our first stop in Kruja city will be in it's 500 years old bazaar. The Ottoman-style bazaar stretches all the way from middle of Krujë to the Krujë Castle.</li>\r\n \t<li>It consists of a single cobblestone street along which all sorts of vendors sell their goods from wooden stalls.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 32,
+            "day": 1,
+            "title": "Kruja Castle",
+            "description": "<ul>\r\n \t<li>The bazaar of Kruja will lead us into the Castle of Kruja. The walls of the castle hold the history of 1500 years of war and peace. Starting a walking tour inside the castle, we will visit several spots like:\r\nThe Scanderbeg's tree, -The secret tunnel of the castle , -Old residences of the castle, -Mosque of Sultan Mehmet, -The watch tower of the castle, -The top of the castle and many more....</li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 32,
+            "day": 1,
+            "title": "Sari Salltik",
+            "description": "<ul>\r\n \t<li>Before this tour comes to an end, we will drive up the mountain of Kruja to the very top, where the Sari Salltik cave is found. The cave serves as a religious place for practicing Bektashi religion and it has an ultimate view, seeing Tirana, Kruja, Durres and Adriatic sea all together.</li>\r\n</ul>",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 33,
+            "day": 1,
+            "title": "The Ascent to Dajti National Park",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIBBAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Morning Pickup</strong>: Begin your adventure with a convenient pickup from your hotel or preferred location in Tirana.</span></li>\r\n \t<li data-hveid=\"CAEIBBAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Balkan’s Longest Cable Car</strong>: Experience a breathtaking ride on the Dajti Ekspres, the longest cable car in the Balkans, offering a panoramic 360-degree view of the capital city.</span></li>\r\n \t<li data-hveid=\"CAEIBBAC\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Mountain Exploration</strong>: Discover Dajti National Park at 1,200 meters above sea level, enjoying the crisp mountain air and the natural terrace overlooking the Adriatic Sea in the distance.</span><span class=\"uJ19be notranslate\" data-wiz-uids=\"Gck7ab_y\" data-complete=\"true\"><span class=\"vKEkVd\" data-animation-atomic=\"\" data-wiz-attrbind=\"class=Gck7ab_x/TKHnVd\" data-sae=\"\"> </span></span></li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 33,
+            "day": 1,
+            "title": "The Scenic Back-Mountain Route",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIBhAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Off-the-Beaten-Path Drive</strong>: Depart the main park area and travel along the winding roads on the rear side of the mountain, where the landscape shifts into dramatic, rugged scenery.</span></li>\r\n \t<li data-hveid=\"CAEIBhAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Panoramic Views</strong>: Take in the awe-inspiring vistas that unfold along the roadside, far away from the city's hustle and bustle.</span><span class=\"uJ19be notranslate\" data-wiz-uids=\"Gck7ab_1c\" data-complete=\"true\"><span class=\"vKEkVd\" data-animation-atomic=\"\" data-wiz-attrbind=\"class=Gck7ab_1b/TKHnVd\" data-sae=\"\"> </span></span></li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 33,
+            "day": 1,
+            "title": "The Trek to Shëngjergji Waterfall",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEICBAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Forest Hike</strong>: Embark on a moderate 20-minute hike through a lush forest trail to locate the \"elusive\" Shëngjergji Waterfall.</span></li>\r\n \t<li data-hveid=\"CAEICBAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Natural Immersion</strong>: Explore the rich flora and fauna surrounding the falls, taking in the vibrant colors and sounds of the deep woods.</span></li>\r\n \t<li data-hveid=\"CAEICBAC\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Serene Refreshment</strong>: Reach the pristine waterfall and enjoy the opportunity to immerse yourself in its refreshing, cool waters while relaxing in a truly tranquil setting.</span></li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 34,
+            "day": 1,
+            "title": "Exploring Tirana",
+            "description": "<ul>\r\n \t<li>E-bike day in Tirana surroundings, we will be passing near the pyramid of Tirana and climb the stairs to have a great upper view of the capital, we will enter in the Bloc area, (the place reserved for the communist leaders of Albania during the regime) than we pedal at the artificial lake park and the hills around the city.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 34,
+            "day": 1,
+            "title": "Picnic near Farka Lake",
+            "description": "<ul>\r\n \t<li>We stop at the Farka Lake for a picnic near this beautiful and peaceful place, than we head back towards the Capital city to end our amazing day.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 35,
+            "day": 1,
+            "title": "Discover the Heart of Gjirokastra: The Vibrant Bazaar Experience\"",
+            "description": "<ul>\r\n \t<li>Our first stop upon arriving in Gjirokastra will be the bustling Gjirokastra Bazaar, a vibrant marketplace where local crafts, textiles, and traditional Albanian products beckon visitors.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 35,
+            "day": 1,
+            "title": "Journey to the Majestic Gjirokastra Castle",
+            "description": "<ul>\r\n \t<li>After exploring the bazaar, we'll ascend the winding road leading to the magnificent Gjirokastra Castle, a true architectural marvel.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 35,
+            "day": 1,
+            "title": "Inside the Castle Walls",
+            "description": "<ul>\r\n \t<li>Within its walls, we'll discover the castle's museum and the castle's notorious old prison.</li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 35,
+            "day": 1,
+            "title": "To the Clock Tower",
+            "description": "<ul>\r\n \t<li>Continuing our journey within the castle, we'll make our way to its highest point, where the iconic clock tower is located.</li>\r\n</ul>",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 35,
+            "day": 1,
+            "title": "Step Inside Zekate House",
+            "description": "<ul>\r\n \t<li>A last stop is made in the Zekate House, a local fortress house where you can learn how the rich families used to live back in the day.</li>\r\n</ul>",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 35,
+            "day": 1,
+            "title": "A Hidden Gem in the Forest",
+            "description": "<ul>\r\n \t<li>A mere 30 kilometers from Gjirokaster, a hidden gem awaits us within the heart of the forest.</li>\r\n</ul>",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 35,
+            "day": 1,
+            "title": "The Magic of the Blue Eye",
+            "description": "<ul>\r\n \t<li>We will conclude the tour with the exploration of the awe-inspiring natural wonder of the Blue Eye.</li>\r\n</ul>",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 36,
+            "day": 1,
+            "title": "Ohrid, The City of 365 Churches",
+            "description": "<ul>\r\n \t<li>Your journey begins in Tirana with your tour leader picking you up at the agreed time and location. Your first stop will be Ohrid, a city that seems untouched by time. Ohrid boasts a history that stretches back to ancient Hellenistic times, passing through the eras of the Roman Empire and the Ottoman Empire. With is its remarkable fusion of Orthodox and Islamic architecture and with an astounding number of 365 churches, each symbolizing a day of the year, Ohrid is truly unique.</li>\r\n \t<li>As you stroll through the enchanting streets of the old town, you will explore the main churches, such as Saint Sophia, Saint Jovani, and Saint Clement. You'll also marvel at the medieval Samoil Fortress, visit the National Workshop for handmade paper, and immerse ourselves in the rich culture at the Ohrid Amphitheatre, among other captivating experiences that await you in this remarkable city.</li>\r\n \t<li>Following a lakeside lunch to recharge your energy, you will continue our journey to Saint Naum.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 36,
+            "day": 1,
+            "title": "The Bay of Bones",
+            "description": "<ul>\r\n \t<li>You will make a short pit stop at the Bay of Bones for photos and a bit of history.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 36,
+            "day": 1,
+            "title": "The Monastery of Saint Naum",
+            "description": "<ul>\r\n \t<li>While driving along the perimeter of Ohrid Lake , you will soon encounter the Saint Naum Monastery. As you admire the ancient Byzantine architecture that has stood for a thousand years, you'll proceed to explore the monastery's interior. Inside, you will pay a visit to the central church of the monastery and relish the picturesque view of the lake from this vantage point. For nature enthusiasts, the monastery also houses captivating peacocks, adding to its overall charm and beauty.</li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 36,
+            "day": 1,
+            "title": "Drilon National Park",
+            "description": "<ul>\r\n \t<li>Shortly after leaving Lin Village, you'll arrive at Drilon Park. Here, you can savor a brief coffee break by the tranquil Drilon River, surrounded by graceful swans and the stunning beauty of nature.</li>\r\n</ul>",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 36,
+            "day": 1,
+            "title": "Lin Town",
+            "description": "<ul>\r\n \t<li>As you ascend towards Mount Qafe Thana, we will encounter Lin Village. The breathtaking vista of the village and the adjacent lake makes it an ideal spot for capturing memorable photographs and creating cherished memories. Return to Tirana.</li>\r\n</ul>",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 37,
+            "day": 1,
+            "title": "Journey South from Tirana Through Albania",
+            "description": "Embark on your journey from Tirana, traveling south through Albania’s captivating and ever-changing landscapes, where rolling hills, charming villages, and scenic countryside set the tone for the adventure ahead.",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 37,
+            "day": 1,
+            "title": "Discover Ksamil: Albania's Southern Gem",
+            "description": "Continue your adventure as you travel to the southernmost edge of Albania. Immerse yourself in the beauty of the charming village of Ksamil, known for its stunning islands that boast captivating landscapes and crystal-clear waters.",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 37,
+            "day": 1,
+            "title": "Relax for 2 Hours by Ksamil's Three Islands",
+            "description": "Enjoy 2 hours of beach time in front of the three islands of Ksamil.",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 37,
+            "day": 1,
+            "title": "Discover Saranda: Explore the Boulevard",
+            "description": "Visit Saranda, the capital of South Albania. Enjoy a walk in the boulevard of Saranda and a traditional lunch in Sarandas most special restaurant.",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 37,
+            "day": 1,
+            "title": "Stop by Saranda's Blue Eye on Your Return",
+            "description": "Drive back and stop by The Blue Eye of Saranda.",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 37,
+            "day": 1,
+            "title": "Discover the Hidden Gem in the Forest: 20-Minute Walk to the Springs",
+            "description": "Explore the hidden gem that awaits us within the heart of the forest. Walk 20 minutes to arrive in the springs.",
+            "sort_order": 5
+        },
+        {
+            "tour_id": 37,
+            "day": 1,
+            "title": "Experience the Breathtaking Beauty of the Blue Eye",
+            "description": "Enjoy the breathtaking nature wonder of the Blue Eye.",
+            "sort_order": 6
+        },
+        {
+            "tour_id": 39,
+            "day": 1,
+            "title": "The Road to Kosovo’s Cultural Capital",
+            "description": "<ul>\r\n \t<li>Morning Departure: Your journey begins with a pickup from your hotel or preferred location in Tirana, heading north toward the border.</li>\r\n \t<li>Arrival in Prizren: Step into what is often called the \"cultural capital of Kosovo,\" a city rich in Byzantine, Ottoman, and Yugoslav influences.</li>\r\n \t<li>Ottoman Heritage: Wander the iconic cobblestone streets of the Old Town to see the stunning 1615 Sinan Pasha Mosque and cross the 16th-century Old Stone Bridge.</li>\r\n \t<li>The League of Prizren: Visit the historic site where the Albanian League of Prizren was established in 1878, marking a pivotal moment in the movement for Albanian national identity.</li>\r\n \t<li>Religious Landmarks: Explore the UNESCO-listed 14th-century Church of Our Lady of Ljeviš and other significant spiritual sites that represent the city's diverse heritage.</li>\r\n \t<li>Prizren Fortress: Hike up to the medieval castle ruins, also known as Kalaja e Prizrenit, for breathtaking panoramic views of the entire city and the surrounding Sharr Mountains.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 39,
+            "day": 1,
+            "title": "Prishtina: The Dynamic New Capital",
+            "description": "<ul>\r\n \t<li>Journey to the Capital: After a traditional lunch in Prizren's old town, continue the drive to Prishtina, the vibrant and energetic capital of Europe’s youngest country.</li>\r\n \t<li>Independence Symbols: Visit the world-renowned Newborn Monument, a typographic sculpture that is repainted every year to symbolize Kosovo's progress since its 2008 declaration of independence.</li>\r\n \t<li>Architectural Marvels: Marvel at the National Library of Kosovo, famous for its unique (and sometimes controversial) brutalist design featuring 99 white domes.</li>\r\n \t<li>City Center Stroll: Walk through Mother Teresa Square, the city's main pedestrian artery, and visit the Imperial Mosque (Xhamia e Mbretit), which dates back to 1461.</li>\r\n \t<li>Modern Spirit: Experience the lively atmosphere of Prishtina's cafes and squares, reflecting a city that seamlessly blends centuries of history with a forward-looking, modern identity.</li>\r\n \t<li>Evening Return: Conclude your exploration of Kosovo and begin the scenic return journey back to Tirana.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 40,
+            "day": 1,
+            "title": "Scenic Drive and Sveti Stefan Viewpoint",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIAxAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Northern Journey</strong>: Begin your full-day journey with a pickup in Tirana, driving north towards the stunning Adriatic coastline of Montenegro.</span></li>\r\n \t<li data-hveid=\"CAEIAxAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Sveti Stefan Photo Stop</strong>: Pause for a refreshing coffee break and photo opportunity at the viewpoint overlooking Sveti Stefan, one of the most exclusive and picturesque island resorts on the Adriatic.</span></li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 40,
+            "day": 1,
+            "title": "Historic Budva and the Old Town",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIBRAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Arrival in Budva</strong>: Continue your journey to Budva, a coastal city known for its vibrant atmosphere and rich history.</span></li>\r\n \t<li data-hveid=\"CAEIBRAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Old Town Exploration</strong>: Immerse yourself in the charm of Budva's well-preserved Stari Grad (Old Town), walking through ancient streets.</span></li>\r\n \t<li data-hveid=\"CAEIBRAC\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Key Historic Sites</strong>: Visit significant landmarks including:</span>\r\n<ul class=\"KsbFXc U6u95\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIBRAD\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Budva Citadel</strong>: Explore the fortress offering historical insight and excellent views of the sea and town.</span></li>\r\n \t<li data-hveid=\"CAEIBRAE\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Churches and Ruins</strong>: See the Church of Sveti Ivan, Santa Maria’s Church, and the remains of Roman Villas.</span></li>\r\n \t<li data-hveid=\"CAEIBRAF\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Historical Markers</strong>: Visit the grave of the famous writer Stefan Mitrov Ljubiša.</span></li>\r\n</ul>\r\n</li>\r\n \t<li data-hveid=\"CAEIBRAG\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Lunch with a View</strong>: Enjoy a delightful lunch stop at a restaurant situated on a hillside, offering panoramic views of the city and coastline.</span></li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 40,
+            "day": 1,
+            "title": "Kotor: Medieval Walled City and Fortress Climb",
+            "description": "<ul class=\"KsbFXc U6u95\" data-processed=\"true\" data-complete=\"true\">\r\n \t<li data-hveid=\"CAEIBxAA\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Journey to Kotor</strong>: A short 30-minute drive leads you to the magnificent Bay of Kotor.</span></li>\r\n \t<li data-hveid=\"CAEIBxAB\" data-complete=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Walking Tour</strong>: Participate in a walking tour of the majestic, UNESCO-listed Old Town of Kotor, a fortified medieval maze filled with history.</span></li>\r\n \t<li data-hveid=\"CAEIBxAC\" data-sae=\"\" data-complete=\"true\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Fortress Ascent</strong>: Embark on a climb up the ancient city walls to the Fortress of Kotor (San Giovanni Fortress). This demanding but rewarding ascent provides unparalleled, panoramic views of the entire bay—one of the most unique and memorable vistas in all of Europe.</span></li>\r\n \t<li data-hveid=\"CAEIBxAD\" data-complete=\"true\" data-processed=\"true\" data-sae=\"\"><span class=\"T286Pc\" data-sfc-cp=\"\" data-complete=\"true\"><strong class=\"Yjhzub\" data-complete=\"true\">Return Journey</strong>: Conclude your exploration of Montenegro's coastal treasures and begin the return trip to Tirana.</span></li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 56,
+            "day": 1,
+            "title": "Belshi Town Brief Stop",
+            "description": "<ul>\r\n \t<li class=\"p1\">Today your journey commences in Tirana. Start your drive towards the ottoman city of Berat.</li>\r\n \t<li class=\"p1\">Midway you will come across the small town of Belsh. Found in the karstic region of Dumrea, Belshi town is located by Belshi lake and surrounded by 84 other small lake. Enjoy a brief stop for a caffe by the lake.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 56,
+            "day": 1,
+            "title": "Berati Castle",
+            "description": "<ul>\r\n \t<li class=\"p1\">Next, ascend the castle hill for a visit to the 2,500-year-old Berati Castle. Embark on a 1.5-hour walking tour and learn about its development under different empires, spanning from Roman to Byzantine to Ottoman. Visit several landmarks, including the Church of Saint Mary, the Church of the Holy Trinity, the Red Mosque, the fortress walls and watchtowers, and traditional Ottoman houses.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 56,
+            "day": 1,
+            "title": "Mangalemi and Gorica Old Towns",
+            "description": "<ul>\r\n \t<li class=\"p1\">Descend to the city center and explore the renowned Mangalemi neighborhood. Discover significant landmarks such as the city gate and former Pasha's residence, the Sultan's Mosque, and Berat's bustling boulevard. Pass by the famous Gorica Bridge and explore the old Gorica neighborhood.</li>\r\n \t<li>\r\n<div class=\"flex max-w-full flex-col grow\">\r\n<div class=\"min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-1\" dir=\"auto\" data-message-author-role=\"assistant\" data-message-id=\"03fce6be-ad72-4ff2-bc60-00fa947d81a5\" data-message-model-slug=\"gpt-5-2\">\r\n<div class=\"flex w-full flex-col gap-1 empty:hidden first:pt-[1px]\">\r\n<div class=\"markdown prose dark:prose-invert w-full wrap-break-word light markdown-new-styling\">\r\n<p data-start=\"0\" data-end=\"70\" data-is-last-node=\"\" data-is-only-node=\"\">Enjoy free time to wander around the old towns and stop for lunch.</p>\r\n\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"mt-3 w-full empty:hidden\">\r\n<div class=\"text-center\">\r\n<div></div>\r\n</div>\r\n</div></li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 57,
+            "day": 1,
+            "title": "Start of the day",
+            "description": "<ul>\r\n \t<li class=\"p1\">Pick-ups are arranged anytime from 09:00 to 10:00 at or very close to your hotel. The tour guide will greet you and you will be welcomed by a comfortable transportation vehicle.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 57,
+            "day": 1,
+            "title": "Bovilla Canyon",
+            "description": "<ul>\r\n \t<li class=\"p1\">As you journey thought the countryside of Albania, you will reach the Bovilla Canyons. Enjoy the beautiful nature views of the canyon. Take a short break for some pictures and a bit of strech.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 57,
+            "day": 1,
+            "title": "Bovilla Dam",
+            "description": "<ul>\r\n \t<li class=\"p1\">Drive up Bovilla Dam, an impressive structure towering at a height of 91 meters. This dam serves as the primary source for Tirana's electricity and water supply, drawing from the surrounding lake.</li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 57,
+            "day": 1,
+            "title": "Gamti Mountain",
+            "description": "<ul>\r\n \t<li class=\"p1\">Embark on the hiking trail towards Gamti Mountain, where every turn reveals stunning views of the lake and the surrounding countryside. The hike includes intermittent breaks to rest and absorb the scenery. After approximately 25 minutes at an elevation of 850 meters the road ends and you will reach the only cafe in Gamti mountain. After this there is an additional 10-minute hike up the rocky slopes to reach the summit. Upon reaching the summit, you will encounter one of the most amazing views in Albania. Descend along the same path and, upon reaching the base, visit the river's shore.</li>\r\n</ul>",
+            "sort_order": 3
+        },
+        {
+            "tour_id": 57,
+            "day": 1,
+            "title": "Free Time",
+            "description": "<ul>\r\n \t<li class=\"p1\">End your day with some free time to enjoy a meal at a nearby restaurant or a snack you’ve brought along. After a day filled with adventure and stunning natural scenery, return to Tirana, where you’ll be dropped off at your accommodation.</li>\r\n</ul>",
+            "sort_order": 4
+        },
+        {
+            "tour_id": 58,
+            "day": 1,
+            "title": "Rozafa Castle",
+            "description": "<ul>\r\n \t<li class=\"p1\">Begin with a pickup from your accommodation in Tirana and head to Shkodra City, the cultural capital of North Albania.First, visit the Castle of Rozafa, where the 2,000-year-old history of the city is hidden in the walls. Wander through ancient stone walls where Illyrians, Romans, Venetians, and Ottomans once stood. Be captivated by the legend of Rozafa, a tale of sacrifice and strength that still echoes through the castle's stones. Take in panoramic vistas of Lake Shkodra, the Drin and Buna rivers, and the Albanian Alps beyond.</li>\r\n</ul>",
+            "sort_order": 0
+        },
+        {
+            "tour_id": 58,
+            "day": 1,
+            "title": "Gjuhadal, Shkodra City Center",
+            "description": "<ul>\r\n \t<li class=\"p1\">Next, head to the center of Shkodra city, Gjuhadol. Step into the soul of Shkodër, once home to diplomats and poets. Today, Gjuhadol is the city’s cultural heart, a lively pedestrian zone lined with cozy guesthouses, jazz bars, flower stalls, and artisan shops. Enjoy 1 hour of free time to wander on your own and explore the charming and artistic center.</li>\r\n</ul>",
+            "sort_order": 1
+        },
+        {
+            "tour_id": 58,
+            "day": 1,
+            "title": "Mesi Bridge",
+            "description": "<ul>\r\n \t<li class=\"p1\">After your free time in Shkoder, take a short drive to visit one of the most iconic bridges of Albania, Mesi Bridge. This Ottoman bridge has stood for 250 years and is renowned for its architecture, featuring 13 stone arches. It remains one of the best-preserved Ottoman bridges in Albania.</li>\r\n</ul>",
+            "sort_order": 2
+        },
+        {
+            "tour_id": 58,
+            "day": 1,
+            "title": "Shkodra Lake, Shiroke",
+            "description": "<ul>\r\n \t<li class=\"p1\">Finally, enjoy a traditional lunch at a cozy restaurant by Lake Shkodra before heading back to Tirana.</li>\r\n</ul>",
+            "sort_order": 3
+        }
+    ]
+}
