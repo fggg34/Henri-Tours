@@ -13,7 +13,7 @@
     @if($mainPost ?? null)
     {{-- Featured section: 2 columns - left 1 large, right 4 small in 2x2 --}}
     <section class="mb-16">
-        <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-6 items-stretch">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
             <div class="min-h-0 flex">
                 <x-blog-card-featured :post="$mainPost" variant="large" />
             </div>
