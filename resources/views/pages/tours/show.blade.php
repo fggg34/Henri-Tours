@@ -377,7 +377,7 @@
                 <div class="bg-white border border-gray-200 rounded-xl p-6 md:p-8 shadow-sm">
                     <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">Cancellation Policy</h2>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">For detailed Booking Terms and the Cancellation Policy, please read more</p>
-                    <a href="{{ route('faq') }}" class="inline-flex items-center px-5 py-2 bg-white border border-gray-800 text-black font-medium rounded-md hover:bg-gray-50 transition-colors">
+                    <a href="{{ route('terms') }}" class="inline-flex items-center px-5 py-2 bg-white border border-gray-800 text-black font-medium rounded-md hover:bg-gray-50 transition-colors">
                         Show more
                     </a>
                 </div>

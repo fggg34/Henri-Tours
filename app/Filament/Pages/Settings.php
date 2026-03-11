@@ -281,7 +281,7 @@ class Settings extends Page
                 ['label' => 'Our Transport', 'url' => '/our-transport'],
                 ['label' => 'Blog', 'url' => '/blog'],
                 ['label' => 'Contact us', 'url' => '/contact'],
-                ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],
+                ['label' => 'Terms & Cancellation Policy', 'url' => '/terms-and-cancellation-policy'],
             ],
         ];
 

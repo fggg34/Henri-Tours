@@ -29,7 +29,7 @@
             ['label' => 'Our Transport', 'url' => '/our-transport'],
             ['label' => 'Blog', 'url' => '/blog'],
             ['label' => 'Contact us', 'url' => '/contact'],
-            ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],
+            ['label' => 'Terms & Cancellation Policy', 'url' => '/terms-and-cancellation-policy'],
         ]];
     } else {
         $footerMenu2 = array_merge(['title' => 'Why Choose Us', 'items' => []], $footerMenu2);
