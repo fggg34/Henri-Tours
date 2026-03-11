@@ -80,7 +80,9 @@
         </a>
         <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-2">{{ $category->name }}</h2>
         @if($category->description)
-            <p class="text-gray-500 mt-1">{{ $category->description }}</p>
+            <div class="text-gray-500 mt-1 prose prose-sm max-w-none dark:prose-invert">
+                {!! \Filament\Forms\Components\RichEditor\RichContentRenderer::make($category->description)->toUnsafeHtml() !!}
+            </div>
         @endif
     </div>
 
