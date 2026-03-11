@@ -56,7 +56,7 @@
     {{-- Intro Section --}}
     @if($introTitle || $introContent)
     <section class="py-14 md:py-20">
-        <div class="max-w-3xl">
+        <div>
             @if($introTitle)
                 <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-5 leading-tight">{{ $introTitle }}</h2>
             @endif
