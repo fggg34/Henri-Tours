@@ -5,7 +5,30 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-8">Blog</h1>
+    <header class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Blog</h1>
+        <p class="text-gray-500 text-lg">Discover Albania beyond the usual routes</p>
+    </header>
+
+    @if($mainPost ?? null)
+    {{-- Featured section: 2 columns - left 1 large, right 4 small in 2x2 --}}
+    <section class="mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-6 items-stretch">
+            <div class="min-h-0 flex">
+                <x-blog-card-featured :post="$mainPost" variant="large" />
+            </div>
+            @if(($sidePosts ?? collect())->isNotEmpty())
+            <div class="grid grid-cols-2 grid-rows-2 gap-4 min-h-0 content-stretch">
+                @foreach($sidePosts as $post)
+                <div class="min-h-0 flex">
+                    <x-blog-card-featured :post="$post" variant="small" />
+                </div>
+                @endforeach
+            </div>
+            @endif
+        </div>
+    </section>
+    @endif
 
     @forelse($postsByCategory as $section)
         <section class="mb-12" data-blog-category="{{ $section['slug'] }}" data-blog-offset="12">
@@ -30,17 +53,21 @@
 
 @push('scripts')
 <script>
-document.querySelectorAll('.blog-load-more').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-        var section = this.closest('[data-blog-category]');
-        var category = section.getAttribute('data-blog-category');
-        var offset = parseInt(section.getAttribute('data-blog-offset'), 10) || 12;
-        var grid = section.querySelector('.blog-category-grid');
+(function() {
+    var excludeIds = @json($featuredIds ?? []);
+    document.querySelectorAll('.blog-load-more').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var section = this.closest('[data-blog-category]');
+            var category = section.getAttribute('data-blog-category');
+            var offset = parseInt(section.getAttribute('data-blog-offset'), 10) || 12;
+            var grid = section.querySelector('.blog-category-grid');
 
-        this.disabled = true;
-        this.textContent = 'Loading...';
+            this.disabled = true;
+            this.textContent = 'Loading...';
 
-        fetch('{{ route("blog.load-more") }}?category=' + encodeURIComponent(category) + '&offset=' + offset)
+            var url = '{{ route("blog.load-more") }}?category=' + encodeURIComponent(category) + '&offset=' + offset;
+            if (excludeIds.length) url += '&exclude=' + excludeIds.join(',');
+            fetch(url)
             .then(function(r) { return r.json(); })
             .then(function(data) {
                 if (data.html) {
@@ -59,7 +86,7 @@ document.querySelectorAll('.blog-load-more').forEach(function(btn) {
                 this.textContent = 'Load More';
             }.bind(this));
     });
-});
+})();
 </script>
 @endpush
 @endsection

@@ -32,6 +32,9 @@ class BlogPostsTable
                     ->searchable(),
                 IconColumn::make('is_published')
                     ->boolean(),
+                IconColumn::make('is_featured')
+                    ->boolean()
+                    ->label('Featured'),
                 TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),

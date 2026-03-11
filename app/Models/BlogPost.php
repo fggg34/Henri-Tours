@@ -24,6 +24,7 @@ class BlogPost extends Model
         'meta_title',
         'meta_description',
         'is_published',
+        'is_featured',
         'published_at',
     ];
 
@@ -31,6 +32,7 @@ class BlogPost extends Model
     {
         return [
             'is_published' => 'boolean',
+            'is_featured' => 'boolean',
             'published_at' => 'datetime',
         ];
     }

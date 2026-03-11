@@ -10,11 +10,30 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $allPosts = BlogPost::where('is_published', true)
+        $baseQuery = BlogPost::where('is_published', true)
             ->whereNotNull('published_at')
             ->with('category')
-            ->orderByDesc('published_at')
-            ->get();
+            ->orderByDesc('published_at');
+
+        // Get 5 featured posts: featured first, fill with random if < 5
+        $featuredIds = $baseQuery->clone()->where('is_featured', true)->limit(5)->pluck('id');
+        $needed = 5 - $featuredIds->count();
+        if ($needed > 0) {
+            $randomIds = $baseQuery->clone()
+                ->whereNotIn('id', $featuredIds)
+                ->inRandomOrder()
+                ->limit($needed)
+                ->pluck('id');
+            $featuredIds = $featuredIds->merge($randomIds);
+        }
+        $featuredPosts = $baseQuery->clone()->whereIn('id', $featuredIds)->get();
+        // Order: first the main (left), then the 4 small (right) - maintain published_at order within our 5
+        $featuredPosts = $featuredPosts->sortByDesc('published_at')->values();
+        $mainPost = $featuredPosts->first();
+        $sidePosts = $featuredPosts->slice(1, 4);
+
+        // Category posts: exclude featured 5
+        $allPosts = $baseQuery->clone()->whereNotIn('id', $featuredIds)->get();
 
         $grouped = $allPosts->groupBy(function ($post) {
             return $post->category ? $post->category->name : 'Uncategorized';
@@ -37,18 +56,26 @@ class BlogController extends Controller
             ];
         }
 
-        return view('pages.blog.index', compact('postsByCategory'));
+        return view('pages.blog.index', compact('featuredPosts', 'mainPost', 'sidePosts', 'postsByCategory', 'featuredIds'));
     }
 
     public function loadMore(Request $request)
     {
         $category = $request->get('category');
         $offset = (int) $request->get('offset', 12);
+        $excludeIds = $request->get('exclude'); // comma-separated IDs of featured posts
 
         $query = BlogPost::where('is_published', true)
             ->whereNotNull('published_at')
             ->with('category')
             ->orderByDesc('published_at');
+
+        if ($excludeIds) {
+            $ids = array_filter(array_map('intval', explode(',', $excludeIds)));
+            if (! empty($ids)) {
+                $query->whereNotIn('id', $ids);
+            }
+        }
 
         if ($category === 'uncategorized') {
             $query->whereNull('blog_category_id');

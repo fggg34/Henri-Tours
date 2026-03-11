@@ -56,6 +56,9 @@ class BlogPostForm
                 TextInput::make('meta_description'),
                 Toggle::make('is_published')
                     ->required(),
+                Toggle::make('is_featured')
+                    ->label('Featured')
+                    ->helperText('Show in the featured section at top of blog archive'),
                 DateTimePicker::make('published_at'),
             ]);
     }
