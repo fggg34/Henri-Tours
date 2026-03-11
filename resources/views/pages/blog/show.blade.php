@@ -10,7 +10,7 @@
     @if($post->featured_image_url)
         <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="mt-6 w-full rounded-xl">
     @endif
-    <div class="blog-content mt-6 prose prose-lg max-w-none">
+    <div class="blog-content mt-6">
         {!! $post->content !!}
     </div>
 
