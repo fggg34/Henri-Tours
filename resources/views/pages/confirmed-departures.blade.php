@@ -143,7 +143,7 @@
                              :class="activeTour === {{ $tourIdx }} && activeDate === {{ $dateIdx }} ? 'bg-blue-50 border-l-4 border-l-brand-navy' : 'border-l-4 border-l-transparent hover:bg-gray-50'"
                              class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 px-4 md:px-6 py-5 border-b border-gray-100 cursor-pointer transition-colors">
                             {{-- Start date --}}
-                            <div class="md:col-span-3">
+                            <div class="md:col-span-3 flex flex-wrap items-center">
                                 <span class="md:hidden text-xs font-medium text-gray-400 uppercase">Starting</span>
                                 <p class="text-sm text-gray-900">
                                     <span class="font-medium">{{ \Carbon\Carbon::parse($date['start'])->format('l d') }}</span>
@@ -151,7 +151,7 @@
                                 </p>
                             </div>
                             {{-- End date --}}
-                            <div class="md:col-span-3">
+                            <div class="md:col-span-3 flex flex-wrap items-center">
                                 <span class="md:hidden text-xs font-medium text-gray-400 uppercase">Ending</span>
                                 <p class="text-sm text-gray-900">
                                     <span class="font-medium">{{ \Carbon\Carbon::parse($date['end'])->format('l d') }}</span>
