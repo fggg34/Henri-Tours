@@ -55,11 +55,24 @@ class OurTransportPage extends Page
         $vehicles = Setting::get('page_our_transport_vehicles', '');
         $vehicles = is_string($vehicles) ? (json_decode($vehicles, true) ?: []) : $vehicles;
 
+        $featureCards = Setting::get('page_our_transport_feature_cards', '');
+        $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
+        if (empty($featureCards)) {
+            $featureCards = [
+                ['icon' => 'fa-shield-halved', 'icon_image' => '', 'title' => 'Safe & Reliable', 'description' => 'Regularly maintained vehicles for worry-free travel'],
+                ['icon' => 'fa-couch', 'icon_image' => '', 'title' => 'Modern & Comfortable', 'description' => 'Air conditioning, comfortable seating, cozy ambient'],
+                ['icon' => 'fa-id-badge', 'icon_image' => '', 'title' => 'Experienced Drivers', 'description' => 'Professional expert drivers for Albania & The Balkans'],
+                ['icon' => 'fa-users', 'icon_image' => '', 'title' => 'All group sizes', 'description' => 'All size vehicles available from 3 - 55 seater'],
+            ];
+        }
+
         $this->getSchema('ourTransportForm')->fill([
             'hero_title' => Setting::get('page_our_transport_hero_title', 'Our Transport'),
             'hero_subtitle' => Setting::get('page_our_transport_hero_subtitle', 'Travel comfortably across Albania with our modern fleet. From minivans to coaches, we ensure a smooth ride for every journey.'),
             'hero_image' => $heroImage,
             'vehicles' => $vehicles,
+            'feature_section_title' => Setting::get('page_our_transport_feature_section_title', 'Why our transport stands out'),
+            'feature_cards' => $featureCards,
             'form_title' => Setting::get('page_our_transport_form_title', 'Book Your Transport Today'),
             'form_subtitle' => Setting::get('page_our_transport_form_subtitle', 'Let us handle your transport so you can enjoy Albania stress-free'),
             'form_success_message' => Setting::get('page_our_transport_form_success_message', 'Thank you! Your transport request has been submitted. We\'ll get back to you soon.'),
@@ -137,6 +150,47 @@ class OurTransportPage extends Page
                                     ->columns(1)
                                     ->defaultItems(0)
                                     ->addActionLabel('Add vehicle')
+                                    ->reorderable()
+                                    ->reorderableWithButtons()
+                                    ->collapsible(),
+                            ]),
+                        SchemaSection::make('Why our transport stands out')
+                            ->description('Feature cards displayed between vehicles and the booking form. Each card: icon (image or Font Awesome class), title, description.')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('feature_section_title')
+                                    ->label('Section title')
+                                    ->maxLength(255)
+                                    ->default('Why our transport stands out')
+                                    ->columnSpanFull(),
+                                Repeater::make('feature_cards')
+                                    ->schema([
+                                        FileUpload::make('icon_image')
+                                            ->label('Icon image (optional)')
+                                            ->image()
+                                            ->disk('public')
+                                            ->directory('pages/our-transport/feature-cards')
+                                            ->visibility('public')
+                                            ->imagePreviewHeight(80)
+                                            ->helperText('Upload a custom image. If empty, Font Awesome icon is used.'),
+                                        TextInput::make('icon')
+                                            ->label('Font Awesome icon (fallback)')
+                                            ->placeholder('fa-shield-halved')
+                                            ->helperText('e.g. fa-shield-halved, fa-couch, fa-id-badge, fa-users. Used when no image is set.'),
+                                        TextInput::make('title')
+                                            ->label('Card title')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->placeholder('e.g. Safe & Reliable'),
+                                        Textarea::make('description')
+                                            ->label('Description')
+                                            ->rows(2)
+                                            ->required()
+                                            ->placeholder('e.g. Regularly maintained vehicles for worry-free travel'),
+                                    ])
+                                    ->columns(2)
+                                    ->defaultItems(4)
+                                    ->addActionLabel('Add card')
                                     ->reorderable()
                                     ->reorderableWithButtons()
                                     ->collapsible(),
@@ -224,6 +278,14 @@ class OurTransportPage extends Page
             $v['gallery_images'] = is_array($imgs) ? array_values($imgs) : [];
         }
         Setting::set('page_our_transport_vehicles', json_encode($vehicles));
+
+        $featureCards = $data['feature_cards'] ?? [];
+        foreach ($featureCards as &$c) {
+            $img = $c['icon_image'] ?? '';
+            $c['icon_image'] = is_array($img) ? ($img[0] ?? '') : $img;
+        }
+        Setting::set('page_our_transport_feature_section_title', $data['feature_section_title'] ?? '');
+        Setting::set('page_our_transport_feature_cards', json_encode($featureCards));
 
         Setting::set('page_our_transport_form_title', $data['form_title'] ?? '');
         Setting::set('page_our_transport_form_subtitle', $data['form_subtitle'] ?? '');

@@ -13,6 +13,18 @@
     $formTitle = \App\Models\Setting::get('page_our_transport_form_title', 'Book Your Transport Today');
     $formSubtitle = \App\Models\Setting::get('page_our_transport_form_subtitle', 'Let us handle your transport so you can enjoy Albania stress-free');
 
+    $featureSectionTitle = \App\Models\Setting::get('page_our_transport_feature_section_title', 'Why our transport stands out');
+    $featureCards = \App\Models\Setting::get('page_our_transport_feature_cards', '');
+    $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
+    if (empty($featureCards)) {
+        $featureCards = [
+            ['icon' => 'fa-shield-halved', 'icon_image' => '', 'title' => 'Safe & Reliable', 'description' => 'Regularly maintained vehicles for worry-free travel'],
+            ['icon' => 'fa-couch', 'icon_image' => '', 'title' => 'Modern & Comfortable', 'description' => 'Air conditioning, comfortable seating, cozy ambient'],
+            ['icon' => 'fa-id-badge', 'icon_image' => '', 'title' => 'Experienced Drivers', 'description' => 'Professional expert drivers for Albania & The Balkans'],
+            ['icon' => 'fa-users', 'icon_image' => '', 'title' => 'All group sizes', 'description' => 'All size vehicles available from 3 - 55 seater'],
+        ];
+    }
+
     $storageUrl = fn($path) => $path ? \Illuminate\Support\Facades\Storage::disk('public')->url($path) : '';
 @endphp
 @extends('layouts.site')
@@ -103,6 +115,37 @@
                         class="w-full py-3 px-4 bg-brand-navy hover:bg-brand-btn text-white font-semibold rounded-lg text-sm transition-colors">
                         Book This Vehicle
                     </button>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
+    @endif
+
+    {{-- Why our transport stands out (2x2 feature cards) --}}
+    @if(!empty($featureCards))
+    <section class="py-16 md:py-20">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">{{ $featureSectionTitle }}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            @foreach($featureCards as $card)
+            @php
+                $iconImage = $card['icon_image'] ?? '';
+                $iconImage = is_array($iconImage) ? ($iconImage[0] ?? '') : $iconImage;
+                $iconClass = $card['icon'] ?? '';
+                $cardTitle = $card['title'] ?? '';
+                $cardDesc = $card['description'] ?? '';
+            @endphp
+            <div class="flex gap-5 p-6 bg-gray-50 rounded-xl border border-gray-100">
+                <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center">
+                    @if($iconImage)
+                    <img src="{{ $storageUrl($iconImage) }}" alt="{{ $cardTitle }}" class="w-full h-full object-contain" />
+                    @elseif($iconClass)
+                    <i class="fa-solid {{ $iconClass }} text-2xl text-gray-900"></i>
+                    @endif
+                </div>
+                <div class="min-w-0">
+                    @if($cardTitle)<h3 class="text-base font-bold text-gray-900 mb-1">{{ $cardTitle }}</h3>@endif
+                    @if($cardDesc)<p class="text-sm text-gray-600">{{ $cardDesc }}</p>@endif
                 </div>
             </div>
             @endforeach
