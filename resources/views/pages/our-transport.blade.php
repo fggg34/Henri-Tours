@@ -155,7 +155,7 @@
 
     {{-- Booking Form --}}
     <section id="transport-form" class="pb-20 scroll-mt-24">
-        <div class="max-w-4xl mx-auto">
+        <div class="mx-auto">
             <div class="bg-slate-50 rounded-2xl p-8 md:p-10 border border-gray-200 shadow-sm">
                 <h2 class="text-xl font-bold text-gray-900 mb-2">{{ $formTitle }}</h2>
                 <p class="text-gray-500 text-sm mb-8">{{ $formSubtitle }}</p>
