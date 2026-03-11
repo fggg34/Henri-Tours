@@ -264,32 +264,43 @@ class Settings extends Page
 
     private function getFooterMenu(string $key): array
     {
+        $defaultMenu1 = [
+            'title' => 'Explore Albania',
+            'items' => [
+                ['label' => 'Day Tours', 'url' => '/tours/category/day-tours'],
+                ['label' => 'Multi-Day Tour', 'url' => '/tours/category/multi-day-tours'],
+                ['label' => 'Cross Country', 'url' => '/tours/category/cross-country-tours'],
+                ['label' => 'Confirmed Group Tours', 'url' => '/tours'],
+                ['label' => 'Private Group Tour Requests', 'url' => '/private-group-tour-requests'],
+            ],
+        ];
+        $defaultMenu2 = [
+            'title' => 'Why Choose Us',
+            'items' => [
+                ['label' => 'About Us', 'url' => '/about'],
+                ['label' => 'Our Transport', 'url' => '#'],
+                ['label' => 'Blog', 'url' => '/blog'],
+                ['label' => 'Contact us', 'url' => '/contact'],
+                ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],
+            ],
+        ];
+
         $menu = Setting::get($key, '');
         $menu = is_string($menu) ? (json_decode($menu, true) ?: []) : $menu;
 
         if (empty($menu) || ! isset($menu['title'])) {
-            if ($key === 'footer_menu_1') {
-                return [
-                    'title' => 'Explore Albania',
-                    'items' => [
-                        ['label' => 'Day Tours', 'url' => '/tours/category/day-tours'],
-                        ['label' => 'Multi-Day Tour', 'url' => '/tours/category/multi-day-tours'],
-                        ['label' => 'Cross Country', 'url' => '/tours/category/cross-country-tours'],
-                        ['label' => 'Confirmed Group Tours', 'url' => '/tours'],
-                        ['label' => 'Private Group Tour Requests', 'url' => '/private-group-tour-requests'],
-                    ],
-                ];
-            }
-            return [
-                'title' => 'Why Choose Us',
-                'items' => [
-                    ['label' => 'About Us', 'url' => '/about'],
-                    ['label' => 'Our Transport', 'url' => '#'],
-                    ['label' => 'Blog', 'url' => '/blog'],
-                    ['label' => 'Contact us', 'url' => '/contact'],
-                    ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],
-                ],
-            ];
+            return $key === 'footer_menu_1' ? $defaultMenu1 : $defaultMenu2;
+        }
+
+        $legacyMenu1 = ($menu['title'] ?? '') === 'Quick links';
+        $legacyMenu2 = ($menu['title'] ?? '') === 'Company';
+        $emptyItems = empty($menu['items'] ?? []);
+
+        if ($key === 'footer_menu_1' && ($legacyMenu1 || $emptyItems)) {
+            return $defaultMenu1;
+        }
+        if ($key === 'footer_menu_2' && ($legacyMenu2 || $emptyItems)) {
+            return $defaultMenu2;
         }
 
         return array_merge(['title' => '', 'items' => []], $menu);
