@@ -47,7 +47,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" x-data="tourCategoryFilters()" x-init="init()">
 
-    <div class="mb-6">
+    <!-- <div class="mb-6">
         <a href="{{ route('tours.index') }}" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-navy transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
             All Tours
@@ -58,7 +58,7 @@
                 {!! \Filament\Forms\Components\RichEditor\RichContentRenderer::make($category->description)->toUnsafeHtml() !!}
             </div>
         @endif
-    </div>
+    </div> -->
 
     {{-- Filter bar --}}
     <div class="tours-filter-bar flex flex-wrap items-center gap-3 pb-6 border-b border-gray-200">
