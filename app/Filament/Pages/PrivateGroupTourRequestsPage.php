@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
@@ -40,10 +41,27 @@ class PrivateGroupTourRequestsPage extends Page
         $seoOgImage = Setting::get('page_private_group_tour_requests_seo_og_image', '');
         $seoOgImage = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
 
+        $featureCards = Setting::get('page_private_group_tour_requests_feature_cards', '');
+        $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
+        if (empty($featureCards)) {
+            $featureCards = [
+                ['icon' => 'fa-award', 'title' => 'Over a Decade of Excellence', 'description' => 'With years of experience, Albania Inbound delivers unforgettable journeys, making every trip extraordinary.'],
+                ['icon' => 'fa-map-location-dot', 'title' => 'Inspiring Journeys', 'description' => "We go beyond the usual, offering immersive experiences that uncover Albania's hidden gems."],
+                ['icon' => 'fa-handshake', 'title' => 'Travel with Purpose', 'description' => 'Committed to sustainability, we ensure every trip supports local communities and preserves culture.'],
+            ];
+        }
+
         $this->getSchema('privateGroupForm')->fill([
             'hero_title' => Setting::get('page_private_group_tour_requests_hero_title', 'Private Group Tour Requests'),
             'hero_subtitle' => Setting::get('page_private_group_tour_requests_hero_subtitle', 'Request a custom tour for your group. Tell us your dates, group size, and preferences – we\'ll create a tailored itinerary just for you.'),
             'hero_image' => $heroImage,
+            'intro_title' => Setting::get('page_private_group_tour_requests_intro_title', 'Why choose Albania Inbound?'),
+            'intro_content' => Setting::get('page_private_group_tour_requests_intro_content', 'We offer fast, priority support for private group enquiries. Our dedicated travel agents will create a customized travel plan tailored to your group – no complex forms, no hassle. Just tell us your preferences and we\'ll take care of the rest.'),
+            'intro_show_more_text' => Setting::get('page_private_group_tour_requests_intro_show_more_text', 'Show more'),
+            'intro_show_more_url' => Setting::get('page_private_group_tour_requests_intro_show_more_url', ''),
+            'intro_show_more_content' => Setting::get('page_private_group_tour_requests_intro_show_more_content', ''),
+            'form_success_message' => Setting::get('page_private_group_tour_requests_form_success_message', 'Thank you! Your request has been submitted. We\'ll get back to you soon.'),
+            'feature_cards' => $featureCards,
             'seo_title' => Setting::get('page_private_group_tour_requests_seo_title', ''),
             'seo_description' => Setting::get('page_private_group_tour_requests_seo_description', ''),
             'seo_og_image' => $seoOgImage,
@@ -81,6 +99,71 @@ class PrivateGroupTourRequestsPage extends Page
                                     ->columnSpanFull(),
                             ])
                             ->columns(1),
+                        SchemaSection::make('Intro Section')
+                            ->description('The "Why choose Albania Inbound?" block above the form.')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('intro_title')
+                                    ->label('Title')
+                                    ->maxLength(255)
+                                    ->default('Why choose Albania Inbound?')
+                                    ->columnSpanFull(),
+                                Textarea::make('intro_content')
+                                    ->label('Content (paragraph)')
+                                    ->rows(4)
+                                    ->columnSpanFull()
+                                    ->helperText('Main visible text. Use line breaks for paragraphs.'),
+                                TextInput::make('intro_show_more_text')
+                                    ->label('"Show more" link text')
+                                    ->maxLength(100)
+                                    ->placeholder('Show more'),
+                                TextInput::make('intro_show_more_url')
+                                    ->label('"Show more" link URL')
+                                    ->url()
+                                    ->placeholder('Leave empty to use expandable content below'),
+                                Textarea::make('intro_show_more_content')
+                                    ->label('Expandable content (if no URL)')
+                                    ->rows(4)
+                                    ->columnSpanFull()
+                                    ->helperText('If "Show more" URL is empty, this content expands inline when clicked.'),
+                            ])
+                            ->columns(2),
+                        SchemaSection::make('Form Section')
+                            ->description('The enquiry form. Submissions are stored and can be viewed in the admin.')
+                            ->collapsible()
+                            ->schema([
+                                Textarea::make('form_success_message')
+                                    ->label('Success message after submit')
+                                    ->rows(2)
+                                    ->columnSpanFull()
+                                    ->helperText('Shown to the user after they submit the form.'),
+                            ]),
+                        SchemaSection::make('Feature Cards')
+                            ->description('Three cards below the form (e.g. Excellence, Inspiring Journeys, Travel with Purpose).')
+                            ->collapsible()
+                            ->schema([
+                                Repeater::make('feature_cards')
+                                    ->schema([
+                                        TextInput::make('icon')
+                                            ->label('Icon (Font Awesome class)')
+                                            ->placeholder('fa-award')
+                                            ->required(),
+                                        TextInput::make('title')
+                                            ->label('Card title')
+                                            ->required()
+                                            ->maxLength(255),
+                                        Textarea::make('description')
+                                            ->label('Description')
+                                            ->rows(2)
+                                            ->required(),
+                                    ])
+                                    ->columns(1)
+                                    ->defaultItems(3)
+                                    ->addActionLabel('Add card')
+                                    ->reorderable()
+                                    ->reorderableWithButtons()
+                                    ->collapsible(),
+                            ]),
                         SchemaSection::make('SEO')
                             ->description('Meta title, description and OG image for this page.')
                             ->collapsible()
@@ -138,6 +221,13 @@ class PrivateGroupTourRequestsPage extends Page
         Setting::set('page_private_group_tour_requests_hero_title', $data['hero_title'] ?? '');
         Setting::set('page_private_group_tour_requests_hero_subtitle', $data['hero_subtitle'] ?? '');
         Setting::set('page_private_group_tour_requests_hero_image', $heroImage);
+        Setting::set('page_private_group_tour_requests_intro_title', $data['intro_title'] ?? '');
+        Setting::set('page_private_group_tour_requests_intro_content', $data['intro_content'] ?? '');
+        Setting::set('page_private_group_tour_requests_intro_show_more_text', $data['intro_show_more_text'] ?? '');
+        Setting::set('page_private_group_tour_requests_intro_show_more_url', $data['intro_show_more_url'] ?? '');
+        Setting::set('page_private_group_tour_requests_intro_show_more_content', $data['intro_show_more_content'] ?? '');
+        Setting::set('page_private_group_tour_requests_form_success_message', $data['form_success_message'] ?? '');
+        Setting::set('page_private_group_tour_requests_feature_cards', json_encode($data['feature_cards'] ?? []));
         Setting::set('page_private_group_tour_requests_seo_title', $data['seo_title'] ?? '');
         Setting::set('page_private_group_tour_requests_seo_description', $data['seo_description'] ?? '');
         Setting::set('page_private_group_tour_requests_seo_og_image', $seoOgImage);

@@ -6,6 +6,20 @@
 
     $seoTitle = \App\Models\Setting::get('page_private_group_tour_requests_seo_title', '');
     $seoDesc = \App\Models\Setting::get('page_private_group_tour_requests_seo_description', '');
+    $introTitle = \App\Models\Setting::get('page_private_group_tour_requests_intro_title', 'Why choose Albania Inbound?');
+    $introContent = \App\Models\Setting::get('page_private_group_tour_requests_intro_content', 'We offer fast, priority support for private group enquiries. Our dedicated travel agents will create a customized travel plan tailored to your group – no complex forms, no hassle.');
+    $showMoreText = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_text', 'Show more');
+    $showMoreUrl = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_url', '');
+    $showMoreContent = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_content', '');
+    $featureCards = \App\Models\Setting::get('page_private_group_tour_requests_feature_cards', '');
+    $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
+    if (empty($featureCards)) {
+        $featureCards = [
+            ['icon' => 'fa-award', 'title' => 'Over a Decade of Excellence', 'description' => 'With years of experience, Albania Inbound delivers unforgettable journeys, making every trip extraordinary.'],
+            ['icon' => 'fa-map-location-dot', 'title' => 'Inspiring Journeys', 'description' => "We go beyond the usual, offering immersive experiences that uncover Albania's hidden gems."],
+            ['icon' => 'fa-handshake', 'title' => 'Travel with Purpose', 'description' => 'Committed to sustainability, we ensure every trip supports local communities and preserves culture.'],
+        ];
+    }
 @endphp
 @extends('layouts.site')
 
@@ -37,8 +51,168 @@
 @endsection
 
 @section('content')
-{{-- Additional sections can be added here. Configure from Admin → Pages → Private Group Tour Requests. --}}
-<div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    {{-- Content sections go here --}}
+<div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+
+    {{-- Intro Section --}}
+    @if($introTitle || $introContent)
+    <section class="py-14 md:py-20">
+        <div class="max-w-3xl">
+            @if($introTitle)
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-5 leading-tight">{{ $introTitle }}</h2>
+            @endif
+            @if($introContent)
+                <div class="text-gray-600 leading-relaxed space-y-4" x-data="{ expanded: false }">
+                    <div class="prose prose-gray max-w-none">
+                        @foreach(array_filter(explode("\n\n", $introContent)) as $para)
+                            <p class="mb-0">{{ $para }}</p>
+                        @endforeach
+                    </div>
+                    @if($showMoreText && ($showMoreUrl || $showMoreContent))
+                        @if($showMoreUrl)
+                            <a href="{{ $showMoreUrl }}" class="inline-flex items-center gap-1.5 text-brand-navy hover:text-brand-btn font-medium text-sm underline underline-offset-2 transition-colors mt-4">
+                                {{ $showMoreText }}
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        @else
+                            <button type="button" @click="expanded = !expanded" class="inline-flex items-center gap-1.5 text-brand-navy hover:text-brand-btn font-medium text-sm underline underline-offset-2 transition-colors mt-4">
+                                <span x-show="!expanded">{{ $showMoreText }}</span>
+                                <span x-show="expanded" x-cloak>Show less</span>
+                                <i class="fa-solid transition-transform" :class="expanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                            </button>
+                            @if($showMoreContent)
+                                <div x-show="expanded" x-collapse class="mt-6 pt-6 border-t border-gray-200">
+                                    <div class="prose prose-gray max-w-none text-gray-600">
+                                        @foreach(array_filter(explode("\n\n", $showMoreContent)) as $para)
+                                            <p class="mb-3 last:mb-0">{{ $para }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
+                    @endif
+                </div>
+            @endif
+        </div>
+    </section>
+    @endif
+
+    {{-- Form Section --}}
+    <section class="py-8 md:py-12 pb-16">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-50/80 rounded-2xl md:rounded-3xl p-8 md:p-12 border border-gray-100 shadow-sm">
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Submit your enquiry</h3>
+                <p class="text-gray-500 text-sm mb-8">Fill out the form below and we'll create a custom itinerary for your group.</p>
+
+                @if(session('success'))
+                    <div class="mb-8 p-5 bg-green-50 text-green-800 rounded-xl border border-green-100 flex items-center gap-4">
+                        <i class="fa-solid fa-circle-check text-green-500 text-xl flex-shrink-0"></i>
+                        <p class="mb-0">{{ session('success') }}</p>
+                    </div>
+                @endif
+
+                <form action="{{ route('private-group-tour-requests.store') }}" method="POST" class="space-y-6">
+                    @csrf
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="first_name" class="block text-sm font-semibold text-gray-700 mb-1.5">First Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" required
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('first_name')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                        <div>
+                            <label for="last_name" class="block text-sm font-semibold text-gray-700 mb-1.5">Last Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" required
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('last_name')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email Address <span class="text-red-500">*</span></label>
+                            <input type="email" name="email" id="email" value="{{ old('email') }}" required
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('email')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-1.5">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" required
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('phone')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="expected_departure_date" class="block text-sm font-semibold text-gray-700 mb-1.5">Expected Departure Date <span class="text-red-500">*</span></label>
+                            <input type="date" name="expected_departure_date" id="expected_departure_date" value="{{ old('expected_departure_date') }}" required
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('expected_departure_date')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                        <div>
+                            <label for="expected_return_date" class="block text-sm font-semibold text-gray-700 mb-1.5">Expected Return Date <span class="text-red-500">*</span></label>
+                            <input type="date" name="expected_return_date" id="expected_return_date" value="{{ old('expected_return_date') }}" required
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('expected_return_date')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="number_of_participants" class="block text-sm font-semibold text-gray-700 mb-1.5">Number of participants <span class="text-red-500">*</span></label>
+                            <input type="number" name="number_of_participants" id="number_of_participants" value="{{ old('number_of_participants') }}" min="1" required
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('number_of_participants')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                        <div>
+                            <label for="departing_from" class="block text-sm font-semibold text-gray-700 mb-1.5">Departing From <span class="text-red-500">*</span></label>
+                            <input type="text" name="departing_from" id="departing_from" value="{{ old('departing_from') }}" required placeholder="e.g. Tirana, Albania"
+                                class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 transition-colors">
+                            @error('departing_from')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="additional_info" class="block text-sm font-semibold text-gray-700 mb-1.5">Share more information about your inquiry</label>
+                        <textarea name="additional_info" id="additional_info" rows="5" placeholder="Tell us about your preferences, interests, group needs..."
+                            class="w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/20 py-3 px-4 text-gray-900 resize-y transition-colors">{{ old('additional_info') }}</textarea>
+                        @error('additional_info')<p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="px-10 py-3.5 bg-brand-navy hover:bg-brand-btn text-white font-semibold rounded-xl transition-colors shadow-sm hover:shadow-md">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {{-- Feature Cards --}}
+    @if(!empty($featureCards))
+    <section class="py-14 md:py-20 bg-gray-50/50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                @foreach($featureCards as $card)
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md hover:border-gray-200 transition-all duration-300">
+                    @if(!empty($card['icon']))
+                        <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-6 text-brand-navy">
+                            <i class="fa-solid {{ $card['icon'] }} text-xl"></i>
+                        </div>
+                    @endif
+                    @if(!empty($card['title']))
+                        <h4 class="text-lg font-bold text-gray-900 mb-3">{{ $card['title'] }}</h4>
+                    @endif
+                    @if(!empty($card['description']))
+                        <p class="text-gray-600 leading-relaxed text-sm">{{ $card['description'] }}</p>
+                    @endif
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
 </div>
 @endsection
