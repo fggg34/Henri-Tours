@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Resources\PrivateGroupTourRequests\PrivateGroupTourRequestResource;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -32,6 +33,16 @@ class PrivateGroupTourRequestsPage extends Page
     protected static ?int $navigationSort = 55;
 
     protected string $view = 'filament.pages.homepage';
+
+    public function getHeaderActions(): array
+    {
+        return [
+            Action::make('viewSubmissions')
+                ->label('View submissions')
+                ->url(PrivateGroupTourRequestResource::getUrl('index'))
+                ->icon(Heroicon::OutlinedUserGroup),
+        ];
+    }
 
     public function mount(): void
     {
