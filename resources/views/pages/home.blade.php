@@ -31,7 +31,7 @@
             <img src="https://albaniainbound.com/wp-content/uploads/2026/01/Best-Price.svg" alt="Best price guarantee" class="h-14 md:h-[72px] w-auto" />
         </div>
 
-        <x-hero-search-form :action="route('tours.index')" :cities="$cities ?? collect()" />
+        <x-hero-search-form :action="route('tours.search')" :cities="$cities ?? collect()" />
     </div>
 </section>
 
