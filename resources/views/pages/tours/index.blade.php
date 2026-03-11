@@ -116,7 +116,7 @@
                 <div class="p-5 text-center">
                     <h3 class="text-base md:text-lg font-bold text-gray-900 mb-1">{{ $cat->name }}</h3>
                     @if($cat->description)
-                        <p class="text-sm text-gray-500 mb-4">{{ $cat->description }}</p>
+                        <div class="text-sm text-gray-500 mb-4">{!! $cat->description !!}</div>
                     @endif
                     <span class="inline-block px-6 py-2.5 bg-brand-btn text-white text-sm font-semibold rounded-full hover:bg-brand-btn-hover transition-colors">View All</span>
                 </div>
