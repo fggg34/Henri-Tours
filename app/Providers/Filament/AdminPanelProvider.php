@@ -8,6 +8,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -32,6 +33,23 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(fn () => ($icon = Setting::get('site_icon')) ? \Illuminate\Support\Facades\Storage::disk('public')->url($icon) : null)
             ->colors([
                 'primary' => Color::Amber,
+            ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('Pages')
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label('Hotels')
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label('Cities')
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label('Blog')
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label('Content')
+                    ->collapsed(),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
