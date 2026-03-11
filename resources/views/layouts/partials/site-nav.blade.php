@@ -3,7 +3,7 @@
     $headerPhoneTel = preg_replace('/[^0-9+]/', '', $headerPhone) ?: '';
     $siteName = \App\Models\Setting::get('site_name', config('app.name'));
 @endphp
-<header class="sticky top-0 z-50 bg-white" x-data="{ mobileOpen: false, langOpen: false }">
+<header class="sticky top-0 z-50 bg-white{{ request()->routeIs('home') ? '' : ' shadow-md' }}" x-data="{ mobileOpen: false, langOpen: false }">
     {{-- Thin dark grey top bar --}}
     <div class="h-0.5 bg-gray-500"></div>
 

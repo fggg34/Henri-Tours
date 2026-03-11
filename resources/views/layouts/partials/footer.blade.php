@@ -16,9 +16,9 @@
                 <div>
                     <h5 class="text-gray-900 font-bold text-sm mb-5">Explore Albania</h5>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('tours.index') }}" class="text-gray-500 hover:text-brand-navy transition">Day Tours</a></li>
-                        <li><a href="{{ route('tours.index', ['category' => 'multi-day-tours']) }}" class="text-gray-500 hover:text-brand-navy transition">Multi-Day Tour</a></li>
-                        <li><a href="{{ route('tours.index', ['category' => 'cross-country']) }}" class="text-gray-500 hover:text-brand-navy transition">Cross Country</a></li>
+                        <li><a href="{{ route('tours.category', 'day-tours') }}" class="text-gray-500 hover:text-brand-navy transition">Day Tours</a></li>
+                        <li><a href="{{ route('tours.category', 'multi-day-tours') }}" class="text-gray-500 hover:text-brand-navy transition">Multi-Day Tour</a></li>
+                        <li><a href="{{ route('tours.category', 'cross-country-tours') }}" class="text-gray-500 hover:text-brand-navy transition">Cross Country</a></li>
                         <li><a href="{{ route('tours.index') }}" class="text-gray-500 hover:text-brand-navy transition">Confirmed Group Tours</a></li>
                         <li><a href="{{ route('contact') }}" class="text-gray-500 hover:text-brand-navy transition">Private Group Tour Requests</a></li>
                     </ul>

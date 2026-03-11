@@ -18,6 +18,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/sitemap.xml', \App\Http\Controllers\SitemapController::class)->name('sitemap');
 
 Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
+Route::get('/tours/category/{category:slug}', [TourController::class, 'categoryArchive'])->name('tours.category');
 // More specific tour routes first so /tours/{slug} doesn't capture e.g. slug "xyz/available-dates"
 Route::get('/tours/{slug}/price', [\App\Http\Controllers\Api\TourBookingApiController::class, 'price'])->name('tours.price');
 Route::get('/tours/{slug}/available-dates', [\App\Http\Controllers\Api\TourBookingApiController::class, 'availableDates'])->name('tours.available-dates');
