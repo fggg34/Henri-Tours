@@ -55,7 +55,7 @@ class TermsAndCancellationPolicyPage extends Page
                                     ->label('Page content')
                                     ->toolbarButtons([
                                         'bold', 'italic', 'underline', 'strike',
-                                        'h2', 'h3', 'h4', 'bulletList', 'orderedList',
+                                        'h2', 'h3', 'bulletList', 'orderedList',
                                         'blockquote', 'link', 'undo', 'redo',
                                     ])
                                     ->columnSpanFull()
