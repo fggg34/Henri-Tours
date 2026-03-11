@@ -6,34 +6,62 @@
     $contactAddress = \App\Models\Setting::get('contact_address', 'St. Ymer Kurti, Tirane 1019, Albania');
     $instagramUrl = \App\Models\Setting::get('instagram_url', '');
     $facebookUrl = \App\Models\Setting::get('facebook_url', '');
+
+    $footerMenu1 = \App\Models\Setting::get('footer_menu_1', '');
+    $footerMenu1 = is_string($footerMenu1) ? (json_decode($footerMenu1, true) ?: []) : $footerMenu1;
+    if (empty($footerMenu1) || !isset($footerMenu1['title'])) {
+        $footerMenu1 = ['title' => 'Explore Albania', 'items' => [
+            ['label' => 'Day Tours', 'url' => '/tours/category/day-tours'],
+            ['label' => 'Multi-Day Tour', 'url' => '/tours/category/multi-day-tours'],
+            ['label' => 'Cross Country', 'url' => '/tours/category/cross-country-tours'],
+            ['label' => 'Confirmed Group Tours', 'url' => '/tours'],
+            ['label' => 'Private Group Tour Requests', 'url' => '/private-group-tour-requests'],
+        ]];
+    } else {
+        $footerMenu1 = array_merge(['title' => 'Explore Albania', 'items' => []], $footerMenu1);
+    }
+
+    $footerMenu2 = \App\Models\Setting::get('footer_menu_2', '');
+    $footerMenu2 = is_string($footerMenu2) ? (json_decode($footerMenu2, true) ?: []) : $footerMenu2;
+    if (empty($footerMenu2) || !isset($footerMenu2['title'])) {
+        $footerMenu2 = ['title' => 'Why Choose Us', 'items' => [
+            ['label' => 'About Us', 'url' => '/about'],
+            ['label' => 'Our Transport', 'url' => '#'],
+            ['label' => 'Blog', 'url' => '/blog'],
+            ['label' => 'Contact us', 'url' => '/contact'],
+            ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],
+        ]];
+    } else {
+        $footerMenu2 = array_merge(['title' => 'Why Choose Us', 'items' => []], $footerMenu2);
+    }
 @endphp
 <footer>
     <div class="bg-white" style="background-color:#f5f5f5;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-                {{-- Column 1: Explore Albania --}}
+                {{-- Column 1: Explore Albania (Footer Menu 1) --}}
                 <div>
-                    <h5 class="text-gray-900 font-bold text-sm mb-5">Explore Albania</h5>
+                    <h5 class="text-gray-900 font-bold text-sm mb-5">{{ $footerMenu1['title'] }}</h5>
+                    @if(!empty($footerMenu1['items']))
                     <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('tours.category', 'day-tours') }}" class="text-gray-500 hover:text-brand-navy transition">Day Tours</a></li>
-                        <li><a href="{{ route('tours.category', 'multi-day-tours') }}" class="text-gray-500 hover:text-brand-navy transition">Multi-Day Tour</a></li>
-                        <li><a href="{{ route('tours.category', 'cross-country-tours') }}" class="text-gray-500 hover:text-brand-navy transition">Cross Country</a></li>
-                        <li><a href="{{ route('tours.index') }}" class="text-gray-500 hover:text-brand-navy transition">Confirmed Group Tours</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-gray-500 hover:text-brand-navy transition">Private Group Tour Requests</a></li>
+                        @foreach($footerMenu1['items'] as $item)
+                        <li><a href="{{ str_starts_with($item['url'] ?? '', 'http') ? $item['url'] : url($item['url'] ?? '#') }}" class="text-gray-500 hover:text-brand-navy transition">{{ $item['label'] ?? '' }}</a></li>
+                        @endforeach
                     </ul>
+                    @endif
                 </div>
 
-                {{-- Column 2: Why Choose Us --}}
+                {{-- Column 2: Why Choose Us (Footer Menu 2) --}}
                 <div>
-                    <h5 class="text-gray-900 font-bold text-sm mb-5">Why Choose Us</h5>
+                    <h5 class="text-gray-900 font-bold text-sm mb-5">{{ $footerMenu2['title'] }}</h5>
+                    @if(!empty($footerMenu2['items']))
                     <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('about') }}" class="text-gray-500 hover:text-brand-navy transition">About Us</a></li>
-                        <li><a href="#" class="text-gray-500 hover:text-brand-navy transition">Our Transport</a></li>
-                        <li><a href="{{ route('blog.index') }}" class="text-gray-500 hover:text-brand-navy transition">Blog</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-gray-500 hover:text-brand-navy transition">Contact us</a></li>
-                        <li><a href="{{ route('faq') }}" class="text-gray-500 hover:text-brand-navy transition">Terms & Cancellation Policy</a></li>
+                        @foreach($footerMenu2['items'] as $item)
+                        <li><a href="{{ str_starts_with($item['url'] ?? '', 'http') ? $item['url'] : url($item['url'] ?? '#') }}" class="text-gray-500 hover:text-brand-navy transition">{{ $item['label'] ?? '' }}</a></li>
+                        @endforeach
                     </ul>
+                    @endif
                 </div>
 
                 {{-- Column 3: Get In Touch --}}

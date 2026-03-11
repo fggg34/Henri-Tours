@@ -150,12 +150,12 @@ class Settings extends Page
                 \Filament\Schemas\Components\Section::make('Footer Menus')
                     ->description('Two footer link columns. Set the title and add links for each menu.')
                     ->schema([
-                        \Filament\Schemas\Components\Section::make('Footer Menu 1')
+                        \Filament\Schemas\Components\Section::make('Footer Menu 1 (Explore Albania)')
                             ->schema([
                                 \Filament\Forms\Components\TextInput::make('footer_menu_1.title')
                                     ->label('Menu title')
                                     ->required()
-                                    ->default('Quick links')
+                                    ->default('Explore Albania')
                                     ->maxLength(100),
                                 Repeater::make('footer_menu_1.items')
                                     ->schema([
@@ -170,12 +170,12 @@ class Settings extends Page
                             ])
                             ->columns(1)
                             ->collapsible(),
-                        \Filament\Schemas\Components\Section::make('Footer Menu 2')
+                        \Filament\Schemas\Components\Section::make('Footer Menu 2 (Why Choose Us)')
                             ->schema([
                                 \Filament\Forms\Components\TextInput::make('footer_menu_2.title')
                                     ->label('Menu title')
                                     ->required()
-                                    ->default('Company')
+                                    ->default('Why Choose Us')
                                     ->maxLength(100),
                                 Repeater::make('footer_menu_2.items')
                                     ->schema([
@@ -269,22 +269,24 @@ class Settings extends Page
         if (empty($menu) || ! isset($menu['title'])) {
             if ($key === 'footer_menu_1') {
                 return [
-                    'title' => 'Quick links',
+                    'title' => 'Explore Albania',
                     'items' => [
-                        ['label' => 'Tours', 'url' => '/tours'],
-                        ['label' => 'Destinations', 'url' => '/cities'],
-                        ['label' => 'Blog', 'url' => '/blog'],
-                        ['label' => 'About us', 'url' => '/about'],
-                        ['label' => 'Contact', 'url' => '/contact'],
+                        ['label' => 'Day Tours', 'url' => '/tours/category/day-tours'],
+                        ['label' => 'Multi-Day Tour', 'url' => '/tours/category/multi-day-tours'],
+                        ['label' => 'Cross Country', 'url' => '/tours/category/cross-country-tours'],
+                        ['label' => 'Confirmed Group Tours', 'url' => '/tours'],
+                        ['label' => 'Private Group Tour Requests', 'url' => '/private-group-tour-requests'],
                     ],
                 ];
             }
             return [
-                'title' => 'Company',
+                'title' => 'Why Choose Us',
                 'items' => [
-                    ['label' => 'About us', 'url' => '/about'],
-                    ['label' => 'Contact', 'url' => '/contact'],
-                    ['label' => 'FAQ', 'url' => '/faq'],
+                    ['label' => 'About Us', 'url' => '/about'],
+                    ['label' => 'Our Transport', 'url' => '#'],
+                    ['label' => 'Blog', 'url' => '/blog'],
+                    ['label' => 'Contact us', 'url' => '/contact'],
+                    ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],
                 ],
             ];
         }
