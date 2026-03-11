@@ -64,6 +64,8 @@ class BlogPost extends Model
         if (! $path) {
             return null;
         }
+        // WordPress export sometimes stores multiple URLs pipe-separated; use first only
+        $path = trim(explode('|', $path)[0]);
         if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
             return $path;
         }
