@@ -278,7 +278,7 @@ class Settings extends Page
             'title' => 'Why Choose Us',
             'items' => [
                 ['label' => 'About Us', 'url' => '/about'],
-                ['label' => 'Our Transport', 'url' => '#'],
+                ['label' => 'Our Transport', 'url' => '/our-transport'],
                 ['label' => 'Blog', 'url' => '/blog'],
                 ['label' => 'Contact us', 'url' => '/contact'],
                 ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],

@@ -26,7 +26,7 @@
     if (empty($footerMenu2) || !isset($footerMenu2['title'])) {
         $footerMenu2 = ['title' => 'Why Choose Us', 'items' => [
             ['label' => 'About Us', 'url' => '/about'],
-            ['label' => 'Our Transport', 'url' => '#'],
+            ['label' => 'Our Transport', 'url' => '/our-transport'],
             ['label' => 'Blog', 'url' => '/blog'],
             ['label' => 'Contact us', 'url' => '/contact'],
             ['label' => 'Terms & Cancellation Policy', 'url' => '/faq'],

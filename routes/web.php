@@ -43,6 +43,7 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/about', AboutController::class)->name('about');
+Route::get('/our-transport', fn () => view('pages.our-transport'))->name('our-transport');
 Route::get('/private-group-tour-requests', [\App\Http\Controllers\PrivateGroupTourRequestsController::class, 'index'])->name('private-group-tour-requests');
 Route::post('/private-group-tour-requests', [\App\Http\Controllers\PrivateGroupTourRequestsController::class, 'store'])->middleware('throttle:5,1')->name('private-group-tour-requests.store');
 Route::get('/faq', fn () => view('pages.faq'))->name('faq');
