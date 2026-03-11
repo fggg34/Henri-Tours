@@ -8,23 +8,61 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $query = BlogPost::where('is_published', true)->whereNotNull('published_at')->with('category')->orderByDesc('published_at');
+        $allPosts = BlogPost::where('is_published', true)
+            ->whereNotNull('published_at')
+            ->with('category')
+            ->orderByDesc('published_at')
+            ->get();
 
-        if ($request->filled('category')) {
-            $query->whereHas('category', fn ($q) => $q->where('slug', $request->category));
-        }
-
-        $posts = $query->get();
-        $categories = BlogCategory::orderBy('name')->get();
-
-        // Group posts by category (including uncategorized)
-        $postsByCategory = $posts->groupBy(function ($post) {
+        $grouped = $allPosts->groupBy(function ($post) {
             return $post->category ? $post->category->name : 'Uncategorized';
         });
 
-        return view('pages.blog.index', compact('posts', 'postsByCategory', 'categories'));
+        $postsByCategory = [];
+        foreach ($grouped as $categoryName => $catPosts) {
+            $posts = $catPosts->values();
+            $total = $posts->count();
+            $initial = $posts->take(12)->values();
+            $first = $catPosts->first();
+            $slug = $first->category ? $first->category->slug : 'uncategorized';
+
+            $postsByCategory[] = [
+                'name' => $categoryName,
+                'slug' => $slug,
+                'posts' => $initial,
+                'total' => $total,
+                'hasMore' => $total > 12,
+            ];
+        }
+
+        return view('pages.blog.index', compact('postsByCategory'));
+    }
+
+    public function loadMore(Request $request)
+    {
+        $category = $request->get('category');
+        $offset = (int) $request->get('offset', 12);
+
+        $query = BlogPost::where('is_published', true)
+            ->whereNotNull('published_at')
+            ->with('category')
+            ->orderByDesc('published_at');
+
+        if ($category === 'uncategorized') {
+            $query->whereNull('blog_category_id');
+        } else {
+            $query->whereHas('category', fn ($q) => $q->where('slug', $category));
+        }
+
+        $total = $query->count();
+        $posts = $query->skip($offset)->take(12)->get();
+        $hasMore = $offset + 12 < $total;
+
+        $html = view('pages.blog.partials.cards', compact('posts'))->render();
+
+        return response()->json(['html' => $html, 'hasMore' => $hasMore]);
     }
 
     public function show(string $slug)

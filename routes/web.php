@@ -40,6 +40,7 @@ Route::get('/confirmed-departures', [ConfirmedDeparturesController::class, 'inde
 Route::post('/confirmed-departures', [ConfirmedDeparturesController::class, 'store'])->middleware('throttle:10,1')->name('confirmed-departures.store');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/load-more', [BlogController::class, 'loadMore'])->name('blog.load-more');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/about', AboutController::class)->name('about');
