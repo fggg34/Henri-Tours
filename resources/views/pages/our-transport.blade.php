@@ -126,7 +126,7 @@
     @if(!empty($featureCards))
     <section class="py-16 md:py-20">
         <h2 class="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">{{ $featureSectionTitle }}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
             @foreach($featureCards as $card)
             @php
                 $iconImage = $card['icon_image'] ?? '';
