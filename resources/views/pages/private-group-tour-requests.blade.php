@@ -10,7 +10,7 @@
     $introContent = \App\Models\Setting::get('page_private_group_tour_requests_intro_content', 'We offer fast, priority support for private group enquiries. Our dedicated travel agents will create a customized travel plan tailored to your group – no complex forms, no hassle.');
     $showMoreText = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_text', 'Show more');
     $showMoreUrl = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_url', '');
-    $showMoreContent = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_content', '');
+    $showMoreContent = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_content', "One of the biggest frustrations for travelers is delayed responses from travel companies. At Albania Inbound, we pride ourselves on providing fast, priority support. Your inquiries are our top priority, and a dedicated travel agent will be assigned to offer all the information you need, ready to help you design your dream journey.\n\nSkip the hassle of complex forms and endless details. Just share your preferences, and we'll create a customized travel plan, tailored for your group. Ready when you are!");
     $featureCards = \App\Models\Setting::get('page_private_group_tour_requests_feature_cards', '');
     $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
     if (empty($featureCards)) {
@@ -56,7 +56,7 @@
     {{-- Intro Section --}}
     @if($introTitle || $introContent)
     <section class="py-14 md:py-20">
-        <div class="max-w-3xl">
+        <div>
             @if($introTitle)
                 <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">{{ $introTitle }}</h2>
             @endif
