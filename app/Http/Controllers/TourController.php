@@ -66,7 +66,7 @@ class TourController extends Controller
             default => $query->withCount('bookings')->orderByDesc('is_featured')->orderByDesc('bookings_count'),
         };
 
-        $tours = $query->paginate(12)->withQueryString();
+        $tours = $query->paginate(50)->withQueryString();
         $categories = TourCategory::orderBy('sort_order')->get();
         $cities = City::active()->orderBy('name')->get();
         $wishlistedIds = auth()->user()?->wishlistTours()->pluck('tours.id')->toArray() ?? [];
@@ -159,7 +159,7 @@ class TourController extends Controller
             default => $query->withCount('bookings')->orderByDesc('is_featured')->orderByDesc('bookings_count'),
         };
 
-        $tours = $query->paginate(12)->withQueryString();
+        $tours = $query->paginate(50)->withQueryString();
         $categories = TourCategory::orderBy('sort_order')->get();
         $cities = City::active()->orderBy('name')->get();
         $wishlistedIds = auth()->user()?->wishlistTours()->pluck('tours.id')->toArray() ?? [];
@@ -250,7 +250,7 @@ class TourController extends Controller
             default => $query->withCount('bookings')->orderByDesc('is_featured')->orderByDesc('bookings_count'),
         };
 
-        $tours = $query->paginate(12)->withQueryString();
+        $tours = $query->paginate(50)->withQueryString();
         $categories = TourCategory::orderBy('sort_order')->get();
         $cities = City::active()->orderBy('name')->get();
         $wishlistedIds = auth()->user()?->wishlistTours()->pluck('tours.id')->toArray() ?? [];
