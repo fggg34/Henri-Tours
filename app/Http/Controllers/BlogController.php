@@ -10,16 +10,21 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        $query = BlogPost::where('is_published', true)->whereNotNull('published_at')->with('category');
+        $query = BlogPost::where('is_published', true)->whereNotNull('published_at')->with('category')->orderByDesc('published_at');
 
         if ($request->filled('category')) {
             $query->whereHas('category', fn ($q) => $q->where('slug', $request->category));
         }
 
-        $posts = $query->orderByDesc('published_at')->paginate(9)->withQueryString();
-        $categories = BlogCategory::all();
+        $posts = $query->get();
+        $categories = BlogCategory::orderBy('name')->get();
 
-        return view('pages.blog.index', compact('posts', 'categories'));
+        // Group posts by category (including uncategorized)
+        $postsByCategory = $posts->groupBy(function ($post) {
+            return $post->category ? $post->category->name : 'Uncategorized';
+        });
+
+        return view('pages.blog.index', compact('posts', 'postsByCategory', 'categories'));
     }
 
     public function show(string $slug)
