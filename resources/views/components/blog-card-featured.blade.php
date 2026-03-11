@@ -6,7 +6,7 @@
 @endphp
 <article class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col h-full">
     <a href="{{ route('blog.show', $post->slug) }}" class="block flex flex-col h-full">
-        <div class="relative overflow-hidden bg-gray-100 {{ $variant === 'large' ? 'aspect-[3/4]' : 'aspect-[4/3]' }}">
+        <div class="relative overflow-hidden bg-gray-100 {{ $variant === 'large' ? 'aspect-[3/4] max-h-[500px]' : 'aspect-[4/3]' }}">
             <img src="{{ $imageUrl }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
             <span class="absolute top-3 left-3 bg-gray-700 text-white text-[11px] font-medium px-2.5 py-1 rounded">Featured</span>
             @if($post->published_at)
