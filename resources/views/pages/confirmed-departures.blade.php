@@ -83,7 +83,7 @@
             </div>
             @endif
 
-            <div class="swiper departures-swiper overflow-visible">
+            <div class="swiper departures-swiper overflow-visible" style="padding: 4px; margin: -4px;">
                 <div class="swiper-wrapper">
                     @foreach($tours as $idx => $tour)
                     @php
@@ -172,7 +172,7 @@
     </div>
 
     {{-- ========== INQUIRY FORM ========== --}}
-    <div id="inquiry-form" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 scroll-mt-8">
+    <div id="inquiry-form" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 scroll-mt-8">
         <div class="bg-slate-50 rounded-2xl border border-gray-200 p-6 md:p-10 shadow-sm">
             <h2 class="text-xl md:text-2xl font-bold text-brand-navy mb-1">Tour Booking & Info Inquiry</h2>
             <div x-show="selectedTourName" class="mb-6">
