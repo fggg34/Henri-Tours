@@ -3,15 +3,21 @@
 @section('title', 'Tours - ' . config('app.name'))
 @section('description', 'Browse our selection of tours and book your next adventure.')
 
+@php
+    $heroTitle = \App\Models\Setting::get('page_tours_hero_title', 'Best Tours & Vacation Packages in Albania - Best Selection & Lowest Prices Guaranteed');
+    $heroSubtitle = \App\Models\Setting::get('page_tours_hero_subtitle', 'Choose from a wide range of tours, activities, and vacation packages across Albania and the Balkan region.');
+    $heroImage = \App\Models\Setting::get('page_tours_hero_image', '');
+    $heroBg = $heroImage ? \Illuminate\Support\Facades\Storage::disk('public')->url($heroImage) : 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80';
+@endphp
 @section('hero')
 <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <section class="relative w-full h-[75vh] flex items-center justify-center rounded-2xl overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ $heroBg }}');"></div>
         <div class="absolute inset-0 bg-black/40 rounded-2xl"></div>
 
         <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-16 text-center">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">Best Tours & Vacation Packages in Albania - Best Selection & Lowest Prices Guaranteed</h1>
-            <p class="text-base md:text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">Choose from a wide range of tours, activities, and vacation packages across Albania and the Balkan region.</p>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">{{ $heroTitle }}</h1>
+            <p class="text-base md:text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">{{ $heroSubtitle }}</p>
 
             <div class="flex items-center justify-center gap-6 md:gap-10">
                 <img src="https://albaniainbound.com/wp-content/uploads/2026/01/Albania-leading-travel-agency.svg" alt="Albania's leading Travel agency" class="h-14 md:h-[72px] w-auto" />

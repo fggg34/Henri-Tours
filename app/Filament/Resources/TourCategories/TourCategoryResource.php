@@ -10,8 +10,10 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\RichEditor;
+use Filament\Schemas\Components\Section;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -45,6 +47,25 @@ class TourCategoryResource extends Resource
                     ->imagePreviewHeight('200')
                     ->panelAspectRatio('16/10')
                     ->panelLayout('integrated'),
+                Section::make('Hero section')
+                    ->description('Custom hero for this category on /tours/{slug}. Leave empty to use the default Tours page hero.')
+                    ->schema([
+                        TextInput::make('hero_title')
+                            ->label('Hero title')
+                            ->maxLength(255),
+                        Textarea::make('hero_subtitle')
+                            ->label('Hero subtitle')
+                            ->rows(2),
+                        FileUpload::make('hero_image')
+                            ->label('Hero background image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('tour_categories/heroes')
+                            ->visibility('public')
+                            ->imagePreviewHeight(120),
+                    ])
+                    ->columns(1)
+                    ->collapsible(),
                 TextInput::make('sort_order')
                     ->required()
                     ->numeric()

@@ -3,15 +3,21 @@
 @section('title', 'Confirmed Departures & Discounted Rates - ' . config('app.name'))
 @section('description', 'Browse our confirmed group tour departures with guaranteed discounted rates. Book your Albanian adventure today.')
 
+@php
+    $heroTitle = \App\Models\Setting::get('page_confirmed_departures_hero_title', 'Organized Group Tours & Confirmed Departures – Discounted Rates in All Dates');
+    $heroSubtitle = \App\Models\Setting::get('page_confirmed_departures_hero_subtitle', 'Here we have listed all our confirmed dates with guaranteed departures – Take advantage of special discounts available only on these dates!');
+    $heroImage = \App\Models\Setting::get('page_confirmed_departures_hero_image', '');
+    $heroBg = $heroImage ? \Illuminate\Support\Facades\Storage::disk('public')->url($heroImage) : 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1920&q=80';
+@endphp
 @section('hero')
 <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <section class="relative w-full h-[75vh] flex items-center justify-center rounded-2xl overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1920&q=80');"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ $heroBg }}');"></div>
         <div class="absolute inset-0 bg-black/40 rounded-2xl"></div>
 
         <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-16 text-center">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">Organized Group Tours & Confirmed Departures – Discounted Rates in All Dates</h1>
-            <p class="text-base md:text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">Here we have listed all our confirmed dates with guaranteed departures – Take advantage of special discounts available only on these dates!</p>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">{{ $heroTitle }}</h1>
+            <p class="text-base md:text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">{{ $heroSubtitle }}</p>
 
             <div class="flex items-center justify-center gap-6 md:gap-10">
                 <img src="https://albaniainbound.com/wp-content/uploads/2026/01/Albania-leading-travel-agency.svg" alt="Albania's leading Travel agency" class="h-14 md:h-[72px] w-auto" />

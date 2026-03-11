@@ -18,6 +18,9 @@ class TourCategory extends Model
         'description',
         'image',
         'sort_order',
+        'hero_title',
+        'hero_subtitle',
+        'hero_image',
     ];
 
     protected function casts(): array
@@ -45,5 +48,13 @@ class TourCategory extends Model
             return null;
         }
         return '/storage/' . ltrim($this->image, '/');
+    }
+
+    public function getHeroImageUrlAttribute(): ?string
+    {
+        if (empty($this->hero_image)) {
+            return null;
+        }
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($this->hero_image);
     }
 }
