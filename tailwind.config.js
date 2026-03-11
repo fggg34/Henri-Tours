@@ -12,21 +12,25 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['\"Open Sans\"', ...defaultTheme.fontFamily.sans],
+            },
+            maxWidth: {
+                '7xl': '1400px',
             },
             colors: {
                 brand: {
-                    light: '#2c5282',
-                    DEFAULT: '#1e3a5f',
-                    dark: '#1a2d4a',
+                    light: '#004aac',
+                    DEFAULT: '#004aac',
+                    dark: '#003580',
                     headline: '#1a202c',
-                    btn: '#c0392b',
-                    'btn-hover': '#a93226',
+                    btn: '#d30000',
+                    'btn-hover': '#a90000',
                     footer: '#111827',
                     'footer-border': '#374151',
-                    navy: '#1e3760',
-                    'navy-light': '#2c4a7c',
-                    trust: '#1b2e4a',
+                    navy: '#004aac',
+                    'navy-light': '#336fcc',
+                    'logo-light': '#5b8fb9',
+                    trust: '#004aac',
                 },
             },
         },

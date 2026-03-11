@@ -9,7 +9,7 @@
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1920&q=80');"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
     <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-20" style="min-height: 480px;">
-        <h1 class="text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-white leading-tight max-w-4xl" style="font-family: 'Playfair Display', serif;">
+        <h1 class="text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-white leading-tight max-w-4xl">
             Organized Group Tours & Confirmed Departures – Discounted Rates in All Dates
         </h1>
         <p class="mt-4 text-base md:text-lg text-white/90 max-w-2xl leading-relaxed">
@@ -18,11 +18,11 @@
         <div class="flex flex-wrap items-center justify-center gap-8 mt-8">
             <div class="flex items-center gap-2">
                 <span class="text-amber-400 text-2xl">🏆</span>
-                <span class="text-white font-semibold text-sm md:text-base" style="font-family: 'Playfair Display', serif;">Albania's leading<br>Travel agency</span>
+                <span class="text-white font-semibold text-sm md:text-base">Albania's leading<br>Travel agency</span>
             </div>
             <div class="flex items-center gap-2">
                 <span class="text-amber-400 text-2xl">🏆</span>
-                <span class="text-white font-semibold text-sm md:text-base" style="font-family: 'Playfair Display', serif;">Best price<br>guarantee</span>
+                <span class="text-white font-semibold text-sm md:text-base">Best price<br>guarantee</span>
             </div>
         </div>
     </div>

@@ -3,18 +3,16 @@
 @php
     $imageUrl = $post->featured_image_url ?? 'https://placehold.co/600x400/e2e8f0/64748b?text=Blog';
 @endphp
-<article class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow group">
+<article class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-3">
     <a href="{{ route('blog.show', $post->slug) }}" class="block">
-        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+        <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 mb-4">
             <img src="{{ $imageUrl }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        </div>
-        <div class="p-5">
             @if($post->published_at)
-                <p class="text-xs text-brand-btn font-medium mb-2">{{ $post->published_at->format('d M Y') }}</p>
+                <span class="absolute bottom-3 left-3 bg-gray-900/70 text-white text-[11px] font-medium px-2.5 py-1 rounded">{{ $post->published_at->format('d M Y') }}</span>
             @endif
-            <h3 class="text-base font-bold text-gray-900 line-clamp-2 leading-snug group-hover:text-brand-navy transition-colors">{{ $post->title }}</h3>
-            <p class="mt-2 text-sm text-gray-500 line-clamp-3 leading-relaxed">{{ Str::limit(strip_tags($post->excerpt ?? $post->content ?? ''), 120) }}</p>
-            <span class="inline-block mt-3 text-sm font-medium text-brand-btn hover:text-brand-btn-hover transition-colors">Read article &rarr;</span>
         </div>
+        <h3 class="text-[15px] font-bold text-gray-900 line-clamp-2 leading-snug mb-2 group-hover:text-brand-navy transition-colors">{{ $post->title }}</h3>
+        <p class="text-sm text-gray-500 line-clamp-2 leading-relaxed mb-3">{{ Str::limit(strip_tags($post->excerpt ?? $post->content ?? ''), 120) }}</p>
+        <span class="inline-block text-sm font-semibold text-brand-btn hover:text-brand-btn-hover transition-colors">Read article &rarr;</span>
     </a>
 </article>

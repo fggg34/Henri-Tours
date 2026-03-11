@@ -19,8 +19,8 @@
   min-height: 2.5rem;
 }
 .booking-guests-select .ts-wrapper.focus .ts-control {
-  border-color: #1e3a5f;
-  box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.15);
+  border-color: #004aac;
+  box-shadow: 0 0 0 3px rgba(0, 74, 172, 0.15);
 }
 .booking-guests-select .ts-dropdown {
   border-radius: 0.5rem;
