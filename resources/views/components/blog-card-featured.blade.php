@@ -14,8 +14,8 @@
             @endif
         </div>
         <div class="p-4 flex-1 flex flex-col">
-            <h3 class="text-base font-bold text-gray-900 line-clamp-2 leading-snug mb-2 group-hover:text-brand-navy transition-colors">{{ $post->title }}</h3>
-            <p class="text-sm text-gray-500 {{ $variant === 'large' ? 'line-clamp-3' : 'line-clamp-2' }} leading-relaxed mb-3 flex-1">{{ $excerpt }}</p>
+            <h3 class="font-bold text-gray-900 line-clamp-2 leading-snug mb-2 group-hover:text-brand-navy transition-colors {{ $variant === 'large' ? 'text-[32px]' : 'text-base' }}">{{ $post->title }}</h3>
+            <p class="text-gray-500 leading-relaxed mb-3 flex-1 {{ $variant === 'large' ? 'text-[16px] line-clamp-3' : 'text-sm line-clamp-2' }}">{{ $excerpt }}</p>
             <span class="inline-block text-sm font-semibold text-brand-btn hover:text-brand-btn-hover transition-colors">Read article &rarr;</span>
         </div>
     </a>
