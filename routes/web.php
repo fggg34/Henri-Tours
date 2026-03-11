@@ -43,6 +43,7 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/about', AboutController::class)->name('about');
+Route::get('/private-group-tour-requests', \App\Http\Controllers\PrivateGroupTourRequestsController::class)->name('private-group-tour-requests');
 Route::get('/faq', fn () => view('pages.faq'))->name('faq');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
