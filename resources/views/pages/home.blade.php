@@ -61,6 +61,40 @@
 </section>
 @endif
 
+@php
+    $albaniaVisible = filter_var(\App\Models\Setting::get('homepage_albania_visible', true), FILTER_VALIDATE_BOOLEAN);
+    $albaniaTitle = \App\Models\Setting::get('homepage_albania_title', 'Albania Inbound');
+    $albaniaSubtitle = \App\Models\Setting::get('homepage_albania_subtitle', 'Trusted experts for vacation packages, day trips, group tours and activities in Albania!');
+    $albaniaImages = \App\Models\Setting::get('homepage_albania_images', '');
+    $albaniaImages = is_string($albaniaImages) ? (json_decode($albaniaImages, true) ?: []) : ($albaniaImages ?: []);
+    if (empty($albaniaImages)) {
+        $albaniaImages = [
+            'https://albaniainbound.com/wp-content/uploads/2026/01/LAE9207-scaled-1-1-1.webp',
+            'https://albaniainbound.com/wp-content/uploads/2026/02/AD108803.JPG-1.webp',
+        ];
+    }
+    $albaniaCheckItems = \App\Models\Setting::get('homepage_albania_check_items', '');
+    $albaniaCheckItems = is_string($albaniaCheckItems) ? (json_decode($albaniaCheckItems, true) ?: []) : ($albaniaCheckItems ?: []);
+    if (empty($albaniaCheckItems)) {
+        $albaniaCheckItems = [
+            ['text' => 'Best Selection of Tours Expertly Crafted'],
+            ['text' => 'Easy Booking & Free Cancelations'],
+            ['text' => 'Expert Travel Agents and Local Guidance'],
+            ['text' => 'English Customer Service'],
+        ];
+    }
+    $albaniaPlatforms = \App\Models\Setting::get('homepage_albania_platforms', '');
+    $albaniaPlatforms = is_string($albaniaPlatforms) ? (json_decode($albaniaPlatforms, true) ?: []) : ($albaniaPlatforms ?: []);
+    if (empty($albaniaPlatforms)) {
+        $albaniaPlatforms = [
+            ['label' => "Google Top Rated\nService", 'rating' => '4.9', 'reviews' => '84', 'icon_type' => 'google'],
+            ['label' => "TripAdvisor\nTravelers' Favorite", 'rating' => '4.8', 'reviews' => '221', 'icon_type' => 'tripadvisor'],
+            ['label' => "GetYourGuide Top\nRated Experience", 'rating' => '4.9', 'reviews' => '1,045', 'icon_type' => 'getyourguide'],
+            ['label' => "Facebook\nCustomer Favorite", 'rating' => '4.8', 'reviews' => '43', 'icon_type' => 'facebook'],
+        ];
+    }
+@endphp
+@if($albaniaVisible)
 {{-- Albania Inbound Section --}}
 <section class="bg-[#f5f3ef] py-14 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,126 +104,82 @@
             <div class="relative flex-shrink-0 w-full lg:w-[600px] lg:self-stretch">
                 <div class="swiper inbound-swiper h-full rounded-l-xl overflow-hidden">
                     <div class="swiper-wrapper h-full">
+                        @foreach($albaniaImages as $img)
+                        @php $imgUrl = is_string($img) && str_starts_with($img, 'http') ? $img : \Illuminate\Support\Facades\Storage::disk('public')->url($img); @endphp
                         <div class="swiper-slide h-full">
-                            <img src="https://albaniainbound.com/wp-content/uploads/2026/01/LAE9207-scaled-1-1-1.webp"
-                                alt="Albania Inbound Team"
+                            <img src="{{ $imgUrl }}"
+                                alt="{{ $albaniaTitle }}"
                                 class="w-full h-full object-cover"
                                 loading="lazy" />
                         </div>
-                        <div class="swiper-slide h-full">
-                            <img src="https://albaniainbound.com/wp-content/uploads/2026/02/AD108803.JPG-1.webp"
-                                alt="Albania Inbound Team"
-                                class="w-full h-full object-cover"
-                                loading="lazy" />
-                        </div>
+                        @endforeach
                     </div>
                 </div>
 
+                @if(count($albaniaImages) > 1)
                 <button data-inbound-prev class="absolute z-10 left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-gray-700 shadow flex items-center justify-center transition-colors">
                     <i class="fa-solid fa-chevron-left text-xs"></i>
                 </button>
                 <button data-inbound-next class="absolute z-10 right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-gray-700 shadow flex items-center justify-center transition-colors">
                     <i class="fa-solid fa-chevron-right text-xs"></i>
                 </button>
+                @endif
             </div>
 
             {{-- Right: Content --}}
             <div class="flex-1 min-w-0 pt-0 lg:pt-[30px] pb-[30px] pr-[30px]">
-                <h3 class="text-2xl md:text-[34px] font-extrabold text-gray-900 mb-2 leading-tight">Albania Inbound</h3>
-                <p class="text-[20px] text-gray-500 mb-7 leading-relaxed">Trusted experts for vacation packages, day trips, group tours and activities in Albania!</p>
+                <h3 class="text-2xl md:text-[34px] font-extrabold text-gray-900 mb-2 leading-tight">{{ $albaniaTitle }}</h3>
+                <p class="text-[20px] text-gray-500 mb-7 leading-relaxed">{{ $albaniaSubtitle }}</p>
 
                 {{-- Checkmark items - 2 columns --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
+                    @foreach($albaniaCheckItems as $item)
+                    @if(!empty($item['text'] ?? ''))
                     <div class="flex items-center gap-2">
                         <svg class="w-[18px] h-[18px] text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span class="text-[15px] text-gray-700 font-medium">Best Selection of Tours Expertly Crafted</span>
+                        <span class="text-[15px] text-gray-700 font-medium">{{ $item['text'] }}</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-[18px] h-[18px] text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span class="text-[15px] text-gray-700 font-medium">Easy Booking & Free Cancelations</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-[18px] h-[18px] text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span class="text-[15px] text-gray-700 font-medium">Expert Travel Agents and Local Guidance</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-[18px] h-[18px] text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span class="text-[15px] text-gray-700 font-medium">English Customer Service</span>
-                    </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 {{-- Platform rating cards --}}
+                @if(count($albaniaPlatforms) > 0)
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                    {{-- Google --}}
+                    @foreach($albaniaPlatforms as $platform)
+                    @php $iconType = $platform['icon_type'] ?? 'google'; @endphp
                     <div class="bg-white rounded-lg border border-gray-200 px-3 py-4 text-center">
-                        <p class="text-[11px] font-semibold text-gray-600 mb-2.5 leading-tight">Google Top Rated<br>Service</p>
+                        <p class="text-[11px] font-semibold text-gray-600 mb-2.5 leading-tight">{!! nl2br(e($platform['label'] ?? '')) !!}</p>
                         <div class="flex items-center justify-center gap-1.5 mb-1.5">
-                            <i class="fa-brands fa-google text-base text-[#4285F4]"></i>
-                            <span class="text-base font-bold text-gray-900">4.9</span>
+                            @if($iconType === 'google')<i class="fa-brands fa-google text-base text-[#4285F4]"></i>
+                            @elseif($iconType === 'tripadvisor')<span class="w-5 h-5 rounded-full bg-[#34E0A1] flex items-center justify-center"><i class="fa-solid fa-comment-dots text-white text-[9px]"></i></span>
+                            @elseif($iconType === 'getyourguide')<span class="w-5 h-5 rounded-full bg-[#FF5533] flex items-center justify-center"><i class="fa-solid fa-ticket text-white text-[9px]"></i></span>
+                            @elseif($iconType === 'facebook')<i class="fa-brands fa-facebook text-base text-[#1877F2]"></i>
+                            @else<i class="fa-solid fa-star text-amber-400 text-[10px]"></i>@endif
+                            <span class="text-base font-bold text-gray-900">{{ $platform['rating'] ?? '' }}</span>
                         </div>
                         <div class="flex items-center justify-center gap-0.5 mb-1.5">
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
+                            @if($iconType === 'tripadvisor')
+                            @for($i = 0; $i < 5; $i++)<i class="fa-solid fa-circle text-[#34E0A1] text-[6px]"></i>@endfor
+                            @elseif($iconType === 'facebook')
+                            @for($i = 0; $i < 5; $i++)<i class="fa-solid fa-star text-[#1877F2] text-[10px]"></i>@endfor
+                            @else
+                            @for($i = 0; $i < 5; $i++)<i class="fa-solid fa-star text-amber-400 text-[10px]"></i>@endfor
+                            @endif
                         </div>
-                        <p class="text-[11px] text-gray-400">(84 reviews)</p>
+                        @if(!empty($platform['reviews'] ?? ''))
+                        <p class="text-[11px] text-gray-400">({{ $platform['reviews'] }} reviews)</p>
+                        @endif
                     </div>
-                    {{-- TripAdvisor --}}
-                    <div class="bg-white rounded-lg border border-gray-200 px-3 py-4 text-center">
-                        <p class="text-[11px] font-semibold text-gray-600 mb-2.5 leading-tight">TripAdvisor<br>Travelers' Favorite</p>
-                        <div class="flex items-center justify-center gap-1.5 mb-1.5">
-                            <span class="w-5 h-5 rounded-full bg-[#34E0A1] flex items-center justify-center"><i class="fa-solid fa-comment-dots text-white text-[9px]"></i></span>
-                            <span class="text-base font-bold text-gray-900">4.8</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-0.5 mb-1.5">
-                            <i class="fa-solid fa-circle text-[#34E0A1] text-[6px]"></i>
-                            <i class="fa-solid fa-circle text-[#34E0A1] text-[6px]"></i>
-                            <i class="fa-solid fa-circle text-[#34E0A1] text-[6px]"></i>
-                            <i class="fa-solid fa-circle text-[#34E0A1] text-[6px]"></i>
-                            <i class="fa-solid fa-circle text-[#34E0A1] text-[6px]"></i>
-                        </div>
-                        <p class="text-[11px] text-gray-400">(221 reviews)</p>
-                    </div>
-                    {{-- GetYourGuide --}}
-                    <div class="bg-white rounded-lg border border-gray-200 px-3 py-4 text-center">
-                        <p class="text-[11px] font-semibold text-gray-600 mb-2.5 leading-tight">GetYourGuide Top<br>Rated Experience</p>
-                        <div class="flex items-center justify-center gap-1.5 mb-1.5">
-                            <span class="w-5 h-5 rounded-full bg-[#FF5533] flex items-center justify-center"><i class="fa-solid fa-ticket text-white text-[9px]"></i></span>
-                            <span class="text-base font-bold text-gray-900">4.9</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-0.5 mb-1.5">
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                            <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-                        </div>
-                        <p class="text-[11px] text-gray-400">(1,045 reviews)</p>
-                    </div>
-                    {{-- Facebook --}}
-                    <div class="bg-white rounded-lg border border-gray-200 px-3 py-4 text-center">
-                        <p class="text-[11px] font-semibold text-gray-600 mb-2.5 leading-tight">Facebook<br>Customer Favorite</p>
-                        <div class="flex items-center justify-center gap-1.5 mb-1.5">
-                            <i class="fa-brands fa-facebook text-base text-[#1877F2]"></i>
-                            <span class="text-base font-bold text-gray-900">4.8</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-0.5 mb-1.5">
-                            <i class="fa-solid fa-star text-[#1877F2] text-[10px]"></i>
-                            <i class="fa-solid fa-star text-[#1877F2] text-[10px]"></i>
-                            <i class="fa-solid fa-star text-[#1877F2] text-[10px]"></i>
-                            <i class="fa-solid fa-star text-[#1877F2] text-[10px]"></i>
-                            <i class="fa-solid fa-star text-[#1877F2] text-[10px]"></i>
-                        </div>
-                        <p class="text-[11px] text-gray-400">(43 reviews)</p>
-                    </div>
+                    @endforeach
                 </div>
+                @endif
             </div>
 
         </div>
     </div>
 </section>
+@endif
 
 {{-- Featured Destinations (Tabbed by Category) --}}
 @php
