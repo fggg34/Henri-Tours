@@ -5,11 +5,12 @@ import collapse from '@alpinejs/collapse';
 import flatpickr from 'flatpickr';
 import TomSelect from 'tom-select';
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Navigation, EffectFade } from 'swiper/modules';
 import 'flatpickr/dist/flatpickr.min.css';
 import 'tom-select/dist/css/tom-select.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
 
 Alpine.plugin(collapse);
 window.Alpine = Alpine;
@@ -17,6 +18,7 @@ window.flatpickr = flatpickr;
 window.TomSelect = TomSelect;
 window.Swiper = Swiper;
 window.SwiperNavigation = Navigation;
+window.SwiperEffectFade = EffectFade;
 
 Alpine.data('bookingSidebar', (config) => ({
   priceUrl: config.priceUrl,

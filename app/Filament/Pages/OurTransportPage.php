@@ -2,9 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Resources\TransportBookings\TransportBookingResource;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
@@ -32,6 +34,16 @@ class OurTransportPage extends Page
 
     protected string $view = 'filament.pages.homepage';
 
+    public function getHeaderActions(): array
+    {
+        return [
+            Action::make('viewBookings')
+                ->label('View submissions')
+                ->url(TransportBookingResource::getUrl('index'))
+                ->icon(Heroicon::OutlinedTruck),
+        ];
+    }
+
     public function mount(): void
     {
         $heroImage = Setting::get('page_our_transport_hero_image', '');
@@ -40,10 +52,17 @@ class OurTransportPage extends Page
         $seoOgImage = Setting::get('page_our_transport_seo_og_image', '');
         $seoOgImage = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
 
+        $vehicles = Setting::get('page_our_transport_vehicles', '');
+        $vehicles = is_string($vehicles) ? (json_decode($vehicles, true) ?: []) : $vehicles;
+
         $this->getSchema('ourTransportForm')->fill([
             'hero_title' => Setting::get('page_our_transport_hero_title', 'Our Transport'),
             'hero_subtitle' => Setting::get('page_our_transport_hero_subtitle', 'Travel comfortably across Albania with our modern fleet. From minivans to coaches, we ensure a smooth ride for every journey.'),
             'hero_image' => $heroImage,
+            'vehicles' => $vehicles,
+            'form_title' => Setting::get('page_our_transport_form_title', 'Book Your Transport Today'),
+            'form_subtitle' => Setting::get('page_our_transport_form_subtitle', 'Let us handle your transport so you can enjoy Albania stress-free'),
+            'form_success_message' => Setting::get('page_our_transport_form_success_message', 'Thank you! Your transport request has been submitted. We\'ll get back to you soon.'),
             'seo_title' => Setting::get('page_our_transport_seo_title', ''),
             'seo_description' => Setting::get('page_our_transport_seo_description', ''),
             'seo_og_image' => $seoOgImage,
@@ -79,6 +98,66 @@ class OurTransportPage extends Page
                                     ->visibility('public')
                                     ->imagePreviewHeight(120)
                                     ->columnSpanFull(),
+                            ])
+                            ->columns(1),
+                        SchemaSection::make('Vehicles')
+                            ->description('Vehicles displayed in a 4-per-row grid. Each vehicle has a gallery (Swiper with fade), title, and features list.')
+                            ->collapsible()
+                            ->schema([
+                                Repeater::make('vehicles')
+                                    ->schema([
+                                        FileUpload::make('gallery_images')
+                                            ->label('Gallery images')
+                                            ->image()
+                                            ->multiple()
+                                            ->maxFiles(10)
+                                            ->disk('public')
+                                            ->directory('pages/our-transport/vehicles')
+                                            ->visibility('public')
+                                            ->imagePreviewHeight(120)
+                                            ->reorderable()
+                                            ->columnSpanFull(),
+                                        TextInput::make('title')
+                                            ->label('Vehicle title')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->placeholder('e.g. Mercedes Benz Travego VIP Black'),
+                                        Repeater::make('features')
+                                            ->label('Features / specifications')
+                                            ->schema([
+                                                TextInput::make('label')->label('Label')->required()->placeholder('e.g. Seating Capacity'),
+                                                TextInput::make('value')->label('Value')->required()->placeholder('e.g. 55 seats'),
+                                            ])
+                                            ->columns(2)
+                                            ->defaultItems(0)
+                                            ->addActionLabel('Add feature')
+                                            ->reorderable()
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->columns(1)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add vehicle')
+                                    ->reorderable()
+                                    ->reorderableWithButtons()
+                                    ->collapsible(),
+                            ]),
+                        SchemaSection::make('Booking Form')
+                            ->description('Form shown below vehicles. "Book This Vehicle" scrolls to this form and pre-fills the selected vehicle.')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('form_title')
+                                    ->label('Form title')
+                                    ->maxLength(255)
+                                    ->default('Book Your Transport Today'),
+                                Textarea::make('form_subtitle')
+                                    ->label('Form subtitle')
+                                    ->rows(2)
+                                    ->default('Let us handle your transport so you can enjoy Albania stress-free'),
+                                Textarea::make('form_success_message')
+                                    ->label('Success message after submit')
+                                    ->rows(2)
+                                    ->columnSpanFull()
+                                    ->helperText('Shown after the form is submitted.'),
                             ])
                             ->columns(1),
                         SchemaSection::make('SEO')
@@ -138,6 +217,18 @@ class OurTransportPage extends Page
         Setting::set('page_our_transport_hero_title', $data['hero_title'] ?? '');
         Setting::set('page_our_transport_hero_subtitle', $data['hero_subtitle'] ?? '');
         Setting::set('page_our_transport_hero_image', $heroImage);
+
+        $vehicles = $data['vehicles'] ?? [];
+        foreach ($vehicles as &$v) {
+            $imgs = $v['gallery_images'] ?? [];
+            $v['gallery_images'] = is_array($imgs) ? array_values($imgs) : [];
+        }
+        Setting::set('page_our_transport_vehicles', json_encode($vehicles));
+
+        Setting::set('page_our_transport_form_title', $data['form_title'] ?? '');
+        Setting::set('page_our_transport_form_subtitle', $data['form_subtitle'] ?? '');
+        Setting::set('page_our_transport_form_success_message', $data['form_success_message'] ?? '');
+
         Setting::set('page_our_transport_seo_title', $data['seo_title'] ?? '');
         Setting::set('page_our_transport_seo_description', $data['seo_description'] ?? '');
         Setting::set('page_our_transport_seo_og_image', $seoOgImage);
