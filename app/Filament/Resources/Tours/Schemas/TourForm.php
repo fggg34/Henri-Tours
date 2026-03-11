@@ -211,16 +211,6 @@ class TourForm
                                             ->helperText('Each item is a key experience. Drag to reorder.'),
                                     ]),
                             ]),
-                        Tab::make('Map')
-                            ->schema([
-                                Section::make('Map coordinates')
-                                    ->description('Optional. Used to show the tour on a map.')
-                                    ->schema([
-                                        TextInput::make('map_lat')->numeric()->label('Latitude')->placeholder('e.g. 41.3275'),
-                                        TextInput::make('map_lng')->numeric()->label('Longitude')->placeholder('e.g. 19.8187'),
-                                    ])
-                                    ->columns(2),
-                            ]),
                         Tab::make('Itinerary')
                             ->schema([
                                 Section::make('Day-by-day itinerary')
