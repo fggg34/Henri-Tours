@@ -56,4 +56,17 @@ class BlogPost extends Model
     {
         return $this->belongsToMany(BlogTag::class, 'blog_post_tag');
     }
+
+    /** Resolve featured image URL: external URLs as-is, local paths via Storage. */
+    public function getFeaturedImageUrlAttribute(): ?string
+    {
+        $path = $this->featured_image;
+        if (! $path) {
+            return null;
+        }
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($path);
+    }
 }

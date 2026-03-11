@@ -1,9 +1,7 @@
 @props(['post'])
 
 @php
-    $imageUrl = $post->featured_image
-        ? \Illuminate\Support\Facades\Storage::disk('public')->url($post->featured_image)
-        : 'https://placehold.co/600x400/e2e8f0/64748b?text=Blog';
+    $imageUrl = $post->featured_image_url ?? 'https://placehold.co/600x400/e2e8f0/64748b?text=Blog';
 @endphp
 <article class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow group">
     <a href="{{ route('blog.show', $post->slug) }}" class="block">

@@ -7,8 +7,8 @@
 <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <p class="text-sm text-gray-500">{{ $post->published_at?->format('F j, Y') }}</p>
     <h1 class="text-4xl font-bold text-gray-900 mt-2">{{ $post->title }}</h1>
-    @if($post->featured_image)
-        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($post->featured_image) }}" alt="{{ $post->title }}" class="mt-6 w-full rounded-xl">
+    @if($post->featured_image_url)
+        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="mt-6 w-full rounded-xl">
     @endif
     <div class="blog-content mt-6 prose prose-lg max-w-none">
         {!! $post->content !!}
