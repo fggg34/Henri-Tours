@@ -266,6 +266,7 @@ class Settings extends Page
     {
         $menu = Setting::get($key, '');
         $menu = is_string($menu) ? (json_decode($menu, true) ?: []) : $menu;
+
         if (empty($menu) || ! isset($menu['title'])) {
             if ($key === 'footer_menu_1') {
                 return [
@@ -290,6 +291,7 @@ class Settings extends Page
                 ],
             ];
         }
+
         return array_merge(['title' => '', 'items' => []], $menu);
     }
 
