@@ -27,6 +27,8 @@ class FaqPage extends Page
 
     protected static string|\UnitEnum|null $navigationGroup = 'Pages';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public array $faqForm = [];
 
     protected static ?int $navigationSort = 52;
