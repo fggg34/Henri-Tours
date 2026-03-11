@@ -2,6 +2,27 @@
     $headerPhone = \App\Models\Setting::get('contact_phone', '+355 69 238 0166');
     $headerPhoneTel = preg_replace('/[^0-9+]/', '', $headerPhone) ?: '';
     $siteName = \App\Models\Setting::get('site_name', config('app.name'));
+
+    $navItems = \App\Models\Setting::get('nav_menu_items', '');
+    $navItems = is_string($navItems) ? (json_decode($navItems, true) ?: []) : $navItems;
+    if (empty($navItems)) {
+        $navItems = [
+            ['type' => 'link', 'label' => 'Our Tours', 'url' => '/tours', 'children' => []],
+            ['type' => 'link', 'label' => 'Discounted Dates', 'url' => '/confirmed-departures', 'children' => []],
+            ['type' => 'link', 'label' => 'The Inbound Guide', 'url' => '/blog', 'children' => []],
+            ['type' => 'link', 'label' => 'Contact us', 'url' => '/contact', 'children' => []],
+        ];
+    }
+
+    $navUrl = function ($item) {
+        $url = $item['url'] ?? '#';
+        return (is_string($url) && str_starts_with($url, 'http')) ? $url : url($url);
+    };
+    $navIsActive = function ($url) {
+        $path = ltrim(parse_url($url, PHP_URL_PATH) ?? '', '/');
+        if ($path === '' || $path === 'index') return request()->path() === '' || request()->path() === 'index';
+        return request()->is($path . '*');
+    };
 @endphp
 <header class="sticky top-0 z-50 bg-white{{ request()->routeIs('home') ? '' : ' shadow-md' }}" x-data="{ mobileOpen: false, langOpen: false }">
     {{-- Thin dark grey top bar --}}
@@ -25,15 +46,30 @@
             </a>
 
             {{-- Right side: Menu + Language selector + Account icon --}}
-            <div class="hidden lg:flex lg:items-center">
-                {{-- Desktop Navigation - with vertical dividers --}}
-                <a href="{{ route('tours.index') }}" class="px-4 py-2 text-[15px] font-medium text-brand-logo-light hover:text-brand-navy transition-colors">Our Tours</a>
-                <span class="w-px h-4 bg-gray-200 flex-shrink-0"></span>
-                <a href="{{ route('confirmed-departures') }}" class="px-4 py-2 text-[15px] font-medium text-brand-logo-light hover:text-brand-navy transition-colors">Discounted Dates</a>
-                <span class="w-px h-4 bg-gray-200 flex-shrink-0"></span>
-                <a href="{{ route('blog.index') }}" class="px-4 py-2 text-[15px] font-medium text-brand-logo-light hover:text-brand-navy transition-colors">The Inbound Guide</a>
-                <span class="w-px h-4 bg-gray-200 flex-shrink-0"></span>
-                <a href="{{ route('contact') }}" class="px-4 py-2 text-[15px] font-medium text-brand-logo-light hover:text-brand-navy transition-colors">Contact us</a>
+            <div class="hidden lg:flex lg:items-center" x-data="{ openDropdown: null }">
+                {{-- Desktop Navigation - from Settings --}}
+                @foreach($navItems as $idx => $item)
+                    @if($idx > 0)<span class="w-px h-4 bg-gray-200 flex-shrink-0"></span>@endif
+                    @if(($item['type'] ?? 'link') === 'dropdown' && !empty($item['children'] ?? []))
+                        <div class="relative" @click.away="openDropdown = null">
+                            <button type="button" @click="openDropdown = openDropdown === {{ $idx }} ? null : {{ $idx }}"
+                                class="flex items-center gap-1 px-4 py-2 text-[15px] font-medium text-brand-logo-light hover:text-brand-navy transition-colors"
+                                :class="{ 'text-brand-navy': openDropdown === {{ $idx }} }"
+                                aria-expanded="false" aria-haspopup="true">
+                                {{ $item['label'] ?? '' }}
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                            </button>
+                            <div x-show="openDropdown === {{ $idx }}" x-cloak x-transition
+                                class="absolute left-0 top-full mt-1 min-w-[180px] py-1 bg-white rounded-md shadow-lg border border-gray-100 ring-1 ring-black ring-opacity-5">
+                                @foreach($item['children'] ?? [] as $child)
+                                    <a href="{{ $navUrl($child) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-navy">{{ $child['label'] ?? '' }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <a href="{{ $navUrl($item) }}" class="px-4 py-2 text-[15px] font-medium text-brand-logo-light hover:text-brand-navy transition-colors">{{ $item['label'] ?? '' }}</a>
+                    @endif
+                @endforeach
                 {{-- Language selector --}}
                 <!-- <div class="relative" @click.away="langOpen = false">
                     <button type="button" @click="langOpen = !langOpen" class="flex items-center gap-1 text-gray-700 hover:text-brand-navy transition-colors" aria-expanded="false" aria-haspopup="true">
@@ -81,11 +117,20 @@
             </button>
         </div>
         <div class="flex-1 overflow-y-auto py-3">
-            <a href="{{ route('tours.index') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('tours*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">Our Tours</a>
-            <a href="{{ route('confirmed-departures') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('confirmed-departures*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">Discounted Dates</a>
-            <a href="{{ route('blog.index') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('blog*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">The Inbound Guide</a>
-            <a href="{{ route('contact') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('contact*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">Contact us</a>
-            <a href="{{ route('about') }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ request()->is('about*') ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">About Us</a>
+            @foreach($navItems as $item)
+                @if(($item['type'] ?? 'link') === 'dropdown' && !empty($item['children'] ?? []))
+                    <div class="px-5 pt-3 pb-1">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">{{ $item['label'] ?? '' }}</span>
+                    </div>
+                    @foreach($item['children'] ?? [] as $child)
+                        @php $childUrl = $navUrl($child); @endphp
+                        <a href="{{ $childUrl }}" @click="mobileOpen = false" class="block px-5 pl-8 py-2.5 text-[15px] font-medium {{ $navIsActive($childUrl) ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">{{ $child['label'] ?? '' }}</a>
+                    @endforeach
+                @else
+                    @php $itemUrl = $navUrl($item); @endphp
+                    <a href="{{ $itemUrl }}" @click="mobileOpen = false" class="block px-5 py-3 text-[15px] font-medium {{ $navIsActive($itemUrl) ? 'text-brand-btn bg-red-50' : 'text-gray-700 hover:bg-gray-50' }}">{{ $item['label'] ?? '' }}</a>
+                @endif
+            @endforeach
         </div>
         <div class="flex-shrink-0 border-t border-gray-100 p-4 space-y-2">
             @if($headerPhone)
