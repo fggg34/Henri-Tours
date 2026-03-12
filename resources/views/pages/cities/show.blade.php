@@ -169,7 +169,7 @@
                         <i class="fa-solid fa-arrow-right text-sm"></i>
                     </button>
                 </div>
-                <a href="{{ route('tours.index', ['city' => $city->slug]) }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition hidden sm:block">
+                <a href="{{ route('tours.search', ['city' => $city->slug]) }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition hidden sm:block">
                     View all tours &rarr;
                 </a>
             </div>
