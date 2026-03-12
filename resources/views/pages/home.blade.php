@@ -40,6 +40,50 @@
 
 @section('content')
 
+{{-- Homepage Highlights --}}
+@php
+    $homepageHighlights = \App\Models\Highlight::with('cities')
+        ->orderBy('sort_order')
+        ->limit(6)
+        ->get();
+@endphp
+@if($homepageHighlights->isNotEmpty())
+<section class="py-10 md:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-6 md:mb-8">
+            <h2 class="text-lg md:text-xl font-semibold text-brand-navy">Top things to do in Albania</h2>
+            <p class="text-xs md:text-sm text-gray-500 mt-1">Book your complete trip with the best companies only</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+            @foreach($homepageHighlights as $highlight)
+                @php $city = $highlight->cities->first(); @endphp
+                <div class="relative rounded-2xl overflow-hidden shadow-sm group">
+                    <div class="aspect-[4/3] w-full h-full">
+                        @if($highlight->image_url)
+                            <img src="{{ $highlight->image_url }}"
+                                 alt="{{ $highlight->title }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                        @else
+                            <div class="w-full h-full bg-gradient-to-tr from-sky-900 via-sky-600 to-emerald-500"></div>
+                        @endif
+                    </div>
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-2.5 sm:p-3 text-center">
+                        <p class="text-[11px] sm:text-xs md:text-sm font-semibold text-white leading-snug drop-shadow-sm">
+                            {{ $highlight->title }}
+                        </p>
+                    </div>
+                    @if($city)
+                        <a href="{{ route('cities.highlights.show', [$city, $highlight]) }}" class="absolute inset-0 z-10" aria-label="{{ $highlight->title }}"></a>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 {{-- Suggested Tours --}}
 @php
     $allTours = \App\Models\Tour::where('is_active', true)
