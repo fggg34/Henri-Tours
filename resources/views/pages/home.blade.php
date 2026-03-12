@@ -43,6 +43,7 @@
 {{-- Homepage Highlights --}}
 @php
     $homepageHighlights = \App\Models\Highlight::with('cities')
+        ->whereHas('cities')
         ->orderBy('sort_order')
         ->limit(6)
         ->get();
@@ -51,7 +52,7 @@
 <section class="py-10 md:py-14">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-6 md:mb-8">
-            <h2 class="text-lg md:text-xl font-semibold text-brand-navy">Top things to do in Albania</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Top things to do in Albania</h2>
             <p class="text-xs md:text-sm text-gray-500 mt-1">Book your complete trip with the best companies only</p>
         </div>
 
