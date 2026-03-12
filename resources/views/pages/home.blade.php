@@ -76,7 +76,7 @@
                         </p>
                     </div>
                     @if($city)
-                        <a href="{{ route('cities.highlights.show', [$city, $highlight]) }}" class="absolute inset-0 z-10" aria-label="{{ $highlight->title }}"></a>
+                        <a href="{{ route('cities.highlights.show', [$city->slug, $highlight->slug]) }}" class="absolute inset-0 z-10" aria-label="{{ $highlight->title }}"></a>
                     @endif
                 </div>
             @endforeach
