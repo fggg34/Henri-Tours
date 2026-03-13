@@ -103,6 +103,11 @@ class Tour extends Model
         return $this->belongsToMany(City::class, 'city_tour');
     }
 
+    public function activities(): BelongsToMany
+    {
+        return $this->belongsToMany(TourActivity::class, 'activity_tour');
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(TourImage::class)->orderBy('sort_order');
@@ -213,6 +218,7 @@ class Tour extends Model
         }
 
         $copy->cities()->sync($this->cities->pluck('id'));
+        $copy->activities()->sync($this->activities->pluck('id'));
 
         return $copy;
     }

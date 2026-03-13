@@ -35,6 +35,13 @@ class TourForm
                                             ->searchable()
                                             ->preload()
                                             ->label('Cities'),
+                                        Select::make('activities')
+                                            ->relationship('activities', 'title')
+                                            ->multiple()
+                                            ->searchable()
+                                            ->preload()
+                                            ->label('Tour Activities')
+                                            ->helperText('Activities this tour includes (e.g. Hiking, Kayaking)'),
                                         TextInput::make('title')->required()->live(onBlur: true),
                                         TextInput::make('slug')->required()->maxLength(255),
                                         Textarea::make('short_description')->rows(2)->columnSpanFull()->helperText('Brief plain-text summary.'),
