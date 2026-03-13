@@ -15,6 +15,19 @@ use App\Http\Controllers\ConfirmedDeparturesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
+
+// Serve tour activity SVGs with correct Content-Type (image/svg+xml) - uses /svg/icons/ path
+// so requests always reach Laravel (works with php artisan serve, Nginx, Apache)
+Route::get('/svg/icons/{filename}', function (string $filename) {
+    if (! str_ends_with($filename, '.svg')) {
+        abort(404);
+    }
+    $path = storage_path('app/public/tour_activities/' . $filename);
+    if (! is_file($path)) {
+        abort(404);
+    }
+    return response()->file($path, ['Content-Type' => 'image/svg+xml']);
+})->where('filename', '.+\.svg$')->name('storage.tour-activities.svg');
 Route::get('/sitemap.xml', \App\Http\Controllers\SitemapController::class)->name('sitemap');
 
 Route::get('/tours', [TourController::class, 'index'])->name('tours.index');

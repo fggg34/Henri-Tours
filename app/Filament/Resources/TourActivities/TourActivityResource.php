@@ -63,7 +63,7 @@ class TourActivityResource extends Resource
                     ->label('Icon')
                     ->height(32)
                     ->square(false)
-                    ->getStateUsing(fn (TourActivity $record) => $record->icon ? url(Storage::disk('public')->url($record->icon)) : null),
+                    ->getStateUsing(fn (TourActivity $record) => $record->icon_url),
                 TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),

@@ -33,6 +33,7 @@ class TourActivity extends Model
         if (empty($this->icon)) {
             return null;
         }
-        return '/storage/' . ltrim($this->icon, '/');
+        $filename = basename($this->icon);
+        return route('storage.tour-activities.svg', ['filename' => $filename]);
     }
 }

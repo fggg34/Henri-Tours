@@ -3,12 +3,14 @@
         Options -MultiViews -Indexes
     </IfModule>
 
-    # Ensure WebP images are served with correct MIME type
+    # Ensure images are served with correct MIME types
     <IfModule mod_mime.c>
         AddType image/webp .webp
+        AddType image/svg+xml .svg .svgz
     </IfModule>
 
     RewriteEngine On
+    RewriteBase /
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -22,6 +24,10 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
+
+    # Serve SVG files via Laravel so correct Content-Type (image/svg+xml) is set
+    RewriteCond %{REQUEST_URI} ^/storage/tour_activities/.*\.svg$
+    RewriteRule ^(.*)$ index.php [L,QSA]
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
