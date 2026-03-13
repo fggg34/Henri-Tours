@@ -46,29 +46,39 @@ class TourActivity extends Model
      */
     private function getRawIconValue(): mixed
     {
-        $icon = $this->getAttributeFromArray('icon') ?? $this->attributes['icon'] ?? null;
+        $icon = $this->attributes['icon'] ?? null;
         if (empty($icon)) {
             return null;
         }
         if (is_array($icon)) {
             return $icon[0] ?? null;
         }
-        if (is_string($icon) && str_starts_with(trim($icon), '[')) {
-            $decoded = json_decode($icon, true);
-            if (is_array($decoded) && ! empty($decoded)) {
-                return is_string($decoded[0] ?? null) ? $decoded[0] : null;
+        if (is_string($icon)) {
+            $trimmed = trim($icon);
+            if (str_starts_with($trimmed, '[')) {
+                $decoded = json_decode($icon, true);
+                if (is_array($decoded) && ! empty($decoded)) {
+                    $first = $decoded[0] ?? null;
+                    return is_string($first) ? $first : null;
+                }
             }
+            return $icon;
         }
-        return $icon;
+        return null;
     }
 
     public function getIconUrlAttribute(): ?string
     {
-        $icon = $this->getResolvedIconPath();
-        if (empty($icon)) {
+        $path = $this->getResolvedIconPath();
+        if (empty($path)) {
             return null;
         }
-        return route('storage.tour-activities.svg', ['filename' => basename($icon)]);
+        $filename = basename($path);
+        $storagePath = str_contains($path, 'tour_activities') ? $path : 'tour_activities/' . $filename;
+        if (Storage::disk('public')->exists($storagePath)) {
+            return Storage::disk('public')->url($storagePath);
+        }
+        return route('storage.tour-activities.svg', ['filename' => $filename]);
     }
 
     /**

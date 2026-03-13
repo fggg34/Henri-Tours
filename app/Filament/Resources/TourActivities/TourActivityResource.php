@@ -14,8 +14,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
+use Illuminate\Support\Str;
 use Filament\Tables\Table;
 
 class TourActivityResource extends Resource
@@ -58,11 +59,9 @@ class TourActivityResource extends Resource
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
-                ImageColumn::make('icon')
+                ViewColumn::make('icon')
                     ->label('Icon')
-                    ->getStateUsing(fn (TourActivity $record): ?string => $record->icon_url)
-                    ->checkFileExistence(false)
-                    ->imageSize(32),
+                    ->view('filament.components.tour-activity-icon'),
                 TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),
