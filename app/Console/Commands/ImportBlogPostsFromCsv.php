@@ -27,12 +27,20 @@ class ImportBlogPostsFromCsv extends Command
 
     public function handle(): int
     {
+        set_time_limit(0);
+        if (ini_get('memory_limit') !== '-1') {
+            @ini_set('memory_limit', '512M');
+        }
+
         $path = $this->argument('csv');
 
         if (! is_file($path) || ! is_readable($path)) {
             $this->error("File not found or not readable: {$path}");
             return self::FAILURE;
         }
+
+        set_time_limit(3600);
+        ini_set('memory_limit', '512M');
 
         $dryRun = (bool) $this->option('dry-run');
         $flush = (bool) $this->option('flush');
