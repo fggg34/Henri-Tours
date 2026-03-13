@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use League\Csv\Reader;
 
 class ImportBlogPostsFromCsv extends Command
 {
@@ -25,9 +26,12 @@ class ImportBlogPostsFromCsv extends Command
     /** @var array<string, int> */
     private array $tagMap = [];
 
+    /** @var array<string, int> track slug usage to avoid duplicates */
+    private array $slugUsage = [];
+
     public function handle(): int
     {
-        set_time_limit(0);
+        @set_time_limit(0);
         if (ini_get('memory_limit') !== '-1') {
             @ini_set('memory_limit', '512M');
         }
@@ -38,9 +42,6 @@ class ImportBlogPostsFromCsv extends Command
             $this->error("File not found or not readable: {$path}");
             return self::FAILURE;
         }
-
-        set_time_limit(3600);
-        ini_set('memory_limit', '512M');
 
         $dryRun = (bool) $this->option('dry-run');
         $flush = (bool) $this->option('flush');
@@ -66,34 +67,22 @@ class ImportBlogPostsFromCsv extends Command
         $this->buildCategoryMap();
         $this->buildTagMap();
 
-        $handle = fopen($path, 'r');
-        if ($handle === false) {
-            $this->error('Could not open CSV.');
+        try {
+            $reader = Reader::createFromPath($path);
+            $reader->setHeaderOffset(0);
+        } catch (\Throwable $e) {
+            $this->error('Could not read CSV: ' . $e->getMessage());
             return self::FAILURE;
         }
 
-        $header = fgetcsv($handle, 0, ',', '"', '');
-        if ($header === false) {
-            fclose($handle);
-            $this->error('Empty or invalid CSV.');
-            return self::FAILURE;
-        }
-
-        $colMap = [];
-        foreach ($header as $i => $col) {
-            $col = trim($col, "\xEF\xBB\xBF\"");
-            if (! isset($colMap[$col])) {
-                $colMap[$col] = $i;
-            }
-        }
-
+        $records = $reader->getRecords();
         $imported = 0;
         $skipped = 0;
         $rowNum = 1;
 
-        while (($row = fgetcsv($handle, 0, ',', '"', '')) !== false) {
+        foreach ($records as $row) {
             $rowNum++;
-            $get = fn (string $name) => isset($colMap[$name]) ? trim($row[$colMap[$name]] ?? '') : '';
+            $get = fn (string $name) => isset($row[$name]) ? trim((string) $row[$name]) : '';
 
             $title = $get('Title');
             if (empty($title)) {
@@ -110,14 +99,15 @@ class ImportBlogPostsFromCsv extends Command
             if (empty($featuredUrl)) {
                 $featuredUrl = $get('Attachment URL');
             }
-            if (empty($featuredUrl) && isset($colMap['Image Featured'])) {
-                $featuredUrl = $get('Image Featured');
+            if (empty($featuredUrl) && isset($row['Image Featured'])) {
+                $featuredUrl = trim((string) $row['Image Featured']);
             }
 
             $categoriesStr = $get('Categories');
             $tagsStr = $get('Tags');
 
-            $slug = $this->parseSlug($permalink, $title);
+            $baseSlug = $this->parseSlug($permalink, $title);
+            $slug = $this->ensureUniqueSlug($baseSlug);
 
             $publishedAt = null;
             if (! empty($dateStr)) {
@@ -167,12 +157,22 @@ class ImportBlogPostsFromCsv extends Command
             }
         }
 
-        fclose($handle);
-
         $this->newLine();
         $this->info("Imported: {$imported} | Skipped: {$skipped}");
 
         return self::SUCCESS;
+    }
+
+    private function ensureUniqueSlug(string $baseSlug): string
+    {
+        $slug = $baseSlug;
+        $n = 1;
+        while (isset($this->slugUsage[$slug]) || BlogPost::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . (++$n);
+        }
+        $this->slugUsage[$slug] = 1;
+
+        return $slug;
     }
 
     private function parseSlug(string $permalink, string $title): string
@@ -269,6 +269,7 @@ class ImportBlogPostsFromCsv extends Command
     {
         $str = str_replace('|', ',', $str);
         $parts = array_map('trim', explode(',', $str));
+
         return array_filter($parts);
     }
 }
