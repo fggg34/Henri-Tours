@@ -17,7 +17,6 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Storage;
 
 class TourActivityResource extends Resource
 {
@@ -61,9 +60,9 @@ class TourActivityResource extends Resource
                     ->sortable(),
                 ImageColumn::make('icon')
                     ->label('Icon')
-                    ->height(32)
-                    ->square(false)
-                    ->getStateUsing(fn (TourActivity $record) => $record->icon_url),
+                    ->getStateUsing(fn (TourActivity $record): ?string => $record->icon_url)
+                    ->checkFileExistence(false)
+                    ->imageSize(32),
                 TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),

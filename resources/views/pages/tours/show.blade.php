@@ -223,23 +223,40 @@
                 {!! $tour->description !!}
             </div>
 
-            @if($tour->tour_highlights && count($tour->tour_highlights) > 0)
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Tour highlights</h2>
-                    <ul class="space-y-3">
-                        @foreach($tour->tour_highlights as $highlight)
-                            @php $text = is_array($highlight) ? ($highlight['text'] ?? $highlight['value'] ?? '') : $highlight; @endphp
-                            @if($text)
-                                <li class="flex items-start gap-3">
-                                    <span class="flex-shrink-0 w-7 h-7 rounded flex items-center justify-center bg-blue-100 text-brand-navy">
-                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                                    </span>
-                                    <span class="text-gray-700">{{ $text }}</span>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </div>
+            @if(($tour->tour_highlights && count($tour->tour_highlights) > 0) || $tour->activities->isNotEmpty())
+            <div class="grid grid-cols-1 @if(($tour->tour_highlights && count($tour->tour_highlights) > 0) && $tour->activities->isNotEmpty()) md:grid-cols-2 @endif gap-8">
+                @if($tour->tour_highlights && count($tour->tour_highlights) > 0)
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Tour highlights</h2>
+                        <ul class="space-y-3">
+                            @foreach($tour->tour_highlights as $highlight)
+                                @php $text = is_array($highlight) ? ($highlight['text'] ?? $highlight['value'] ?? '') : $highlight; @endphp
+                                @if($text)
+                                    <li class="flex items-start gap-3">
+                                        <span class="flex-shrink-0 w-7 h-7 rounded flex items-center justify-center bg-blue-100 text-brand-navy">
+                                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                        </span>
+                                        <span class="text-gray-700">{{ $text }}</span>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if($tour->activities->isNotEmpty())
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Tour activities</h2>
+                        <div class="flex flex-wrap gap-4">
+                            @foreach($tour->activities->sortBy('sort_order') as $activity)
+                                <div class="flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 bg-white">
+                                    <x-tour-activity-icon :activity="$activity" class="w-8 h-8" />
+                                    <span class="text-gray-700 font-medium">{{ $activity->title }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
             @endif
 
             @if($tour->important_notes)

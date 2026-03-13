@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class TourActivity extends Model
 {
@@ -28,12 +29,83 @@ class TourActivity extends Model
         return $this->belongsToMany(Tour::class, 'activity_tour');
     }
 
-    public function getIconUrlAttribute(): ?string
+    /**
+     * Resolve the icon path from various storage formats (plain string, array, JSON-encoded array).
+     */
+    private function getResolvedIconPath(): ?string
     {
-        if (empty($this->icon)) {
+        $icon = $this->getRawIconValue();
+        if (empty($icon) || ! is_string($icon)) {
             return null;
         }
-        $filename = basename($this->icon);
-        return route('storage.tour-activities.svg', ['filename' => $filename]);
+        return str_replace('\\', '', $icon);
+    }
+
+    /**
+     * Get the raw icon value, normalizing arrays and JSON-encoded arrays to a single path.
+     */
+    private function getRawIconValue(): mixed
+    {
+        $icon = $this->getAttributeFromArray('icon') ?? $this->attributes['icon'] ?? null;
+        if (empty($icon)) {
+            return null;
+        }
+        if (is_array($icon)) {
+            return $icon[0] ?? null;
+        }
+        if (is_string($icon) && str_starts_with(trim($icon), '[')) {
+            $decoded = json_decode($icon, true);
+            if (is_array($decoded) && ! empty($decoded)) {
+                return is_string($decoded[0] ?? null) ? $decoded[0] : null;
+            }
+        }
+        return $icon;
+    }
+
+    public function getIconUrlAttribute(): ?string
+    {
+        $icon = $this->getResolvedIconPath();
+        if (empty($icon)) {
+            return null;
+        }
+        return route('storage.tour-activities.svg', ['filename' => basename($icon)]);
+    }
+
+    /**
+     * Get the SVG content for inline embedding (always renders correctly).
+     */
+    public function getIconSvgContent(): ?string
+    {
+        $icon = $this->getResolvedIconPath();
+        if (empty($icon)) {
+            return null;
+        }
+        $paths = [
+            $icon,
+            ltrim($icon, '/'),
+            'tour_activities/' . basename($icon),
+        ];
+        $disk = Storage::disk('public');
+        foreach ($paths as $path) {
+            if ($disk->exists($path)) {
+                $content = $disk->get($path);
+                if (is_string($content) && str_contains($content, '<svg')) {
+                    return $content;
+                }
+            }
+        }
+        $fsPaths = [
+            storage_path('app/public/' . ltrim($icon, '/')),
+            storage_path('app/public/tour_activities/' . basename($icon)),
+        ];
+        foreach ($fsPaths as $path) {
+            if (is_file($path)) {
+                $content = file_get_contents($path);
+                if ($content !== false && str_contains($content, '<svg')) {
+                    return $content;
+                }
+            }
+        }
+        return null;
     }
 }
