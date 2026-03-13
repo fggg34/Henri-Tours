@@ -282,6 +282,46 @@
                                             </div>
                                         @endif
 
+                                        @if($day->highlights->isNotEmpty())
+                                            <div class="pt-2">
+                                                <p class="font-medium text-gray-700 mb-3">Places you'll visit:</p>
+                                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                    @foreach($day->highlights as $hl)
+                                                        @php $city = $hl->cities->first(); @endphp
+                                                        @if($city)
+                                                            <a href="{{ route('cities.highlights.show', [$city->slug, $hl->slug]) }}" class="flex gap-3 p-3 rounded-lg border border-gray-200 bg-white hover:border-brand-navy hover:bg-blue-50/30 transition">
+                                                                @if($hl->image_url)
+                                                                    <img src="{{ $hl->image_url }}" alt="{{ $hl->title }}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                                                                @else
+                                                                    <div class="w-16 h-16 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0">
+                                                                        <i class="fa-solid fa-camera text-gray-400"></i>
+                                                                    </div>
+                                                                @endif
+                                                                <div class="min-w-0 flex-1">
+                                                                    <h4 class="font-semibold text-gray-900 text-sm">{{ $hl->title }}</h4>
+                                                                    <p class="text-xs text-gray-500 truncate">{{ $city->name }}</p>
+                                                                </div>
+                                                                <i class="fa-solid fa-chevron-right text-gray-400 self-center"></i>
+                                                            </a>
+                                                        @else
+                                                            <div class="flex gap-3 p-3 rounded-lg border border-gray-200 bg-gray-50/50">
+                                                                @if($hl->image_url)
+                                                                    <img src="{{ $hl->image_url }}" alt="{{ $hl->title }}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                                                                @else
+                                                                    <div class="w-16 h-16 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0">
+                                                                        <i class="fa-solid fa-camera text-gray-400"></i>
+                                                                    </div>
+                                                                @endif
+                                                                <div class="min-w-0 flex-1">
+                                                                    <h4 class="font-semibold text-gray-900 text-sm">{{ $hl->title }}</h4>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+
                                         @if($day->hotel)
                                             <div class="pt-2">
                                                 <p class="font-medium text-gray-700 mb-3">Accommodation:</p>

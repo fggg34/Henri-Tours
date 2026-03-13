@@ -289,7 +289,7 @@ class TourController extends Controller
     public function show(string $slug)
     {
         $tour = Tour::where('slug', $slug)->where('is_active', true)
-            ->with(['category', 'cities', 'images', 'itineraries.hotel', 'pricingTiers', 'dates' => fn ($q) => $q->where('is_active', true)->where('date', '>=', now())->orderBy('date')])
+            ->with(['category', 'cities', 'images', 'itineraries.hotel', 'itineraries.highlights.cities', 'pricingTiers', 'dates' => fn ($q) => $q->where('is_active', true)->where('date', '>=', now())->orderBy('date')])
             ->withCount(['approvedReviews'])
             ->firstOrFail();
 

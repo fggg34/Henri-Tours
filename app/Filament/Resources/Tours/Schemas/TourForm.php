@@ -227,6 +227,14 @@ class TourForm
                                                     ->preload()
                                                     ->nullable()
                                                     ->label('Hotel (optional)'),
+                                                Select::make('highlights')
+                                                    ->relationship('highlights', 'title')
+                                                    ->multiple()
+                                                    ->searchable()
+                                                    ->preload()
+                                                    ->nullable()
+                                                    ->label('Highlights (optional)')
+                                                    ->helperText('Places or attractions visited on this day'),
                                                 TextInput::make('sort_order')->numeric()->default(0),
                                             ])
                                             ->defaultItems(0)

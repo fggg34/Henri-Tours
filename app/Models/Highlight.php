@@ -48,4 +48,11 @@ class Highlight extends Model
             ->withPivot('sort_order')
             ->withTimestamps();
     }
+
+    public function tourItineraries(): BelongsToMany
+    {
+        return $this->belongsToMany(TourItinerary::class, 'highlight_tour_itinerary')
+            ->withPivot('sort_order')
+            ->withTimestamps();
+    }
 }
