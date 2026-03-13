@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Models\BlogTag;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -62,6 +63,7 @@ class BlogController extends Controller
     public function loadMore(Request $request)
     {
         $category = $request->get('category');
+        $tag = $request->get('tag');
         $offset = (int) $request->get('offset', 12);
         $excludeIds = $request->get('exclude'); // comma-separated IDs of featured posts
 
@@ -77,9 +79,11 @@ class BlogController extends Controller
             }
         }
 
-        if ($category === 'uncategorized') {
+        if ($tag) {
+            $query->whereHas('tags', fn ($q) => $q->where('blog_tags.slug', $tag));
+        } elseif ($category === 'uncategorized') {
             $query->whereNull('blog_category_id');
-        } else {
+        } elseif ($category) {
             $query->whereHas('category', fn ($q) => $q->where('slug', $category));
         }
 
@@ -90,6 +94,75 @@ class BlogController extends Controller
         $html = view('pages.blog.partials.cards', compact('posts'))->render();
 
         return response()->json(['html' => $html, 'hasMore' => $hasMore]);
+    }
+
+    public function uncategorizedArchive()
+    {
+        $query = BlogPost::where('is_published', true)
+            ->whereNotNull('published_at')
+            ->whereNull('blog_category_id')
+            ->with('category')
+            ->orderByDesc('published_at');
+
+        $total = $query->count();
+        $posts = $query->limit(12)->get();
+        $hasMore = $total > 12;
+
+        return view('pages.blog.archive', [
+            'title' => 'Uncategorized',
+            'subtitle' => 'Posts without a category',
+            'posts' => $posts,
+            'archiveType' => 'category',
+            'archiveSlug' => 'uncategorized',
+            'hasMore' => $hasMore,
+            'excludeIds' => [],
+        ]);
+    }
+
+    public function categoryArchive(BlogCategory $category)
+    {
+        $query = BlogPost::where('is_published', true)
+            ->whereNotNull('published_at')
+            ->where('blog_category_id', $category->id)
+            ->with('category')
+            ->orderByDesc('published_at');
+
+        $total = $query->count();
+        $posts = $query->limit(12)->get();
+        $hasMore = $total > 12;
+
+        return view('pages.blog.archive', [
+            'title' => $category->name,
+            'subtitle' => 'Posts in ' . $category->name,
+            'posts' => $posts,
+            'archiveType' => 'category',
+            'archiveSlug' => $category->slug,
+            'hasMore' => $hasMore,
+            'excludeIds' => [],
+        ]);
+    }
+
+    public function tagArchive(BlogTag $tag)
+    {
+        $query = BlogPost::where('is_published', true)
+            ->whereNotNull('published_at')
+            ->whereHas('tags', fn ($q) => $q->where('blog_tags.id', $tag->id))
+            ->with('category')
+            ->orderByDesc('published_at');
+
+        $total = $query->count();
+        $posts = $query->limit(12)->get();
+        $hasMore = $total > 12;
+
+        return view('pages.blog.archive', [
+            'title' => $tag->name,
+            'subtitle' => 'Posts tagged with ' . $tag->name,
+            'posts' => $posts,
+            'archiveType' => 'tag',
+            'archiveSlug' => $tag->slug,
+            'hasMore' => $hasMore,
+            'excludeIds' => [],
+        ]);
     }
 
     public function show(string $slug)
@@ -104,7 +177,7 @@ class BlogController extends Controller
                 $q->where('blog_category_id', $post->blog_category_id)->orWhereNull('blog_category_id');
             })
             ->orderByDesc('published_at')
-            ->limit(3)
+            ->limit(4)
             ->get();
 
         return view('pages.blog.show', compact('post', 'related'));

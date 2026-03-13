@@ -54,6 +54,9 @@ Route::post('/confirmed-departures', [ConfirmedDeparturesController::class, 'sto
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/load-more', [BlogController::class, 'loadMore'])->name('blog.load-more');
+Route::get('/blog/category/uncategorized', [BlogController::class, 'uncategorizedArchive'])->name('blog.category.uncategorized');
+Route::get('/blog/category/{category:slug}', [BlogController::class, 'categoryArchive'])->name('blog.category');
+Route::get('/blog/tag/{tag:slug}', [BlogController::class, 'tagArchive'])->name('blog.tag');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/about', AboutController::class)->name('about');

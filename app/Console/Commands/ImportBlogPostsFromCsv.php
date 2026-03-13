@@ -4,19 +4,26 @@ namespace App\Console\Commands;
 
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Models\BlogTag;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ImportBlogPostsFromCsv extends Command
 {
     protected $signature = 'blog:import-csv
                             {csv : Path to the Posts export CSV file}
+                            {--flush : Delete all existing posts before importing}
                             {--dry-run : Show what would be imported without writing}';
 
-    protected $description = 'Import blog posts from Albania Inbound WordPress CSV. Keeps existing categories, maps CSV categories to them.';
+    protected $description = 'Import blog posts from CSV. Maps: categories, featured image, title, content, tags.';
 
-    /** @var array<string, int> category name (normalized) => blog_category_id */
+    /** @var array<string, int> */
     private array $categoryMap = [];
+
+    /** @var array<string, int> */
+    private array $tagMap = [];
 
     public function handle(): int
     {
@@ -28,17 +35,28 @@ class ImportBlogPostsFromCsv extends Command
         }
 
         $dryRun = (bool) $this->option('dry-run');
+        $flush = (bool) $this->option('flush');
+
         if ($dryRun) {
             $this->warn('DRY RUN - no data will be written.');
         }
 
         $user = User::first();
         if (! $user) {
-            $this->error('No user found. Run CreateAdminUserSeeder first.');
+            $this->error('No user found. Create an admin user first.');
             return self::FAILURE;
         }
 
+        if ($flush && ! $dryRun) {
+            $count = BlogPost::count();
+            BlogPost::query()->delete();
+            $this->info("Deleted {$count} existing posts.");
+        } elseif ($flush && $dryRun) {
+            $this->line('  Would delete ' . BlogPost::count() . ' existing posts.');
+        }
+
         $this->buildCategoryMap();
+        $this->buildTagMap();
 
         $handle = fopen($path, 'r');
         if ($handle === false) {
@@ -67,7 +85,7 @@ class ImportBlogPostsFromCsv extends Command
 
         while (($row = fgetcsv($handle, 0, ',', '"', '')) !== false) {
             $rowNum++;
-            $get = fn (string $name) => trim($row[$colMap[$name] ?? -1] ?? '');
+            $get = fn (string $name) => isset($colMap[$name]) ? trim($row[$colMap[$name]] ?? '') : '';
 
             $title = $get('Title');
             if (empty($title)) {
@@ -75,45 +93,41 @@ class ImportBlogPostsFromCsv extends Command
                 continue;
             }
 
-            $postType = $get('Post Type');
-            if (strtolower($postType) !== 'post') {
-                $skipped++;
-                continue;
-            }
-
-            $status = $get('Status');
-            $isPublished = in_array(strtolower($status), ['publish', 'published'], true);
-
-            $slug = $get('Slug');
-            if (empty($slug)) {
-                $slug = \Illuminate\Support\Str::slug($title);
-            }
-
             $content = $get('Content');
             $excerpt = $get('Excerpt');
             $dateStr = $get('Date');
-            $featuredUrl = $get('URL');
-            if (empty($featuredUrl) && isset($colMap['Featured'])) {
-                $featuredUrl = $get('Featured');
+            $permalink = $get('Permalink');
+
+            $featuredUrl = $get('Image URL');
+            if (empty($featuredUrl)) {
+                $featuredUrl = $get('Attachment URL');
             }
+            if (empty($featuredUrl) && isset($colMap['Image Featured'])) {
+                $featuredUrl = $get('Image Featured');
+            }
+
             $categoriesStr = $get('Categories');
+            $tagsStr = $get('Tags');
+
+            $slug = $this->parseSlug($permalink, $title);
 
             $publishedAt = null;
             if (! empty($dateStr)) {
                 try {
-                    $dt = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $dateStr);
+                    $dt = Carbon::parse($dateStr);
                     if ($dt) {
-                        $publishedAt = $isPublished ? $dt : null;
+                        $publishedAt = $dt;
                     }
                 } catch (\Throwable) {
                     // ignore
                 }
             }
-            if ($isPublished && ! $publishedAt) {
+            if (! $publishedAt) {
                 $publishedAt = now();
             }
 
-            $categoryId = $this->resolveCategoryId($categoriesStr);
+            $categoryId = $this->resolveOrCreateCategoryId($categoriesStr, $dryRun);
+            $tagIds = $this->resolveOrCreateTagIds($tagsStr, $dryRun);
 
             if ($dryRun) {
                 $this->line("  Would import: [{$slug}] {$title}");
@@ -122,7 +136,7 @@ class ImportBlogPostsFromCsv extends Command
             }
 
             try {
-                BlogPost::updateOrCreate(
+                $post = BlogPost::updateOrCreate(
                     ['slug' => $slug],
                     [
                         'blog_category_id' => $categoryId,
@@ -132,12 +146,13 @@ class ImportBlogPostsFromCsv extends Command
                         'content' => $content ?: null,
                         'featured_image' => $featuredUrl ?: null,
                         'meta_title' => $title,
-                        'meta_description' => $excerpt ? \Illuminate\Support\Str::limit(strip_tags($excerpt), 160) : null,
-                        'is_published' => $isPublished,
+                        'meta_description' => $excerpt ? Str::limit(strip_tags($excerpt), 160) : null,
+                        'is_published' => true,
                         'published_at' => $publishedAt,
                     ]
                 );
-                $this->line("  Imported: [{$slug}]");
+                $post->tags()->sync($tagIds);
+                $this->line("  Imported: [{$slug}] {$title}");
                 $imported++;
             } catch (\Throwable $e) {
                 $this->error("  Error at row {$rowNum}: {$e->getMessage()}");
@@ -152,41 +167,100 @@ class ImportBlogPostsFromCsv extends Command
         return self::SUCCESS;
     }
 
+    private function parseSlug(string $permalink, string $title): string
+    {
+        if (empty($permalink)) {
+            return Str::slug($title);
+        }
+        $path = parse_url($permalink, PHP_URL_PATH);
+        if ($path) {
+            $slug = trim($path, '/');
+            $slug = basename($slug);
+            if (! empty($slug)) {
+                return $slug;
+            }
+        }
+        return Str::slug($title);
+    }
+
     private function buildCategoryMap(): void
     {
-        $categories = BlogCategory::all();
-        foreach ($categories as $cat) {
+        foreach (BlogCategory::all() as $cat) {
             $this->categoryMap[strtolower($cat->name)] = $cat->id;
             $this->categoryMap[strtolower($cat->slug)] = $cat->id;
         }
-        $this->info('Existing categories: ' . $categories->pluck('name')->join(', '));
     }
 
-    private function resolveCategoryId(?string $categoriesStr): ?int
+    private function buildTagMap(): void
+    {
+        foreach (BlogTag::all() as $tag) {
+            $this->tagMap[strtolower($tag->name)] = $tag->id;
+            $this->tagMap[strtolower($tag->slug)] = $tag->id;
+        }
+    }
+
+    private function resolveOrCreateCategoryId(?string $categoriesStr, bool $dryRun): ?int
     {
         if (empty($categoriesStr)) {
             return null;
         }
-        $first = trim(explode('|', $categoriesStr)[0]);
+        $names = $this->parseList($categoriesStr);
+        $first = $names[0] ?? null;
         if (empty($first)) {
             return null;
         }
-        $key = strtolower($first);
+        $key = strtolower(trim($first));
         if (isset($this->categoryMap[$key])) {
             return $this->categoryMap[$key];
         }
-        $map = [
-            'day trips and adventures' => 'destinations',
-            'good to know' => 'travel-tips',
-            'seasonal highlights' => 'destinations',
-            'things to do' => 'destinations',
-            'photography hotspots' => 'destinations',
-        ];
-        $slug = $map[$key] ?? null;
-        if ($slug) {
-            $cat = BlogCategory::where('slug', $slug)->first();
-            return $cat?->id;
+        if (! $dryRun) {
+            $cat = BlogCategory::firstOrCreate(
+                ['slug' => Str::slug($first)],
+                ['name' => $first, 'description' => null]
+            );
+            $this->categoryMap[$key] = $cat->id;
+            $this->categoryMap[strtolower($cat->slug)] = $cat->id;
+            return $cat->id;
         }
         return BlogCategory::first()?->id;
+    }
+
+    /** @return int[] */
+    private function resolveOrCreateTagIds(?string $tagsStr, bool $dryRun): array
+    {
+        if (empty($tagsStr)) {
+            return [];
+        }
+        $names = $this->parseList($tagsStr);
+        $ids = [];
+        foreach ($names as $name) {
+            $name = trim($name);
+            if (empty($name)) {
+                continue;
+            }
+            $key = strtolower($name);
+            if (isset($this->tagMap[$key])) {
+                $ids[] = $this->tagMap[$key];
+                continue;
+            }
+            if (! $dryRun) {
+                $tag = BlogTag::firstOrCreate(
+                    ['slug' => Str::slug($name)],
+                    ['name' => $name]
+                );
+                $this->tagMap[$key] = $tag->id;
+                $this->tagMap[strtolower($tag->slug)] = $tag->id;
+                $ids[] = $tag->id;
+            }
+        }
+        return array_values(array_unique($ids));
+    }
+
+    /** @return string[] */
+    private function parseList(string $str): array
+    {
+        $str = str_replace('|', ',', $str);
+        $parts = array_map('trim', explode(',', $str));
+        return array_filter($parts);
     }
 }
