@@ -10,9 +10,9 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            'site_name' => 'Coral Travel',
+            'site_name' => 'Albania Inbound',
             'site_tagline' => 'Discover Your Next Adventure',
-            'contact_email' => 'info@coral-travel.com',
+            'contact_email' => 'info@albaniainbound.com',
             'contact_phone' => '+355 00 000 0000',
             'contact_address' => '123 Main Street, City, Country',
             'currency' => 'EUR',

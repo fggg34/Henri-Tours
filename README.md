@@ -1,4 +1,4 @@
-# Coral Travel – Tour Agency Web Application
+# Albania Inbound – Tour Agency Web Application
 
 A production-ready tour agency platform built with **Laravel 11**, MySQL, Tailwind CSS, Laravel Breeze, and Filament admin panel. Features dynamic tour listings, booking system, blog, user dashboard, and Stripe-ready payment architecture.
 
@@ -46,7 +46,7 @@ A production-ready tour agency platform built with **Laravel 11**, MySQL, Tailwi
    php artisan serve
    npm run dev
    ```
-   Open `http://localhost:8000`. Admin: `http://localhost:8000/_panel` (login: admin@coral-travel.com / password). Override with `FILAMENT_ADMIN_PATH` in `.env` (e.g. `admin`).
+   Open `http://localhost:8000`. Admin: `http://localhost:8000/_panel` (login: admin@albaniainbound.com / password). Override with `FILAMENT_ADMIN_PATH` in `.env` (e.g. `admin`).
 
 6. **Email (SMTP) – Booking confirmations**
 
@@ -214,7 +214,7 @@ Keeps one tour per slug (the one with the most reviews). The seeder is now idemp
 
 ## Default accounts (after seed)
 
-- **Admin:** admin@coral-travel.com / password  
+- **Admin:** admin@albaniainbound.com / password  
 - **User:** test@example.com / password  
 
 ## Stripe (optional)

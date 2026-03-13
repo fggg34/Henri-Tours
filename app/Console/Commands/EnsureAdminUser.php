@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class EnsureAdminUser extends Command
 {
-    protected $signature = 'tour:ensure-admin {email=admin@coral-travel.com} {--password=password}';
+    protected $signature = 'tour:ensure-admin {email=admin@albaniainbound.com} {--password=password}';
 
     protected $description = 'Ensure an admin user exists and can log in to the Filament panel.';
 

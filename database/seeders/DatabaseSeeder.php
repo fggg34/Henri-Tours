@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $admin = User::firstOrCreate(
-            ['email' => 'admin@coral-travel.com'],
+            ['email' => 'admin@albaniainbound.com'],
             [
                 'name' => 'Admin',
                 'password' => Hash::make('password'),

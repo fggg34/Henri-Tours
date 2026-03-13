@@ -17,7 +17,7 @@ class CreateAdminUserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::firstOrCreate(
-            ['email' => 'admin@coral-travel.com'],
+            ['email' => 'admin@albaniainbound.com'],
             [
                 'name' => 'Admin',
                 'password' => Hash::make('password'),
@@ -32,6 +32,6 @@ class CreateAdminUserSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        $this->command?->info('Admin user created/updated. Email: admin@coral-travel.com');
+        $this->command?->info('Admin user created/updated. Email: admin@albaniainbound.com');
     }
 }
