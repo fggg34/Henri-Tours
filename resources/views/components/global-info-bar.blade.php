@@ -1,6 +1,6 @@
 @php
     $variant = $variant ?? 'dark';
-    $items = \App\Models\Setting::get('global_section_info_bar_items', '');
+    $items = \App\Models\Setting::getTranslated('global_section_info_bar_items', app()->getLocale(), '');
     $items = is_string($items) ? (json_decode($items, true) ?: []) : $items;
     $items = array_filter($items, fn ($i) => !empty(trim($i['title'] ?? '')));
     if (empty($items)) {

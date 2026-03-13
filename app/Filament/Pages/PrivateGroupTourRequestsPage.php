@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Resources\PrivateGroupTourRequests\PrivateGroupTourRequestResource;
+use App\Filament\Traits\HasTranslatablePageContent;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -20,6 +21,8 @@ use Filament\Support\Icons\Heroicon;
 
 class PrivateGroupTourRequestsPage extends Page
 {
+    use HasTranslatablePageContent;
+
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     protected static ?string $navigationLabel = 'Private Group Tour Requests';
@@ -52,7 +55,7 @@ class PrivateGroupTourRequestsPage extends Page
         $seoOgImage = Setting::get('page_private_group_tour_requests_seo_og_image', '');
         $seoOgImage = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
 
-        $featureCards = Setting::get('page_private_group_tour_requests_feature_cards', '');
+        $featureCards = $this->getTranslatedSetting('page_private_group_tour_requests_feature_cards', '');
         $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
         if (empty($featureCards)) {
             $featureCards = [
@@ -63,18 +66,18 @@ class PrivateGroupTourRequestsPage extends Page
         }
 
         $this->getSchema('privateGroupForm')->fill([
-            'hero_title' => Setting::get('page_private_group_tour_requests_hero_title', 'Private Group Tour Requests'),
-            'hero_subtitle' => Setting::get('page_private_group_tour_requests_hero_subtitle', 'Request a custom tour for your group. Tell us your dates, group size, and preferences – we\'ll create a tailored itinerary just for you.'),
+            'hero_title' => $this->getTranslatedSetting('page_private_group_tour_requests_hero_title', 'Private Group Tour Requests'),
+            'hero_subtitle' => $this->getTranslatedSetting('page_private_group_tour_requests_hero_subtitle', 'Request a custom tour for your group. Tell us your dates, group size, and preferences – we\'ll create a tailored itinerary just for you.'),
             'hero_image' => $heroImage,
-            'intro_title' => Setting::get('page_private_group_tour_requests_intro_title', 'Why choose Albania Inbound?'),
-            'intro_content' => Setting::get('page_private_group_tour_requests_intro_content', 'We offer fast, priority support for private group enquiries. Our dedicated travel agents will create a customized travel plan tailored to your group – no complex forms, no hassle. Just tell us your preferences and we\'ll take care of the rest.'),
-            'intro_show_more_text' => Setting::get('page_private_group_tour_requests_intro_show_more_text', 'Show more'),
+            'intro_title' => $this->getTranslatedSetting('page_private_group_tour_requests_intro_title', 'Why choose Albania Inbound?'),
+            'intro_content' => $this->getTranslatedSetting('page_private_group_tour_requests_intro_content', 'We offer fast, priority support for private group enquiries. Our dedicated travel agents will create a customized travel plan tailored to your group – no complex forms, no hassle. Just tell us your preferences and we\'ll take care of the rest.'),
+            'intro_show_more_text' => $this->getTranslatedSetting('page_private_group_tour_requests_intro_show_more_text', 'Show more'),
             'intro_show_more_url' => Setting::get('page_private_group_tour_requests_intro_show_more_url', ''),
-            'intro_show_more_content' => Setting::get('page_private_group_tour_requests_intro_show_more_content', ''),
-            'form_success_message' => Setting::get('page_private_group_tour_requests_form_success_message', 'Thank you! Your request has been submitted. We\'ll get back to you soon.'),
+            'intro_show_more_content' => $this->getTranslatedSetting('page_private_group_tour_requests_intro_show_more_content', ''),
+            'form_success_message' => $this->getTranslatedSetting('page_private_group_tour_requests_form_success_message', 'Thank you! Your request has been submitted. We\'ll get back to you soon.'),
             'feature_cards' => $featureCards,
-            'seo_title' => Setting::get('page_private_group_tour_requests_seo_title', ''),
-            'seo_description' => Setting::get('page_private_group_tour_requests_seo_description', ''),
+            'seo_title' => $this->getTranslatedSetting('page_private_group_tour_requests_seo_title', ''),
+            'seo_description' => $this->getTranslatedSetting('page_private_group_tour_requests_seo_description', ''),
             'seo_og_image' => $seoOgImage,
         ]);
     }
@@ -229,18 +232,18 @@ class PrivateGroupTourRequestsPage extends Page
         $seoOgImage = $data['seo_og_image'] ?? '';
         $seoOgImage = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
 
-        Setting::set('page_private_group_tour_requests_hero_title', $data['hero_title'] ?? '');
-        Setting::set('page_private_group_tour_requests_hero_subtitle', $data['hero_subtitle'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_hero_title', $data['hero_title'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_hero_subtitle', $data['hero_subtitle'] ?? '');
         Setting::set('page_private_group_tour_requests_hero_image', $heroImage);
-        Setting::set('page_private_group_tour_requests_intro_title', $data['intro_title'] ?? '');
-        Setting::set('page_private_group_tour_requests_intro_content', $data['intro_content'] ?? '');
-        Setting::set('page_private_group_tour_requests_intro_show_more_text', $data['intro_show_more_text'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_intro_title', $data['intro_title'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_intro_content', $data['intro_content'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_intro_show_more_text', $data['intro_show_more_text'] ?? '');
         Setting::set('page_private_group_tour_requests_intro_show_more_url', $data['intro_show_more_url'] ?? '');
-        Setting::set('page_private_group_tour_requests_intro_show_more_content', $data['intro_show_more_content'] ?? '');
-        Setting::set('page_private_group_tour_requests_form_success_message', $data['form_success_message'] ?? '');
-        Setting::set('page_private_group_tour_requests_feature_cards', json_encode($data['feature_cards'] ?? []));
-        Setting::set('page_private_group_tour_requests_seo_title', $data['seo_title'] ?? '');
-        Setting::set('page_private_group_tour_requests_seo_description', $data['seo_description'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_intro_show_more_content', $data['intro_show_more_content'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_form_success_message', $data['form_success_message'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_feature_cards', json_encode($data['feature_cards'] ?? []));
+        $this->setTranslatedSetting('page_private_group_tour_requests_seo_title', $data['seo_title'] ?? '');
+        $this->setTranslatedSetting('page_private_group_tour_requests_seo_description', $data['seo_description'] ?? '');
         Setting::set('page_private_group_tour_requests_seo_og_image', $seoOgImage);
 
         Notification::make()->title('Private Group Tour Requests page saved.')->success()->send();

@@ -30,7 +30,7 @@ class PrivateGroupTourRequestsController extends Controller
 
         PrivateGroupTourRequest::create($validated);
 
-        $successMessage = Setting::get('page_private_group_tour_requests_form_success_message', 'Thank you! Your request has been submitted. We\'ll get back to you soon.');
+        $successMessage = Setting::getTranslated('page_private_group_tour_requests_form_success_message', app()->getLocale(), 'Thank you! Your request has been submitted. We\'ll get back to you soon.');
 
         return back()->with('success', $successMessage);
     }

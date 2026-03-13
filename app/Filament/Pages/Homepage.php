@@ -2,7 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Traits\HasTranslatablePageContent;
 use App\Models\HomepageHero;
+use App\Models\HomepageHeroTranslation;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
@@ -22,6 +24,8 @@ use Filament\Forms\Components\Toggle;
 
 class Homepage extends Page
 {
+    use HasTranslatablePageContent;
+
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedHome;
 
     protected static ?string $navigationLabel = 'Homepage';
@@ -50,20 +54,21 @@ class Homepage extends Page
             $hero->save();
         }
 
-        $formData = $hero->only([
-            'title', 'banner_type', 'banner_image', 'banner_video', 'is_active',
-        ]);
-        $formData['seo_title'] = Setting::get('homepage_seo_title', '');
-        $formData['seo_description'] = Setting::get('homepage_seo_description', '');
+        $locale = $this->getCurrentLocale();
+        $formData = $hero->only(['banner_type', 'banner_image', 'banner_video', 'is_active']);
+        $formData['title'] = $hero->translate('title', $locale) ?? $hero->title;
+        $formData['subtitle'] = $hero->translate('subtitle', $locale) ?? $hero->subtitle;
+        $formData['seo_title'] = $this->getTranslatedSetting('homepage_seo_title', '');
+        $formData['seo_description'] = $this->getTranslatedSetting('homepage_seo_description', '');
         $seoOgImage = Setting::get('homepage_seo_og_image', '');
         $formData['seo_og_image'] = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
 
         $formData['albania_visible'] = filter_var(Setting::get('homepage_albania_visible', true), FILTER_VALIDATE_BOOLEAN);
-        $formData['albania_title'] = Setting::get('homepage_albania_title', 'Albania Inbound');
-        $formData['albania_subtitle'] = Setting::get('homepage_albania_subtitle', 'Trusted experts for vacation packages, day trips, group tours and activities in Albania!');
+        $formData['albania_title'] = $this->getTranslatedSetting('homepage_albania_title', 'Albania Inbound');
+        $formData['albania_subtitle'] = $this->getTranslatedSetting('homepage_albania_subtitle', 'Trusted experts for vacation packages, day trips, group tours and activities in Albania!');
         $albaniaImages = Setting::get('homepage_albania_images', '');
         $formData['albania_images'] = is_string($albaniaImages) ? (json_decode($albaniaImages, true) ?: []) : ($albaniaImages ?: []);
-        $checkItems = Setting::get('homepage_albania_check_items', '');
+        $checkItems = $this->getTranslatedSetting('homepage_albania_check_items', '');
         $formData['albania_check_items'] = is_string($checkItems) ? (json_decode($checkItems, true) ?: []) : ($checkItems ?: []);
         if (empty($formData['albania_check_items'])) {
             $formData['albania_check_items'] = [
@@ -73,7 +78,7 @@ class Homepage extends Page
                 ['text' => 'English Customer Service'],
             ];
         }
-        $platforms = Setting::get('homepage_albania_platforms', '');
+        $platforms = $this->getTranslatedSetting('homepage_albania_platforms', '');
         $formData['albania_platforms'] = is_string($platforms) ? (json_decode($platforms, true) ?: []) : ($platforms ?: []);
         if (empty($formData['albania_platforms'])) {
             $formData['albania_platforms'] = [
@@ -95,6 +100,7 @@ class Homepage extends Page
                 SchemaSection::make('Homepage')
                     ->description('Manage your homepage sections. Each section can be controlled independently.')
                     ->schema([
+                        $this->getLocaleSelectSchema(),
                         SchemaSection::make('Homepage Hero')
                             ->description('Customize the main hero banner displayed at the top of the homepage.')
                             ->collapsible()
@@ -245,6 +251,7 @@ class Homepage extends Page
     public function saveHomepage(): void
     {
         $data = $this->getSchema('homepageForm')->getState();
+        $locale = $this->getCurrentLocale();
 
         $hero = HomepageHero::getActive() ?? HomepageHero::first();
 
@@ -252,24 +259,26 @@ class Homepage extends Page
             $hero = new HomepageHero();
         }
 
-        $hero->fill(collect($data)->only($hero->getFillable())->toArray());
+        $hero->fill(collect($data)->only(['banner_type', 'banner_image', 'banner_video', 'is_active'])->toArray());
         $hero->save();
 
-        $seoKeys = ['seo_title' => 'homepage_seo_title', 'seo_description' => 'homepage_seo_description', 'seo_og_image' => 'homepage_seo_og_image'];
-        foreach ($seoKeys as $formKey => $settingKey) {
-            $value = $data[$formKey] ?? null;
-            if (is_array($value)) {
-                $value = $value[0] ?? '';
-            }
-            Setting::set($settingKey, $value ?? '');
-        }
+        HomepageHeroTranslation::updateOrCreate(
+            ['homepage_hero_id' => $hero->id, 'locale' => $locale],
+            ['title' => $data['title'] ?? '', 'subtitle' => $data['subtitle'] ?? null]
+        );
+
+        $seoOgImage = $data['seo_og_image'] ?? null;
+        $seoOgImage = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
+        Setting::set('homepage_seo_og_image', $seoOgImage ?? '');
+        $this->setTranslatedSetting('homepage_seo_title', $data['seo_title'] ?? '');
+        $this->setTranslatedSetting('homepage_seo_description', $data['seo_description'] ?? '');
 
         Setting::set('homepage_albania_visible', isset($data['albania_visible']) ? ($data['albania_visible'] ? '1' : '0') : '1');
-        Setting::set('homepage_albania_title', $data['albania_title'] ?? '');
-        Setting::set('homepage_albania_subtitle', $data['albania_subtitle'] ?? '');
+        $this->setTranslatedSetting('homepage_albania_title', $data['albania_title'] ?? '');
+        $this->setTranslatedSetting('homepage_albania_subtitle', $data['albania_subtitle'] ?? '');
         Setting::set('homepage_albania_images', json_encode($data['albania_images'] ?? []));
-        Setting::set('homepage_albania_check_items', json_encode($data['albania_check_items'] ?? []));
-        Setting::set('homepage_albania_platforms', json_encode($data['albania_platforms'] ?? []));
+        $this->setTranslatedSetting('homepage_albania_check_items', json_encode($data['albania_check_items'] ?? []));
+        $this->setTranslatedSetting('homepage_albania_platforms', json_encode($data['albania_platforms'] ?? []));
 
         Notification::make()->title('Homepage saved.')->success()->send();
     }

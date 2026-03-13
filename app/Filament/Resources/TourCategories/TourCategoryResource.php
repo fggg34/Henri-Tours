@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\TourCategories;
 
+use App\Filament\Resources\TourCategories\Pages\EditTourCategory;
 use App\Filament\Resources\TourCategories\Pages\ManageTourCategories;
 use App\Models\TourCategory;
 use BackedEnum;
@@ -104,7 +105,7 @@ class TourCategoryResource extends Resource
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->url(fn (TourCategory $record) => TourCategoryResource::getUrl('edit', ['record' => $record])),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
@@ -114,10 +115,18 @@ class TourCategoryResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\TranslationsRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ManageTourCategories::route('/'),
+            'edit' => EditTourCategory::route('/{record}/edit'),
         ];
     }
 }

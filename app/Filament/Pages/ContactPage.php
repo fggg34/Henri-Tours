@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Traits\HasTranslatablePageContent;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -18,6 +19,8 @@ use Filament\Support\Icons\Heroicon;
 
 class ContactPage extends Page
 {
+    use HasTranslatablePageContent;
+
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
 
     protected static ?string $navigationLabel = 'Contact';
@@ -40,17 +43,18 @@ class ContactPage extends Page
         }
 
         $this->getSchema('contactForm')->fill([
-            'hero_title' => Setting::get('page_contact_hero_title', 'Get in touch'),
-            'hero_subtitle' => Setting::get('page_contact_hero_subtitle', "We'd love to hear from you"),
+            '_locale' => $this->getCurrentLocale(),
+            'hero_title' => $this->getTranslatedSetting('page_contact_hero_title', 'Get in touch'),
+            'hero_subtitle' => $this->getTranslatedSetting('page_contact_hero_subtitle', "We'd love to hear from you"),
             'hero_image' => $heroImage,
-            'form_title' => Setting::get('page_contact_form_title', 'Send us a message'),
-            'form_description' => Setting::get('page_contact_form_description', "Fill out the form below and we'll get back to you as soon as possible."),
-            'sidebar_title' => Setting::get('page_contact_sidebar_title', 'Need quick help?'),
-            'sidebar_description' => Setting::get('page_contact_sidebar_description', 'Check our frequently asked questions for instant answers.'),
-            'sidebar_button_text' => Setting::get('page_contact_sidebar_button_text', 'Browse tours'),
+            'form_title' => $this->getTranslatedSetting('page_contact_form_title', 'Send us a message'),
+            'form_description' => $this->getTranslatedSetting('page_contact_form_description', "Fill out the form below and we'll get back to you as soon as possible."),
+            'sidebar_title' => $this->getTranslatedSetting('page_contact_sidebar_title', 'Need quick help?'),
+            'sidebar_description' => $this->getTranslatedSetting('page_contact_sidebar_description', 'Check our frequently asked questions for instant answers.'),
+            'sidebar_button_text' => $this->getTranslatedSetting('page_contact_sidebar_button_text', 'Browse tours'),
             'sidebar_button_url' => Setting::get('page_contact_sidebar_button_url', '') ?: route('tours.index'),
-            'seo_title' => Setting::get('page_contact_seo_title', ''),
-            'seo_description' => Setting::get('page_contact_seo_description', ''),
+            'seo_title' => $this->getTranslatedSetting('page_contact_seo_title', ''),
+            'seo_description' => $this->getTranslatedSetting('page_contact_seo_description', ''),
             'seo_og_image' => is_array($heroImage = Setting::get('page_contact_seo_og_image', '')) ? ($heroImage[0] ?? '') : $heroImage,
         ]);
     }
@@ -63,6 +67,7 @@ class ContactPage extends Page
                 SchemaSection::make('Contact Page')
                     ->description('Manage the Contact page content.')
                     ->schema([
+                        $this->getLocaleSelectSchema(),
                         SchemaSection::make('Hero')
                             ->schema([
                                 TextInput::make('hero_title')->label('Title')->default('Get in touch'),
@@ -139,22 +144,22 @@ class ContactPage extends Page
             $heroImage = $heroImage[0] ?? '';
         }
 
-        Setting::set('page_contact_hero_title', $data['hero_title'] ?? '');
-        Setting::set('page_contact_hero_subtitle', $data['hero_subtitle'] ?? '');
+        $this->setTranslatedSetting('page_contact_hero_title', $data['hero_title'] ?? '');
+        $this->setTranslatedSetting('page_contact_hero_subtitle', $data['hero_subtitle'] ?? '');
         Setting::set('page_contact_hero_image', $heroImage);
-        Setting::set('page_contact_form_title', $data['form_title'] ?? '');
-        Setting::set('page_contact_form_description', $data['form_description'] ?? '');
-        Setting::set('page_contact_sidebar_title', $data['sidebar_title'] ?? '');
-        Setting::set('page_contact_sidebar_description', $data['sidebar_description'] ?? '');
-        Setting::set('page_contact_sidebar_button_text', $data['sidebar_button_text'] ?? '');
+        $this->setTranslatedSetting('page_contact_form_title', $data['form_title'] ?? '');
+        $this->setTranslatedSetting('page_contact_form_description', $data['form_description'] ?? '');
+        $this->setTranslatedSetting('page_contact_sidebar_title', $data['sidebar_title'] ?? '');
+        $this->setTranslatedSetting('page_contact_sidebar_description', $data['sidebar_description'] ?? '');
+        $this->setTranslatedSetting('page_contact_sidebar_button_text', $data['sidebar_button_text'] ?? '');
         Setting::set('page_contact_sidebar_button_url', $data['sidebar_button_url'] ?? '');
 
         $seoOgImage = $data['seo_og_image'] ?? '';
         if (is_array($seoOgImage)) {
             $seoOgImage = $seoOgImage[0] ?? '';
         }
-        Setting::set('page_contact_seo_title', $data['seo_title'] ?? '');
-        Setting::set('page_contact_seo_description', $data['seo_description'] ?? '');
+        $this->setTranslatedSetting('page_contact_seo_title', $data['seo_title'] ?? '');
+        $this->setTranslatedSetting('page_contact_seo_description', $data['seo_description'] ?? '');
         Setting::set('page_contact_seo_og_image', $seoOgImage);
 
         Notification::make()->title('Contact page saved.')->success()->send();

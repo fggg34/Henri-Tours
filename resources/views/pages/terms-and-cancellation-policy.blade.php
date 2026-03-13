@@ -1,7 +1,8 @@
 @php
-    $content = \App\Models\Setting::get('page_terms_content', '');
-    $seoTitle = \App\Models\Setting::get('page_terms_seo_title', '');
-    $seoDesc = \App\Models\Setting::get('page_terms_seo_description', '');
+    $locale = app()->getLocale();
+    $content = \App\Models\Setting::getTranslated('page_terms_content', $locale, '');
+    $seoTitle = \App\Models\Setting::getTranslated('page_terms_seo_title', $locale, '');
+    $seoDesc = \App\Models\Setting::getTranslated('page_terms_seo_description', $locale, '');
 @endphp
 @extends('layouts.site')
 

@@ -1,13 +1,14 @@
 @extends('layouts.site')
 
-@section('title', \App\Models\Setting::get('homepage_seo_title') ?: (config('app.name') . ' - Book Your Day Trips & Vacation Packages'))
-@section('description', \App\Models\Setting::get('homepage_seo_description') ?: 'As Albania\'s leading travel agency, we bring you the most exciting travel packages.')
+@php $locale = app()->getLocale(); @endphp
+@section('title', \App\Models\Setting::getTranslated('homepage_seo_title', $locale, '') ?: (config('app.name') . ' - Book Your Day Trips & Vacation Packages'))
+@section('description', \App\Models\Setting::getTranslated('homepage_seo_description', $locale, '') ?: 'As Albania\'s leading travel agency, we bring you the most exciting travel packages.')
 
 @section('hero')
 @php
     $hero = $hero ?? null;
-    $heroTitle = $hero?->title ?? \App\Models\Setting::get('hero_title', config('app.name') . ' - Book Your Day Trips & Vacation Packages');
-    $heroSubtitle = \App\Models\Setting::get('hero_subtitle', "As Albania's leading travel agency, we bring you the most exciting travel packages, for your ideal Albanian adventure.");
+    $heroTitle = $hero?->translate('title') ?? \App\Models\Setting::get('hero_title', config('app.name') . ' - Book Your Day Trips & Vacation Packages');
+    $heroSubtitle = $hero?->translate('subtitle') ?? \App\Models\Setting::get('hero_subtitle', "As Albania's leading travel agency, we bring you the most exciting travel packages, for your ideal Albanian adventure.");
     $bgImage = $hero && $hero->banner_type === 'image' && $hero->banner_image ? $hero->banner_image_url : 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80';
     $bgVideo = $hero && $hero->banner_type === 'video' && $hero->banner_video ? $hero->banner_video_url : null;
 @endphp
@@ -52,8 +53,8 @@
 <section class="py-10 md:py-14">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-6 md:mb-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Top things to do in Albania</h2>
-            <p class="text-xs md:text-sm text-gray-500 mt-1">Book your complete trip with the best companies only</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">{{ __('messages.top_things') }}</h2>
+            <p class="text-xs md:text-sm text-gray-500 mt-1">{{ __('messages.book_with_best') }}</p>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
@@ -96,7 +97,7 @@
 @if($allTours->isNotEmpty())
 <section class="py-14 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">Suggested Tours</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">{{ __('messages.suggested_tours') }}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($allTours->take(4) as $tour)
                 <x-tour-card :tour="$tour" />
@@ -108,8 +109,8 @@
 
 @php
     $albaniaVisible = filter_var(\App\Models\Setting::get('homepage_albania_visible', true), FILTER_VALIDATE_BOOLEAN);
-    $albaniaTitle = \App\Models\Setting::get('homepage_albania_title', 'Albania Inbound');
-    $albaniaSubtitle = \App\Models\Setting::get('homepage_albania_subtitle', 'Trusted experts for vacation packages, day trips, group tours and activities in Albania!');
+    $albaniaTitle = \App\Models\Setting::getTranslated('homepage_albania_title', $locale, 'Albania Inbound');
+    $albaniaSubtitle = \App\Models\Setting::getTranslated('homepage_albania_subtitle', $locale, 'Trusted experts for vacation packages, day trips, group tours and activities in Albania!');
     $albaniaImages = \App\Models\Setting::get('homepage_albania_images', '');
     $albaniaImages = is_string($albaniaImages) ? (json_decode($albaniaImages, true) ?: []) : ($albaniaImages ?: []);
     if (empty($albaniaImages)) {
@@ -128,7 +129,7 @@
             ['text' => 'English Customer Service'],
         ];
     }
-    $albaniaPlatforms = \App\Models\Setting::get('homepage_albania_platforms', '');
+    $albaniaPlatforms = \App\Models\Setting::getTranslated('homepage_albania_platforms', $locale, '');
     $albaniaPlatforms = is_string($albaniaPlatforms) ? (json_decode($albaniaPlatforms, true) ?: []) : ($albaniaPlatforms ?: []);
     if (empty($albaniaPlatforms)) {
         $albaniaPlatforms = [
@@ -235,7 +236,7 @@
 @if($categories->isNotEmpty())
 <section class="py-14 md:py-20" x-data="{ activeTab: '{{ $categories->first()->slug }}' }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Featured Destinations</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">{{ __('messages.featured_destinations') }}</h2>
 
         {{-- Tabs --}}
         <div class="flex items-center justify-center gap-2 mb-10">
@@ -258,7 +259,7 @@
                         @endforeach
                     </div>
                 @else
-                    <p class="text-center text-gray-400 py-12">No tours available in this category yet.</p>
+                    <p class="text-center text-gray-400 py-12">{{ __('messages.no_tours_in_category') }}</p>
                 @endif
             </div>
         @endforeach
@@ -274,10 +275,10 @@
                 <img src="https://albaniainbound.com/wp-content/uploads/2025/01/Asset-3.svg" alt="Albania Globe Illustration" class="w-full h-auto" />
             </div>
             <div class="text-center md:text-left">
-                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Private Group Tours: Travel Better, Together</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">We're here to do good by creating positive change through the joy of travel.</h2>
+                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">{{ __('messages.private_group_cta') }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">{{ __('messages.private_group_title') }}</h2>
                 <a href="{{ route('contact') }}" class="inline-flex items-center px-8 py-3 border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white font-semibold rounded-md transition-colors">
-                    View More
+                    {{ __('messages.view_more') }}
                 </a>
             </div>
         </div>
@@ -288,7 +289,7 @@
 @if($latestPosts->isNotEmpty())
 <section class="py-14 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">Get inspired on The Good Times</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">{{ __('messages.get_inspired') }}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($latestPosts as $post)
                 <x-blog-card :post="$post" />

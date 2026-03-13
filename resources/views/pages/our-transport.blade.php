@@ -1,20 +1,21 @@
 @php
-    $heroTitle = \App\Models\Setting::get('page_our_transport_hero_title', 'Our Transport');
-    $heroSubtitle = \App\Models\Setting::get('page_our_transport_hero_subtitle', 'Travel comfortably across Albania with our modern fleet. From minivans to coaches, we ensure a smooth ride for every journey.');
+    $locale = app()->getLocale();
+    $heroTitle = \App\Models\Setting::getTranslated('page_our_transport_hero_title', $locale, 'Our Transport');
+    $heroSubtitle = \App\Models\Setting::getTranslated('page_our_transport_hero_subtitle', $locale, 'Travel comfortably across Albania with our modern fleet. From minivans to coaches, we ensure a smooth ride for every journey.');
     $heroImage = \App\Models\Setting::get('page_our_transport_hero_image', '');
     $heroBg = $heroImage ? \Illuminate\Support\Facades\Storage::disk('public')->url($heroImage) : 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80';
 
-    $seoTitle = \App\Models\Setting::get('page_our_transport_seo_title', '');
-    $seoDesc = \App\Models\Setting::get('page_our_transport_seo_description', '');
+    $seoTitle = \App\Models\Setting::getTranslated('page_our_transport_seo_title', $locale, '');
+    $seoDesc = \App\Models\Setting::getTranslated('page_our_transport_seo_description', $locale, '');
 
-    $vehicles = \App\Models\Setting::get('page_our_transport_vehicles', '');
+    $vehicles = \App\Models\Setting::getTranslated('page_our_transport_vehicles', $locale, '');
     $vehicles = is_string($vehicles) ? (json_decode($vehicles, true) ?: []) : $vehicles;
 
-    $formTitle = \App\Models\Setting::get('page_our_transport_form_title', 'Book Your Transport Today');
-    $formSubtitle = \App\Models\Setting::get('page_our_transport_form_subtitle', 'Let us handle your transport so you can enjoy Albania stress-free');
+    $formTitle = \App\Models\Setting::getTranslated('page_our_transport_form_title', $locale, 'Book Your Transport Today');
+    $formSubtitle = \App\Models\Setting::getTranslated('page_our_transport_form_subtitle', $locale, 'Let us handle your transport so you can enjoy Albania stress-free');
 
-    $featureSectionTitle = \App\Models\Setting::get('page_our_transport_feature_section_title', 'Why our transport stands out');
-    $featureCards = \App\Models\Setting::get('page_our_transport_feature_cards', '');
+    $featureSectionTitle = \App\Models\Setting::getTranslated('page_our_transport_feature_section_title', $locale, 'Why our transport stands out');
+    $featureCards = \App\Models\Setting::getTranslated('page_our_transport_feature_cards', $locale, '');
     $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
     if (empty($featureCards)) {
         $featureCards = [

@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\BlogTags;
 
+use App\Filament\Resources\BlogTags\Pages\EditBlogTag;
 use App\Filament\Resources\BlogTags\Pages\ManageBlogTags;
+use App\Filament\Resources\BlogTags\RelationManagers\TranslationsRelationManager;
 use App\Models\BlogTag;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -61,7 +63,7 @@ class BlogTagResource extends Resource
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->url(fn (BlogTag $record) => BlogTagResource::getUrl('edit', ['record' => $record])),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
@@ -71,10 +73,18 @@ class BlogTagResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            TranslationsRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ManageBlogTags::route('/'),
+            'edit' => EditBlogTag::route('/{record}/edit'),
         ];
     }
 }

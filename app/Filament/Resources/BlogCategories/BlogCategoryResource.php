@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\BlogCategories;
 
+use App\Filament\Resources\BlogCategories\Pages\EditBlogCategory;
 use App\Filament\Resources\BlogCategories\Pages\ManageBlogCategories;
+use App\Filament\Resources\BlogCategories\RelationManagers\TranslationsRelationManager;
 use App\Models\BlogCategory;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -65,7 +67,7 @@ class BlogCategoryResource extends Resource
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->url(fn (BlogCategory $record) => BlogCategoryResource::getUrl('edit', ['record' => $record])),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
@@ -75,10 +77,18 @@ class BlogCategoryResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            TranslationsRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ManageBlogCategories::route('/'),
+            'edit' => EditBlogCategory::route('/{record}/edit'),
         ];
     }
 }

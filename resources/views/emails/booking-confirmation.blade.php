@@ -27,16 +27,16 @@
         <td class="detail-label">Travelers</td>
         <td class="detail-value">{{ $booking->guest_count }} {{ Str::plural('guest', $booking->guest_count) }}</td>
     </tr>
-    @if($booking->tour->start_time)
+    @if($booking->tour->translate('start_time'))
     <tr class="detail-row">
         <td class="detail-label">Start time</td>
-        <td class="detail-value">{{ $booking->tour->start_time }}</td>
+        <td class="detail-value">{{ $booking->tour->translate('start_time') }}</td>
     </tr>
     @endif
-    @if($booking->tour->start_location)
+    @if($booking->tour->translate('start_location'))
     <tr class="detail-row">
         <td class="detail-label">Meeting point</td>
-        <td class="detail-value">{{ $booking->tour->start_location }}</td>
+        <td class="detail-value">{{ $booking->tour->translate('start_location') }}</td>
     </tr>
     @endif
     @if($booking->pickup_location)

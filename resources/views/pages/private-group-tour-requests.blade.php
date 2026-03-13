@@ -1,17 +1,18 @@
 @php
-    $heroTitle = \App\Models\Setting::get('page_private_group_tour_requests_hero_title', 'Private Group Tour Requests');
-    $heroSubtitle = \App\Models\Setting::get('page_private_group_tour_requests_hero_subtitle', 'Request a custom tour for your group. Tell us your dates, group size, and preferences – we\'ll create a tailored itinerary just for you.');
+    $locale = app()->getLocale();
+    $heroTitle = \App\Models\Setting::getTranslated('page_private_group_tour_requests_hero_title', $locale, 'Private Group Tour Requests');
+    $heroSubtitle = \App\Models\Setting::getTranslated('page_private_group_tour_requests_hero_subtitle', $locale, 'Request a custom tour for your group. Tell us your dates, group size, and preferences – we\'ll create a tailored itinerary just for you.');
     $heroImage = \App\Models\Setting::get('page_private_group_tour_requests_hero_image', '');
     $heroBg = $heroImage ? \Illuminate\Support\Facades\Storage::disk('public')->url($heroImage) : 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80';
 
-    $seoTitle = \App\Models\Setting::get('page_private_group_tour_requests_seo_title', '');
-    $seoDesc = \App\Models\Setting::get('page_private_group_tour_requests_seo_description', '');
-    $introTitle = \App\Models\Setting::get('page_private_group_tour_requests_intro_title', 'Why choose Albania Inbound?');
-    $introContent = \App\Models\Setting::get('page_private_group_tour_requests_intro_content', 'We offer fast, priority support for private group enquiries. Our dedicated travel agents will create a customized travel plan tailored to your group – no complex forms, no hassle.');
-    $showMoreText = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_text', 'Show more');
+    $seoTitle = \App\Models\Setting::getTranslated('page_private_group_tour_requests_seo_title', $locale, '');
+    $seoDesc = \App\Models\Setting::getTranslated('page_private_group_tour_requests_seo_description', $locale, '');
+    $introTitle = \App\Models\Setting::getTranslated('page_private_group_tour_requests_intro_title', $locale, 'Why choose Albania Inbound?');
+    $introContent = \App\Models\Setting::getTranslated('page_private_group_tour_requests_intro_content', $locale, 'We offer fast, priority support for private group enquiries. Our dedicated travel agents will create a customized travel plan tailored to your group – no complex forms, no hassle.');
+    $showMoreText = \App\Models\Setting::getTranslated('page_private_group_tour_requests_intro_show_more_text', $locale, 'Show more');
     $showMoreUrl = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_url', '');
-    $showMoreContent = \App\Models\Setting::get('page_private_group_tour_requests_intro_show_more_content', "One of the biggest frustrations for travelers is delayed responses from travel companies. At Albania Inbound, we pride ourselves on providing fast, priority support. Your inquiries are our top priority, and a dedicated travel agent will be assigned to offer all the information you need, ready to help you design your dream journey.\n\nSkip the hassle of complex forms and endless details. Just share your preferences, and we'll create a customized travel plan, tailored for your group. Ready when you are!");
-    $featureCards = \App\Models\Setting::get('page_private_group_tour_requests_feature_cards', '');
+    $showMoreContent = \App\Models\Setting::getTranslated('page_private_group_tour_requests_intro_show_more_content', $locale, "One of the biggest frustrations for travelers is delayed responses from travel companies. At Albania Inbound, we pride ourselves on providing fast, priority support. Your inquiries are our top priority, and a dedicated travel agent will be assigned to offer all the information you need, ready to help you design your dream journey.\n\nSkip the hassle of complex forms and endless details. Just share your preferences, and we'll create a customized travel plan, tailored for your group. Ready when you are!");
+    $featureCards = \App\Models\Setting::getTranslated('page_private_group_tour_requests_feature_cards', $locale, '');
     $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
     if (empty($featureCards)) {
         $featureCards = [

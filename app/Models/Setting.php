@@ -24,4 +24,37 @@ class Setting extends Model
         static::updateOrCreate(['key' => $key], ['value' => $raw]);
         Cache::forget('setting_' . $key);
     }
+
+    /**
+     * Get a translated value for a setting. Falls back to default Setting::get() when no translation exists.
+     */
+    public static function getTranslated(string $key, ?string $locale = null, mixed $default = null): mixed
+    {
+        $locale = $locale ?? app()->getLocale();
+        $translation = SettingTranslation::where('setting_key', $key)->where('locale', $locale)->first();
+
+        if ($translation !== null && $translation->value !== null && $translation->value !== '') {
+            return $translation->value;
+        }
+
+        return static::get($key, $default);
+    }
+
+    /**
+     * Set a translated value for a setting. Also updates main Setting when locale is 'en' for backward compatibility.
+     */
+    public static function setTranslated(string $key, mixed $value, string $locale): void
+    {
+        $raw = is_array($value) || is_object($value) ? json_encode($value) : (string) $value;
+        SettingTranslation::updateOrCreate(
+            ['setting_key' => $key, 'locale' => $locale],
+            ['value' => $raw]
+        );
+
+        if ($locale === 'en') {
+            static::set($key, $value);
+        }
+
+        Cache::forget('setting_' . $key . '_' . $locale);
+    }
 }

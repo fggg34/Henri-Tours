@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Traits\HasTranslatablePageContent;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\RichEditor;
@@ -18,6 +19,8 @@ use Filament\Support\Icons\Heroicon;
 
 class TermsAndCancellationPolicyPage extends Page
 {
+    use HasTranslatablePageContent;
+
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     protected static ?string $navigationLabel = 'Terms & Cancellation Policy';
@@ -35,9 +38,9 @@ class TermsAndCancellationPolicyPage extends Page
     public function mount(): void
     {
         $this->getSchema('termsForm')->fill([
-            'content' => Setting::get('page_terms_content', ''),
-            'seo_title' => Setting::get('page_terms_seo_title', ''),
-            'seo_description' => Setting::get('page_terms_seo_description', ''),
+            'content' => $this->getTranslatedSetting('page_terms_content', ''),
+            'seo_title' => $this->getTranslatedSetting('page_terms_seo_title', ''),
+            'seo_description' => $this->getTranslatedSetting('page_terms_seo_description', ''),
         ]);
     }
 
@@ -49,6 +52,7 @@ class TermsAndCancellationPolicyPage extends Page
                 SchemaSection::make('Terms & Cancellation Policy Page')
                     ->description('Manage the Terms & Cancellation Policy page at /terms-and-cancellation-policy.')
                     ->schema([
+                        $this->getLocaleSelectSchema(),
                         SchemaSection::make('Content')
                             ->schema([
                                 RichEditor::make('content')
@@ -105,9 +109,9 @@ class TermsAndCancellationPolicyPage extends Page
             $content = \Filament\Forms\Components\RichEditor\RichContentRenderer::make($content)->toUnsafeHtml();
         }
 
-        Setting::set('page_terms_content', (string) $content);
-        Setting::set('page_terms_seo_title', $data['seo_title'] ?? '');
-        Setting::set('page_terms_seo_description', $data['seo_description'] ?? '');
+        $this->setTranslatedSetting('page_terms_content', (string) $content);
+        $this->setTranslatedSetting('page_terms_seo_title', $data['seo_title'] ?? '');
+        $this->setTranslatedSetting('page_terms_seo_description', $data['seo_description'] ?? '');
 
         Notification::make()->title('Terms & Cancellation Policy page saved.')->success()->send();
     }

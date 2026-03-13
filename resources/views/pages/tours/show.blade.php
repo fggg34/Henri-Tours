@@ -1,11 +1,11 @@
 @extends('layouts.site')
 
-@section('title', $tour->meta_title ?: $tour->title . ' - ' . config('app.name'))
-@section('description', $tour->meta_description ?: Str::limit($tour->short_description, 160))
+@section('title', $tour->translate('meta_title') ?: $tour->translate('title') . ' - ' . config('app.name'))
+@section('description', $tour->translate('meta_description') ?: Str::limit($tour->translate('short_description'), 160))
 
 @push('meta')
-@if($tour->meta_title)<meta property="og:title" content="{{ $tour->meta_title }}">@endif
-<meta property="og:description" content="{{ $tour->meta_description ?: $tour->short_description }}">
+@if($tour->translate('meta_title'))<meta property="og:title" content="{{ $tour->translate('meta_title') }}">@endif
+<meta property="og:description" content="{{ $tour->translate('meta_description') ?: $tour->translate('short_description') }}">
 <meta property="og:url" content="{{ request()->url() }}">
 @endpush
 
@@ -32,7 +32,7 @@
         <div class="lg:col-span-2 space-y-12">
             <div class="flex flex-col items-left">
                 <div class="flex flex-wrap items-center gap-3">
-                    <h1 class="text-3xl font-bold text-gray-900">{{ $tour->title }}</h1>
+                    <h1 class="text-3xl font-bold text-gray-900">{{ $tour->translate('title') }}</h1>
                     <!-- @if($tour->season)
                         @php
                             $seasonLabels = ['summer' => 'Summer', 'winter' => 'Winter', 'all_season' => 'All Season'];
@@ -52,7 +52,7 @@
                 @endif
             </div>
             @php
-                $galleryImages = $tour->images->isEmpty() ? collect([(object)['url' => $mainImageUrl, 'alt' => $tour->title]]) : $tour->images;
+                $galleryImages = $tour->images->isEmpty() ? collect([(object)['url' => $mainImageUrl, 'alt' => $tour->translate('title')]]) : $tour->images;
                 $img1 = $galleryImages->get(0);
                 $img2 = $galleryImages->get(1);
                 $img3 = $galleryImages->get(2);
@@ -67,7 +67,7 @@
             <div class="tour-gallery-grid grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl overflow-hidden">
                 {{-- 1. Left: large image, full width on mobile, spans full height on lg --}}
                 <a href="{{ $img1->url ?? $mainImageUrl }}" class="glightbox block overflow-hidden rounded-lg min-h-[220px] sm:min-h-[200px] lg:row-span-2" data-gallery="tour-gallery-{{ $tour->id }}" role="listitem">
-                    <img src="{{ $img1->url ?? $mainImageUrl }}" alt="{{ $img1->alt ?? $tour->title }}" class="w-full h-full min-h-[220px] sm:min-h-[200px] object-cover cursor-pointer hover:opacity-95 transition-opacity" loading="eager" fetchpriority="high">
+                    <img src="{{ $img1->url ?? $mainImageUrl }}" alt="{{ $img1->alt ?? $tour->translate('title') }}" class="w-full h-full min-h-[220px] sm:min-h-[200px] object-cover cursor-pointer hover:opacity-95 transition-opacity" loading="eager" fetchpriority="high">
                 </a>
                 {{-- Right column: on mobile = 2 images 50/50 (130px). On sm+ = nested grid --}}
                 <div class="tour-gallery-right grid grid-cols-2 grid-rows-[130px] sm:grid-cols-2 sm:grid-rows-2 sm:min-h-0 gap-4">
@@ -134,7 +134,7 @@
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-bold text-gray-600">Tour starts</p>
-                        <p class="text-sm text-sky-600 truncate" title="{{ $tour->start_location }}">{{ $tour->start_location ?: '—' }}</p>
+                        <p class="text-sm text-sky-600 truncate" title="{{ $tour->translate('start_location') }}">{{ $tour->translate('start_location') ?: '—' }}</p>
                     </div>
                 </div>
                 <div class="flex gap-2">
@@ -152,7 +152,7 @@
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-bold text-gray-600">Ending place</p>
-                        <p class="text-sm text-sky-600 truncate" title="{{ $tour->end_location ?? '' }}">{{ $tour->end_location ?? ($tour->start_location ?: '—') }}</p>
+                        <p class="text-sm text-sky-600 truncate" title="{{ $tour->translate('end_location') ?? '' }}">{{ $tour->translate('end_location') ?? ($tour->translate('start_location') ?: '—') }}</p>
                     </div>
                 </div>
                 @if($tour->category)
@@ -162,7 +162,7 @@
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-bold text-gray-600">Tour Type</p>
-                        <p class="text-sm text-sky-600">{{ $tour->category->name }}</p>
+                        <p class="text-sm text-sky-600">{{ $tour->category?->translate('name') ?? $tour->category?->name }}</p>
                     </div>
                 </div>
                 @endif
@@ -205,14 +205,15 @@
                     </div>
                 </div>
                 @endif
-                @if($tour->languages && count($tour->languages) > 0)
+                @php $langs = $tour->translate('languages'); @endphp
+                @if($langs && count((array) $langs) > 0)
                 <div class="flex gap-2">
                     <div class="flex-shrink-0 w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
                         <i class="fa-solid fa-language text-slate-600 text-sm"></i>
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-bold text-gray-600">Language</p>
-                        <p class="text-sm text-sky-600">{{ implode(', ', (array) $tour->languages) }}</p>
+                        <p class="text-sm text-sky-600">{{ implode(', ', (array) $langs) }}</p>
                     </div>
                 </div>
                 @endif
@@ -220,16 +221,17 @@
 
             <div class="prose max-w-none">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Summary</h2>
-                {!! $tour->description !!}
+                {!! $tour->translate('description') !!}
             </div>
 
-            @if(($tour->tour_highlights && count($tour->tour_highlights) > 0) || $tour->activities->isNotEmpty())
-            <div class="grid grid-cols-1 @if(($tour->tour_highlights && count($tour->tour_highlights) > 0) && $tour->activities->isNotEmpty()) md:grid-cols-2 @endif gap-8">
-                @if($tour->tour_highlights && count($tour->tour_highlights) > 0)
+            @php $tourHighlights = $tour->translate('tour_highlights'); @endphp
+            @if(($tourHighlights && count((array) $tourHighlights) > 0) || $tour->activities->isNotEmpty())
+            <div class="grid grid-cols-1 @if(($tourHighlights && count((array) $tourHighlights) > 0) && $tour->activities->isNotEmpty()) md:grid-cols-2 @endif gap-8">
+                @if($tourHighlights && count((array) $tourHighlights) > 0)
                     <div>
                         <h2 class="text-3xl font-bold text-gray-900 mb-4">Tour highlights</h2>
                         <ul class="space-y-3">
-                            @foreach($tour->tour_highlights as $highlight)
+                            @foreach((array) $tourHighlights as $highlight)
                                 @php $text = is_array($highlight) ? ($highlight['text'] ?? $highlight['value'] ?? '') : $highlight; @endphp
                                 @if($text)
                                     <li class="flex items-start gap-3">
@@ -250,7 +252,7 @@
                             @foreach($tour->activities->sortBy('sort_order') as $activity)
                                 <div class="flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 bg-white">
                                     <x-tour-activity-icon :activity="$activity" class="w-8 h-8" />
-                                    <span class="text-gray-700 font-medium">{{ $activity->title }}</span>
+                                    <span class="text-gray-700 font-medium">{{ $activity->translate('title') ?? $activity->title }}</span>
                                 </div>
                             @endforeach
                         </div>
@@ -259,14 +261,14 @@
             </div>
             @endif
 
-            @if($tour->important_notes)
+            @if($tour->translate('important_notes'))
                 <div class="rounded-xl border border-amber-200 bg-amber-50/50 p-5">
                     <h2 class="text-xl font-bold text-amber-800 mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-circle-exclamation"></i>
                         Important notes
                     </h2>
                     <div class="prose prose-sm max-w-none text-amber-900">
-                        {!! $tour->important_notes !!}
+                        {!! $tour->translate('important_notes') !!}
                     </div>
                 </div>
             @endif
@@ -282,7 +284,7 @@
                                     @click="openDay = openDay === {{ $day->id }} ? null : {{ $day->id }}"
                                     :class="openDay === {{ $day->id }} ? 'bg-gray-100' : 'bg-white hover:bg-gray-50'"
                                     class="w-full flex items-center justify-between px-4 py-4 text-left font-semibold text-gray-900 transition-colors">
-                                    <span>@if($day->day)Day {{ $day->day }}: @endif{{ $day->title }}</span>
+                                    <span>@if($day->day)Day {{ $day->day }}: @endif{{ $day->translate('title') }}</span>
                                     <span class="inline-flex w-7 h-7 flex-shrink-0 ml-2 items-center justify-center">
                                         <i class="fa-solid fa-chevron-down text-gray-500 text-base transition-transform duration-200"
                                             :class="openDay === {{ $day->id }} ? 'rotate-180' : ''"
@@ -293,9 +295,9 @@
                                     x-collapse
                                     class="border-t border-gray-200">
                                     <div class="px-4 py-4 text-gray-600 text-sm space-y-4">
-                                        @if($day->description)
+                                        @if($day->translate('description'))
                                             <div class="prose prose-sm max-w-none text-gray-600">
-                                                {!! $day->description !!}
+                                                {!! $day->translate('description') !!}
                                             </div>
                                         @endif
 
@@ -377,11 +379,12 @@
             @endif
 
             {{-- What to bring --}}
-            @if($tour->what_to_bring && count($tour->what_to_bring) > 0)
+            @php $whatToBring = $tour->translate('what_to_bring'); @endphp
+            @if($whatToBring && count((array) $whatToBring) > 0)
                 <div>
                     <h2 class="text-3xl font-bold text-gray-900 mb-3">What to bring</h2>
                     <ul class="space-y-2">
-                        @foreach((array) $tour->what_to_bring as $item)
+                        @foreach((array) $whatToBring as $item)
                             <li class="flex items-start gap-3">
                                 <span class="flex-shrink-0 w-7 h-7 rounded flex items-center justify-center bg-sky-100 text-sky-600">
                                     <i class="fa-solid fa-suitcase text-sm"></i>
@@ -394,13 +397,14 @@
             @endif
 
             {{-- Included & Not included --}}
-            @if($tour->included || $tour->not_included)
+            @php $included = $tour->translate('included'); $notIncluded = $tour->translate('not_included'); @endphp
+            @if($included || $notIncluded)
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-                    @if($tour->included)
+                    @if($included)
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900 mb-3">Included</h2>
                             <ul class="space-y-2">
-                                @foreach((array) $tour->included as $item)
+                                @foreach((array) $included as $item)
                                     <li class="flex items-start gap-3">
                                         <span class="flex-shrink-0 w-7 h-7 rounded flex items-center justify-center bg-blue-100 text-brand-navy">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -411,11 +415,11 @@
                             </ul>
                         </div>
                     @endif
-                    @if($tour->not_included)
+                    @if($notIncluded)
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900 mb-3">Not included</h2>
                             <ul class="space-y-2">
-                                @foreach((array) $tour->not_included as $item)
+                                @foreach((array) $notIncluded as $item)
                                     <li class="flex items-start gap-3">
                                         <span class="flex-shrink-0 w-7 h-7 rounded flex items-center justify-center bg-red-100 text-red-600">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -458,7 +462,7 @@
                     <div>
                         <h2 class="text-3xl font-bold text-gray-900">Customer reviews</h2>
                         <p class="mt-1 text-base text-gray-600">
-                            Read what real customers had to say about <strong class="font-bold text-gray-900">{{ $tour->title }}.</strong>
+                            Read what real customers had to say about <strong class="font-bold text-gray-900">{{ $tour->translate('title') }}.</strong>
                         </p>
                     </div>
                     @if($reviewCount > 0)

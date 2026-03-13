@@ -13,12 +13,13 @@
 </style>
 @endpush
 
-@section('title', $category->name . ' - ' . config('app.name'))
-@section('description', $category->description ?? 'Browse our ' . $category->name)
+@php $locale = app()->getLocale(); @endphp
+@section('title', ($category->translate('name', $locale) ?? $category->name) . ' - ' . config('app.name'))
+@section('description', $category->translate('description', $locale) ?? $category->description ?? 'Browse our ' . ($category->translate('name', $locale) ?? $category->name))
 
 @php
-    $heroTitle = $category->hero_title ?: \App\Models\Setting::get('page_tours_hero_title', 'Best Tours & Vacation Packages in Albania - Best Selection & Lowest Prices Guaranteed');
-    $heroSubtitle = $category->hero_subtitle ?: \App\Models\Setting::get('page_tours_hero_subtitle', 'Choose from a wide range of tours, activities, and vacation packages across Albania and the Balkan region.');
+    $heroTitle = ($category->translate('hero_title') ?: $category->hero_title) ?: \App\Models\Setting::get('page_tours_hero_title', 'Best Tours & Vacation Packages in Albania - Best Selection & Lowest Prices Guaranteed');
+    $heroSubtitle = ($category->translate('hero_subtitle') ?: $category->hero_subtitle) ?: \App\Models\Setting::get('page_tours_hero_subtitle', 'Choose from a wide range of tours, activities, and vacation packages across Albania and the Balkan region.');
     $defaultToursImage = \App\Models\Setting::get('page_tours_hero_image', '');
     $defaultHeroBg = $defaultToursImage ? \Illuminate\Support\Facades\Storage::disk('public')->url($defaultToursImage) : 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80';
     $heroBg = $category->hero_image_url ?: $defaultHeroBg;
@@ -68,7 +69,7 @@
             <button @click="openCategory = !openCategory" type="button"
                 class="inline-flex items-center gap-2 px-5 py-3 bg-blue-50 border-2 rounded-full text-sm font-semibold text-brand-navy hover:bg-blue-100 hover:border-blue-400 transition-all shadow-sm border-brand-navy bg-blue-100">
                 <i class="fa-solid fa-route text-brand-navy"></i>
-                <span>{{ $category->name }}</span>
+                <span>{{ $category->translate('name') ?? $category->name }}</span>
                 <i class="fa-solid fa-chevron-down text-[10px] text-brand-navy ml-1"></i>
             </button>
             <div x-show="openCategory" @click.outside="openCategory = false" x-transition
@@ -78,7 +79,7 @@
                 </a>
                 @foreach($categories as $cat)
                     <a href="{{ route('tours.category', $cat->slug) }}" class="block w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors {{ $cat->id === $category->id ? 'bg-blue-50 text-brand-navy font-medium' : 'hover:bg-gray-50 text-gray-700' }}">
-                        {{ $cat->name }}
+                        {{ $cat->translate('name', $locale) ?? $cat->name }}
                     </a>
                 @endforeach
             </div>

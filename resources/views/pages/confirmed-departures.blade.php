@@ -69,7 +69,7 @@
                     @php
                         $firstImg = $tour->images->first();
                         $imageUrl = $firstImg?->url ?? 'https://placehold.co/600x400/e2e8f0/64748b?text=Tour';
-                        $categoryName = $tour->category?->name;
+                        $categoryName = $tour->category?->translate('name') ?? $tour->category?->name;
                         $shortDesc = $tour->short_description ?? \Illuminate\Support\Str::limit(strip_tags($tour->description), 120);
                     @endphp
                     <div class="swiper-slide" style="height: auto;">

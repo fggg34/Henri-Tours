@@ -31,7 +31,7 @@ class OurTransportController extends Controller
 
         TransportBooking::create($validated);
 
-        $successMessage = Setting::get('page_our_transport_form_success_message', 'Thank you! Your transport request has been submitted. We\'ll get back to you soon.');
+        $successMessage = Setting::getTranslated('page_our_transport_form_success_message', app()->getLocale(), 'Thank you! Your transport request has been submitted. We\'ll get back to you soon.');
 
         return back()->with('success', $successMessage);
     }

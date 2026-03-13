@@ -5,6 +5,7 @@
     $imageUrl = $firstImg?->url ?? 'https://placehold.co/600x400/e2e8f0/64748b?text=Tour';
     $rating = $tour->average_rating ?? $tour->approvedReviews->avg('rating');
     $reviewCount = $tour->approvedReviews->count();
+    $tourTitle = $tour->translate('title');
     $tourUrl = route('tours.show', $tour->slug);
     if (!empty($queryParams)) {
         $tourUrl .= '?' . http_build_query($queryParams);
@@ -16,16 +17,17 @@
             ? $tour->duration_hours . ' Hours'
             : null);
 
-    $categoryName = $tour->category?->name;
+    $categoryName = $tour->category?->translate('name') ?? $tour->category?->name;
     $currency = ($tour->currency === 'EUR' || !$tour->currency) ? '€' : $tour->currency;
     $price = $tour->price ?? $tour->base_price ?? 0;
-    $languages = is_array($tour->languages) ? implode(', ', $tour->languages) : $tour->languages;
+    $langs = $tour->translate('languages');
+    $languages = is_array($langs) ? implode(', ', $langs) : ($langs ?? '');
 @endphp
 
 <article {{ $attributes->merge(['class' => 'group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow ' . ($slider ? 'flex-shrink-0' : '')]) }}>
     {{-- Image --}}
     <a href="{{ $tourUrl }}" class="block relative overflow-hidden aspect-[4/3]">
-        <img src="{{ $imageUrl }}" alt="{{ $tour->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+        <img src="{{ $imageUrl }}" alt="{{ $tour->translate('title') }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
         @if($categoryName)
             <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1 text-xs font-semibold rounded bg-brand-navy/90 text-white backdrop-blur-sm">{{ $categoryName }}</span>
         @endif
@@ -52,26 +54,26 @@
 
         {{-- Title --}}
         <h3 class="text-base font-bold text-gray-900 leading-snug mb-3 line-clamp-2 min-h-[2.75rem]">
-            <a href="{{ $tourUrl }}" class="hover:text-brand-navy transition-colors">{{ $tour->title }}</a>
+            <a href="{{ $tourUrl }}" class="hover:text-brand-navy transition-colors">{{ $tourTitle }}</a>
         </h3>
 
         {{-- Info grid --}}
         <div class="tour-info-grid text-xs text-gray-500 mb-4">
-            @if($tour->start_location)
+            @if($tour->translate('start_location'))
                 <div class="flex items-start gap-1.5">
                     <i class="fa-solid fa-location-dot text-brand-btn mt-0.5 flex-shrink-0"></i>
                     <div>
                         <span class="block font-medium text-gray-700">Tour Starts</span>
-                        <span class="text-blue-600">{{ Str::limit($tour->start_location, 20) }}</span>
+                        <span class="text-blue-600">{{ Str::limit($tour->translate('start_location'), 20) }}</span>
                     </div>
                 </div>
             @endif
-            @if($tour->start_time)
+            @if($tour->translate('start_time'))
                 <div class="flex items-start gap-1.5">
                     <i class="fa-regular fa-clock text-brand-btn mt-0.5 flex-shrink-0"></i>
                     <div>
                         <span class="block font-medium text-gray-700">Starting Time</span>
-                        <span class="text-blue-600">{{ $tour->start_time }}</span>
+                        <span class="text-blue-600">{{ $tour->translate('start_time') }}</span>
                     </div>
                 </div>
             @endif
@@ -92,12 +94,12 @@
                         <span class="text-blue-600">{{ $languages }}</span>
                     </div>
                 </div>
-            @elseif($tour->end_location)
+            @elseif($tour->translate('end_location'))
                 <div class="flex items-start gap-1.5">
                     <i class="fa-solid fa-flag-checkered text-brand-btn mt-0.5 flex-shrink-0"></i>
                     <div>
                         <span class="block font-medium text-gray-700">Ending place</span>
-                        <span class="text-blue-600">{{ Str::limit($tour->end_location, 20) }}</span>
+                        <span class="text-blue-600">{{ Str::limit($tour->translate('end_location'), 20) }}</span>
                     </div>
                 </div>
             @endif

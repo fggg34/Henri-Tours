@@ -19,7 +19,7 @@ class BlogPostForm
             ->components([
                 Select::make('blog_category_id')
                     ->label('Category')
-                    ->options(BlogCategory::pluck('name', 'id'))
+                    ->options(fn () => BlogCategory::all()->mapWithKeys(fn ($c) => [$c->id => $c->translate('name') ?? $c->name]))
                     ->searchable()
                     ->nullable(),
                 Select::make('tags')

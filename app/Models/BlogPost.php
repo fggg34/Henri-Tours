@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,11 @@ use Spatie\Sluggable\SlugOptions;
 
 class BlogPost extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasTranslations;
+
+    public static array $translatable = [
+        'title', 'slug', 'excerpt', 'content', 'meta_title', 'meta_description',
+    ];
 
     protected $fillable = [
         'blog_category_id',
@@ -42,6 +47,11 @@ class BlogPost extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function translations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BlogPostTranslation::class);
     }
 
     public function category(): BelongsTo

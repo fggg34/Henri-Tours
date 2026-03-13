@@ -36,8 +36,9 @@ class BlogController extends Controller
         // Category posts: exclude featured 5
         $allPosts = $baseQuery->clone()->whereNotIn('id', $featuredIds)->get();
 
-        $grouped = $allPosts->groupBy(function ($post) {
-            return $post->category ? $post->category->name : 'Uncategorized';
+        $locale = app()->getLocale();
+        $grouped = $allPosts->groupBy(function ($post) use ($locale) {
+            return $post->category ? ($post->category->translate('name', $locale) ?? $post->category->name) : 'Uncategorized';
         });
 
         $postsByCategory = [];
@@ -46,7 +47,7 @@ class BlogController extends Controller
             $total = $posts->count();
             $initial = $posts->take(12)->values();
             $first = $catPosts->first();
-            $slug = $first->category ? $first->category->slug : 'uncategorized';
+            $slug = $first->category ? $first->category->getTranslatedSlug($locale) : 'uncategorized';
 
             $postsByCategory[] = [
                 'name' => $categoryName,
@@ -80,11 +81,11 @@ class BlogController extends Controller
         }
 
         if ($tag) {
-            $query->whereHas('tags', fn ($q) => $q->where('blog_tags.slug', $tag));
+            $query->whereHas('tags', fn ($q) => $q->where('slug', $tag)->orWhereHas('translations', fn ($t) => $t->where('slug', $tag)));
         } elseif ($category === 'uncategorized') {
             $query->whereNull('blog_category_id');
         } elseif ($category) {
-            $query->whereHas('category', fn ($q) => $q->where('slug', $category));
+            $query->whereHas('category', fn ($q) => $q->where('slug', $category)->orWhereHas('translations', fn ($t) => $t->where('slug', $category)));
         }
 
         $total = $query->count();
@@ -131,12 +132,13 @@ class BlogController extends Controller
         $posts = $query->limit(12)->get();
         $hasMore = $total > 12;
 
+        $locale = app()->getLocale();
         return view('pages.blog.archive', [
-            'title' => $category->name,
-            'subtitle' => 'Posts in ' . $category->name,
+            'title' => $category->translate('name', $locale),
+            'subtitle' => 'Posts in ' . $category->translate('name', $locale),
             'posts' => $posts,
             'archiveType' => 'category',
-            'archiveSlug' => $category->slug,
+            'archiveSlug' => $category->getTranslatedSlug($locale),
             'hasMore' => $hasMore,
             'excludeIds' => [],
         ]);
@@ -154,12 +156,13 @@ class BlogController extends Controller
         $posts = $query->limit(12)->get();
         $hasMore = $total > 12;
 
+        $locale = app()->getLocale();
         return view('pages.blog.archive', [
-            'title' => $tag->name,
-            'subtitle' => 'Posts tagged with ' . $tag->name,
+            'title' => $tag->translate('name', $locale) ?? $tag->name,
+            'subtitle' => 'Posts tagged with ' . ($tag->translate('name', $locale) ?? $tag->name),
             'posts' => $posts,
             'archiveType' => 'tag',
-            'archiveSlug' => $tag->slug,
+            'archiveSlug' => $tag->getTranslatedSlug($locale),
             'hasMore' => $hasMore,
             'excludeIds' => [],
         ]);

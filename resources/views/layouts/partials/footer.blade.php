@@ -10,29 +10,29 @@
     $footerMenu1 = \App\Models\Setting::get('footer_menu_1', '');
     $footerMenu1 = is_string($footerMenu1) ? (json_decode($footerMenu1, true) ?: []) : $footerMenu1;
     if (empty($footerMenu1) || !isset($footerMenu1['title'])) {
-        $footerMenu1 = ['title' => 'Explore Albania', 'items' => [
-            ['label' => 'Day Tours', 'url' => '/tours/category/day-tours'],
-            ['label' => 'Multi-Day Tour', 'url' => '/tours/category/multi-day-tours'],
-            ['label' => 'Cross Country', 'url' => '/tours/category/cross-country-tours'],
-            ['label' => 'Confirmed Group Tours', 'url' => '/tours'],
-            ['label' => 'Private Group Tour Requests', 'url' => '/private-group-tour-requests'],
+        $footerMenu1 = ['title' => __('footer.explore_albania'), 'items' => [
+            ['label' => __('footer.day_tours'), 'url' => '/tours/category/day-tours'],
+            ['label' => __('footer.multi_day_tour'), 'url' => '/tours/category/multi-day-tours'],
+            ['label' => __('footer.cross_country'), 'url' => '/tours/category/cross-country-tours'],
+            ['label' => __('footer.confirmed_group_tours'), 'url' => '/tours'],
+            ['label' => __('footer.private_group_requests'), 'url' => '/private-group-tour-requests'],
         ]];
     } else {
-        $footerMenu1 = array_merge(['title' => 'Explore Albania', 'items' => []], $footerMenu1);
+        $footerMenu1 = array_merge(['title' => __('footer.explore_albania'), 'items' => []], $footerMenu1);
     }
 
     $footerMenu2 = \App\Models\Setting::get('footer_menu_2', '');
     $footerMenu2 = is_string($footerMenu2) ? (json_decode($footerMenu2, true) ?: []) : $footerMenu2;
     if (empty($footerMenu2) || !isset($footerMenu2['title'])) {
-        $footerMenu2 = ['title' => 'Why Choose Us', 'items' => [
-            ['label' => 'About Us', 'url' => '/about'],
-            ['label' => 'Our Transport', 'url' => '/our-transport'],
-            ['label' => 'Blog', 'url' => '/blog'],
-            ['label' => 'Contact us', 'url' => '/contact'],
-            ['label' => 'Terms & Cancellation Policy', 'url' => '/terms-and-cancellation-policy'],
+        $footerMenu2 = ['title' => __('footer.why_choose_us'), 'items' => [
+            ['label' => __('footer.about_us'), 'url' => '/about'],
+            ['label' => __('footer.our_transport'), 'url' => '/our-transport'],
+            ['label' => __('footer.blog'), 'url' => '/blog'],
+            ['label' => __('footer.contact_us'), 'url' => '/contact'],
+            ['label' => __('footer.terms_cancellation'), 'url' => '/terms-and-cancellation-policy'],
         ]];
     } else {
-        $footerMenu2 = array_merge(['title' => 'Why Choose Us', 'items' => []], $footerMenu2);
+        $footerMenu2 = array_merge(['title' => __('footer.why_choose_us'), 'items' => []], $footerMenu2);
     }
 @endphp
 <footer>
@@ -66,7 +66,7 @@
 
                 {{-- Column 3: Get In Touch --}}
                 <div>
-                    <h5 class="text-gray-900 font-bold text-sm mb-5">Get In Touch</h5>
+                    <h5 class="text-gray-900 font-bold text-sm mb-5">{{ __('footer.get_in_touch') }}</h5>
                     <ul class="space-y-3 text-sm">
                         @if($contactAddress)
                         <li>
@@ -110,7 +110,7 @@
 
                 {{-- Column 4: Payments & Partnerships --}}
                 <div>
-                    <h5 class="text-gray-900 font-bold text-sm mb-4">Payments Accepted By</h5>
+                    <h5 class="text-gray-900 font-bold text-sm mb-4">{{ __('footer.payments_accepted') }}</h5>
                     <div class="flex items-center gap-2 mb-6">
                         <span class="inline-flex items-center justify-center w-12 h-8 bg-[#003087] rounded">
                             <i class="fa-brands fa-paypal text-white text-sm"></i>
@@ -126,7 +126,7 @@
                         </span>
                     </div>
 
-                    <h5 class="text-gray-900 font-bold text-sm mb-4">Partnership With</h5>
+                    <h5 class="text-gray-900 font-bold text-sm mb-4">{{ __('footer.partnership_with') }}</h5>
                     <div class="flex items-center gap-2">
                         <span class="inline-flex items-center justify-center w-10 h-10 bg-[#FF5533] rounded-full">
                             <i class="fa-solid fa-ticket text-white text-xs"></i>
@@ -150,7 +150,7 @@
     {{-- Bottom bar --}}
     <div class="bg-brand-navy">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <p class="text-center text-sm text-white/80">&copy; Copyright {{ date('Y') }} by Albania Inbound</p>
+            <p class="text-center text-sm text-white/80">&copy; {{ __('footer.copyright', ['year' => date('Y'), 'name' => $siteName]) }}</p>
         </div>
     </div>
 </footer>

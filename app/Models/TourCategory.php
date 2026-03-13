@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class TourCategory extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasTranslations;
 
     protected $fillable = [
         'name',
@@ -35,6 +36,11 @@ class TourCategory extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function translations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(TourCategoryTranslation::class);
     }
 
     public function tours(): HasMany

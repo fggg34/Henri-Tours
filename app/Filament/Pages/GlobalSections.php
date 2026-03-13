@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Traits\HasTranslatablePageContent;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Repeater;
@@ -18,6 +19,8 @@ use Filament\Support\Icons\Heroicon;
 
 class GlobalSections extends Page
 {
+    use HasTranslatablePageContent;
+
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $navigationLabel = 'Global Sections';
@@ -35,7 +38,7 @@ class GlobalSections extends Page
 
     public function mount(): void
     {
-        $items = Setting::get('global_section_info_bar_items', '');
+        $items = $this->getTranslatedSetting('global_section_info_bar_items', '');
         $items = is_string($items) ? (json_decode($items, true) ?: []) : $items;
         if (empty($items)) {
             $items = [
@@ -75,6 +78,7 @@ class GlobalSections extends Page
                 SchemaSection::make('Global Sections')
                     ->description('Manage content that appears across multiple pages on your site.')
                     ->schema([
+                        $this->getLocaleSelectSchema(),
                         SchemaSection::make('Info Bar')
                             ->description('The trust points bar shown below the hero on homepage, tours, and other pages. Each item has an icon, title, and tooltip content.')
                             ->collapsible()
@@ -130,7 +134,7 @@ class GlobalSections extends Page
     {
         $data = $this->getSchema('globalForm')->getState();
         $items = $data['info_bar_items'] ?? [];
-        Setting::set('global_section_info_bar_items', json_encode($items));
+        $this->setTranslatedSetting('global_section_info_bar_items', json_encode($items));
         Notification::make()->title('Global sections saved.')->success()->send();
     }
 }

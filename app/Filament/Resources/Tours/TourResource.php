@@ -38,6 +38,7 @@ class TourResource extends Resource
     {
         return [
             RelationManagers\ImagesRelationManager::class,
+            RelationManagers\TranslationsRelationManager::class,
         ];
     }
 

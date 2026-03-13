@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourPackageController;
 use App\Http\Controllers\ConfirmedDeparturesController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/lang/{locale}', [LocaleController::class, 'switch'])->name('locale.switch')->where('locale', 'en|zh_CN|fr|de|he|it|mt|es');
 
 Route::get('/', HomeController::class)->name('home');
 

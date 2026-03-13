@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
 class HomepageHero extends Model
 {
+    use HasTranslations;
+
     protected $fillable = [
         'title',
         'subtitle',
@@ -37,6 +40,11 @@ class HomepageHero extends Model
             return null;
         }
         return '/storage/' . ltrim($this->banner_video, '/');
+    }
+
+    public function translations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(HomepageHeroTranslation::class);
     }
 
     public static function getActive(): ?self

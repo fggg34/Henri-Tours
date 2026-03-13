@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class TourActivity extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'title',
@@ -22,6 +23,11 @@ class TourActivity extends Model
         return [
             'sort_order' => 'integer',
         ];
+    }
+
+    public function translations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(TourActivityTranslation::class);
     }
 
     public function tours(): BelongsToMany

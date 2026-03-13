@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\TourActivities;
 
+use App\Filament\Resources\TourActivities\Pages\EditTourActivity;
 use App\Filament\Resources\TourActivities\Pages\ManageTourActivities;
+use App\Filament\Resources\TourActivities\RelationManagers\TranslationsRelationManager;
 use App\Models\TourActivity;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -93,10 +95,18 @@ class TourActivityResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\TranslationsRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ManageTourActivities::route('/'),
+            'edit' => EditTourActivity::route('/{record}/edit'),
         ];
     }
 }

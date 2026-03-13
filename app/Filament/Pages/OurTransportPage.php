@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Resources\TransportBookings\TransportBookingResource;
+use App\Filament\Traits\HasTranslatablePageContent;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -20,6 +21,8 @@ use Filament\Support\Icons\Heroicon;
 
 class OurTransportPage extends Page
 {
+    use HasTranslatablePageContent;
+
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
 
     protected static ?string $navigationLabel = 'Our Transport';
@@ -52,11 +55,11 @@ class OurTransportPage extends Page
         $seoOgImage = Setting::get('page_our_transport_seo_og_image', '');
         $seoOgImage = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
 
-        $vehicles = Setting::get('page_our_transport_vehicles', '');
-        $vehicles = is_string($vehicles) ? (json_decode($vehicles, true) ?: []) : $vehicles;
+        $vehicles = $this->getTranslatedSetting('page_our_transport_vehicles', '');
+        $vehicles = is_string($vehicles) ? (json_decode($vehicles, true) ?: []) : ($vehicles ?: []);
 
-        $featureCards = Setting::get('page_our_transport_feature_cards', '');
-        $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : $featureCards;
+        $featureCards = $this->getTranslatedSetting('page_our_transport_feature_cards', '');
+        $featureCards = is_string($featureCards) ? (json_decode($featureCards, true) ?: []) : ($featureCards ?: []);
         if (empty($featureCards)) {
             $featureCards = [
                 ['icon' => 'fa-shield-halved', 'icon_image' => '', 'title' => 'Safe & Reliable', 'description' => 'Regularly maintained vehicles for worry-free travel'],
@@ -67,17 +70,17 @@ class OurTransportPage extends Page
         }
 
         $this->getSchema('ourTransportForm')->fill([
-            'hero_title' => Setting::get('page_our_transport_hero_title', 'Our Transport'),
-            'hero_subtitle' => Setting::get('page_our_transport_hero_subtitle', 'Travel comfortably across Albania with our modern fleet. From minivans to coaches, we ensure a smooth ride for every journey.'),
+            'hero_title' => $this->getTranslatedSetting('page_our_transport_hero_title', 'Our Transport'),
+            'hero_subtitle' => $this->getTranslatedSetting('page_our_transport_hero_subtitle', 'Travel comfortably across Albania with our modern fleet. From minivans to coaches, we ensure a smooth ride for every journey.'),
             'hero_image' => $heroImage,
             'vehicles' => $vehicles,
-            'feature_section_title' => Setting::get('page_our_transport_feature_section_title', 'Why our transport stands out'),
+            'feature_section_title' => $this->getTranslatedSetting('page_our_transport_feature_section_title', 'Why our transport stands out'),
             'feature_cards' => $featureCards,
-            'form_title' => Setting::get('page_our_transport_form_title', 'Book Your Transport Today'),
-            'form_subtitle' => Setting::get('page_our_transport_form_subtitle', 'Let us handle your transport so you can enjoy Albania stress-free'),
-            'form_success_message' => Setting::get('page_our_transport_form_success_message', 'Thank you! Your transport request has been submitted. We\'ll get back to you soon.'),
-            'seo_title' => Setting::get('page_our_transport_seo_title', ''),
-            'seo_description' => Setting::get('page_our_transport_seo_description', ''),
+            'form_title' => $this->getTranslatedSetting('page_our_transport_form_title', 'Book Your Transport Today'),
+            'form_subtitle' => $this->getTranslatedSetting('page_our_transport_form_subtitle', 'Let us handle your transport so you can enjoy Albania stress-free'),
+            'form_success_message' => $this->getTranslatedSetting('page_our_transport_form_success_message', 'Thank you! Your transport request has been submitted. We\'ll get back to you soon.'),
+            'seo_title' => $this->getTranslatedSetting('page_our_transport_seo_title', ''),
+            'seo_description' => $this->getTranslatedSetting('page_our_transport_seo_description', ''),
             'seo_og_image' => $seoOgImage,
         ]);
     }
@@ -268,8 +271,8 @@ class OurTransportPage extends Page
         $seoOgImage = $data['seo_og_image'] ?? '';
         $seoOgImage = is_array($seoOgImage) ? ($seoOgImage[0] ?? '') : $seoOgImage;
 
-        Setting::set('page_our_transport_hero_title', $data['hero_title'] ?? '');
-        Setting::set('page_our_transport_hero_subtitle', $data['hero_subtitle'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_hero_title', $data['hero_title'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_hero_subtitle', $data['hero_subtitle'] ?? '');
         Setting::set('page_our_transport_hero_image', $heroImage);
 
         $vehicles = $data['vehicles'] ?? [];
@@ -277,22 +280,22 @@ class OurTransportPage extends Page
             $imgs = $v['gallery_images'] ?? [];
             $v['gallery_images'] = is_array($imgs) ? array_values($imgs) : [];
         }
-        Setting::set('page_our_transport_vehicles', json_encode($vehicles));
+        $this->setTranslatedSetting('page_our_transport_vehicles', json_encode($vehicles));
 
         $featureCards = $data['feature_cards'] ?? [];
         foreach ($featureCards as &$c) {
             $img = $c['icon_image'] ?? '';
             $c['icon_image'] = is_array($img) ? ($img[0] ?? '') : $img;
         }
-        Setting::set('page_our_transport_feature_section_title', $data['feature_section_title'] ?? '');
-        Setting::set('page_our_transport_feature_cards', json_encode($featureCards));
+        $this->setTranslatedSetting('page_our_transport_feature_section_title', $data['feature_section_title'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_feature_cards', json_encode($featureCards));
 
-        Setting::set('page_our_transport_form_title', $data['form_title'] ?? '');
-        Setting::set('page_our_transport_form_subtitle', $data['form_subtitle'] ?? '');
-        Setting::set('page_our_transport_form_success_message', $data['form_success_message'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_form_title', $data['form_title'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_form_subtitle', $data['form_subtitle'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_form_success_message', $data['form_success_message'] ?? '');
 
-        Setting::set('page_our_transport_seo_title', $data['seo_title'] ?? '');
-        Setting::set('page_our_transport_seo_description', $data['seo_description'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_seo_title', $data['seo_title'] ?? '');
+        $this->setTranslatedSetting('page_our_transport_seo_description', $data['seo_description'] ?? '');
         Setting::set('page_our_transport_seo_og_image', $seoOgImage);
 
         Notification::make()->title('Our Transport page saved.')->success()->send();

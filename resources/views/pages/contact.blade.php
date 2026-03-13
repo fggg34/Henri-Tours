@@ -1,19 +1,20 @@
 @php
-    $heroTitle = \App\Models\Setting::get('page_contact_hero_title', 'Get in touch');
-    $heroSubtitle = \App\Models\Setting::get('page_contact_hero_subtitle', "We'd love to hear from you");
+    $locale = app()->getLocale();
+    $heroTitle = \App\Models\Setting::getTranslated('page_contact_hero_title', $locale, 'Get in touch');
+    $heroSubtitle = \App\Models\Setting::getTranslated('page_contact_hero_subtitle', $locale, "We'd love to hear from you");
     $heroImage = \App\Models\Setting::get('page_contact_hero_image', '');
     $heroBg = $heroImage ? \Illuminate\Support\Facades\Storage::disk('public')->url($heroImage) : 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=600&fit=crop';
-    $formTitle = \App\Models\Setting::get('page_contact_form_title', 'Send us a message');
-    $formDescription = \App\Models\Setting::get('page_contact_form_description', "Fill out the form below and we'll get back to you as soon as possible.");
-    $sidebarTitle = \App\Models\Setting::get('page_contact_sidebar_title', 'Need quick help?');
-    $sidebarDescription = \App\Models\Setting::get('page_contact_sidebar_description', 'Check our frequently asked questions for instant answers.');
-    $sidebarButtonText = \App\Models\Setting::get('page_contact_sidebar_button_text', 'Browse tours');
+    $formTitle = \App\Models\Setting::getTranslated('page_contact_form_title', $locale, 'Send us a message');
+    $formDescription = \App\Models\Setting::getTranslated('page_contact_form_description', $locale, "Fill out the form below and we'll get back to you as soon as possible.");
+    $sidebarTitle = \App\Models\Setting::getTranslated('page_contact_sidebar_title', $locale, 'Need quick help?');
+    $sidebarDescription = \App\Models\Setting::getTranslated('page_contact_sidebar_description', $locale, 'Check our frequently asked questions for instant answers.');
+    $sidebarButtonText = \App\Models\Setting::getTranslated('page_contact_sidebar_button_text', $locale, 'Browse tours');
     $sidebarButtonUrl = \App\Models\Setting::get('page_contact_sidebar_button_url', '') ?: route('tours.index');
 @endphp
 @extends('layouts.site')
 
-@section('title', \App\Models\Setting::get('page_contact_seo_title') ?: ('Contact - ' . config('app.name')))
-@section('description', \App\Models\Setting::get('page_contact_seo_description') ?: 'Get in touch with us.')
+@section('title', \App\Models\Setting::getTranslated('page_contact_seo_title', $locale, '') ?: ('Contact - ' . config('app.name')))
+@section('description', \App\Models\Setting::getTranslated('page_contact_seo_description', $locale, '') ?: 'Get in touch with us.')
 @if(\App\Models\Setting::get('page_contact_seo_og_image'))@section('og_image', \App\Models\Setting::get('page_contact_seo_og_image'))@endif
 
 @section('content')

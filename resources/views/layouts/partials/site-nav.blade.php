@@ -7,10 +7,10 @@
     $navItems = is_string($navItems) ? (json_decode($navItems, true) ?: []) : $navItems;
     if (empty($navItems)) {
         $navItems = [
-            ['type' => 'link', 'label' => 'Our Tours', 'url' => '/tours', 'children' => []],
-            ['type' => 'link', 'label' => 'Discounted Dates', 'url' => '/confirmed-departures', 'children' => []],
-            ['type' => 'link', 'label' => 'The Inbound Guide', 'url' => '/blog', 'children' => []],
-            ['type' => 'link', 'label' => 'Contact us', 'url' => '/contact', 'children' => []],
+            ['type' => 'link', 'label' => __('navigation.our_tours'), 'url' => '/tours', 'children' => []],
+            ['type' => 'link', 'label' => __('navigation.discounted_dates'), 'url' => '/confirmed-departures', 'children' => []],
+            ['type' => 'link', 'label' => __('navigation.the_inbound_guide'), 'url' => '/blog', 'children' => []],
+            ['type' => 'link', 'label' => __('navigation.contact_us'), 'url' => '/contact', 'children' => []],
         ];
     }
 
@@ -71,24 +71,14 @@
                     @endif
                 @endforeach
                 {{-- Language selector --}}
-                <!-- <div class="relative" @click.away="langOpen = false">
-                    <button type="button" @click="langOpen = !langOpen" class="flex items-center gap-1 text-gray-700 hover:text-brand-navy transition-colors" aria-expanded="false" aria-haspopup="true">
-                        <span class="text-base">🇬🇧</span>
-                        <svg class="w-3 h-3 text-brand-navy" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-                    </button>
-                    <div x-show="langOpen" x-cloak x-transition
-                         class="absolute right-0 top-full mt-1 w-40 py-1 bg-white rounded-md shadow-lg border border-gray-100 ring-1 ring-black ring-opacity-5">
-                        <a href="?lang=en" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">English</a>
-                        <a href="?lang=sq" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Shqip</a>
-                    </div>
-                </div> -->
+                <x-language-switcher />
                 {{-- Account icon --}}
                 @auth
-                    <a href="{{ route('dashboard') }}" class="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 text-gray-600 hover:bg-brand-navy hover:text-white transition-colors" title="Dashboard">
+                    <a href="{{ route('dashboard') }}" class="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 text-gray-600 hover:bg-brand-navy hover:text-white transition-colors" title="{{ __('navigation.dashboard') }}">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 text-gray-600 hover:bg-brand-navy hover:text-white transition-colors" title="Login">
+                    <a href="{{ route('login') }}" class="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 text-gray-600 hover:bg-brand-navy hover:text-white transition-colors" title="{{ __('navigation.login') }}">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                     </a>
                 @endauth
@@ -111,7 +101,7 @@
          x-transition:leave="transition ease-in duration-150" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
          class="lg:hidden fixed top-0 right-0 bottom-0 z-[9999] w-72 max-w-[85vw] bg-white shadow-xl flex flex-col">
         <div class="flex items-center justify-between px-4 py-4 border-b border-gray-100">
-            <span class="text-lg font-bold text-brand-navy">Menu</span>
+            <span class="text-lg font-bold text-brand-navy">{{ __('navigation.menu') }}</span>
             <button @click="mobileOpen = false" class="p-2 -mr-2 text-gray-400 hover:text-gray-600">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
@@ -140,13 +130,16 @@
             @endif
             @auth
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-2 text-sm font-medium text-brand-navy">
-                    <i class="fa-solid fa-user text-xs"></i> My Account
+                    <i class="fa-solid fa-user text-xs"></i> {{ __('navigation.my_account') }}
                 </a>
             @else
                 <a href="{{ route('login') }}" class="flex items-center gap-2 text-sm text-gray-600 hover:text-brand-navy">
-                    <i class="fa-solid fa-user text-xs"></i> Sign in
+                    <i class="fa-solid fa-user text-xs"></i> {{ __('navigation.sign_in') }}
                 </a>
             @endauth
+            <div class="pt-3 border-t border-gray-100 mt-2">
+                <x-language-switcher />
+            </div>
         </div>
     </div>
 </header>
