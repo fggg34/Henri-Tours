@@ -11,6 +11,10 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(PaymentServiceInterface::class, NullPaymentService::class);
+
+        // Ensure helpers (localized_route, localized_url) are always loaded
+        // Even if Composer autoload files weren't refreshed on deploy
+        require_once app_path('helpers.php');
     }
 
     public function boot(): void
