@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class LocaleController extends Controller
 {
@@ -33,7 +34,17 @@ class LocaleController extends Controller
             $path = '/' . ltrim($currentPath, '/');
         }
 
-        // Strip any existing locale prefix (e.g. /fr/tours → /tours)
+        // Strip application base path (e.g. /public) to avoid /public/public/... when app runs in subdirectory
+        $basePath = rtrim((string) parse_url(config('app.url'), PHP_URL_PATH), '/');
+        if ($basePath !== '' && str_starts_with($path, $basePath)) {
+            $path = substr($path, strlen($basePath)) ?: '/';
+        }
+        // Fallback: strip /public when APP_URL has no path (common on shared hosting)
+        if (str_starts_with($path, '/public/') || $path === '/public') {
+            $path = preg_replace('#^/public#', '', $path) ?: '/';
+        }
+
+        // Strip any existing locale prefix (e.g. /fr/tours → /tours, /public/fr → /public)
         foreach ($this->supportedLocales as $l) {
             if ($l === 'en') {
                 continue;
@@ -43,8 +54,13 @@ class LocaleController extends Controller
                 $path = '/' . substr($path, strlen($prefix));
                 break;
             }
-            if ($path === '/' . $l) {
+            if ($path === '/' . $l || rtrim($path, '/') === '/' . $l) {
                 $path = '/';
+                break;
+            }
+            // Handle locale as last segment (e.g. /public/fr)
+            if (str_ends_with(rtrim($path, '/'), '/' . $l)) {
+                $path = substr($path, 0, -strlen($l) - 1) ?: '/';
                 break;
             }
         }
@@ -56,12 +72,13 @@ class LocaleController extends Controller
             $path = $locale . ($path ? '/' . $path : '');
         }
 
-        $url = '/' . $path;
+        $targetPath = '/' . $path;
         $query = request()->query('redirect') ? parse_url(request()->query('redirect'), PHP_URL_QUERY) : null;
         if ($query) {
-            $url .= '?' . $query;
+            $targetPath .= '?' . $query;
         }
 
-        return Redirect::to($url);
+        // Use url() so Laravel builds the correct absolute URL (avoids /public/public when in subdirectory)
+        return Redirect::to(URL::to($targetPath));
     }
 }
