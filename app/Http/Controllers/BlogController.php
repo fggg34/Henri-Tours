@@ -150,11 +150,21 @@ class BlogController extends Controller
     }
 
     /**
-     * Tag archive. For non-localized: (tag). For localized: (locale, tag).
+     * Tag archive. For non-localized: (tag). For localized: (locale, tag) or (tag, locale).
+     * Laravel may inject by route param name; pick the BlogTag explicitly.
      */
-    public function tagArchive(BlogTag|string $param1, BlogTag|null $param2 = null)
+    public function tagArchive(BlogTag|string $param1, BlogTag|string|null $param2 = null)
     {
-        $tag = $param2 ?? $param1;
+        $tag = $param1 instanceof BlogTag ? $param1 : ($param2 instanceof BlogTag ? $param2 : null);
+        if (! $tag instanceof BlogTag) {
+            $slug = (is_string($param1) && ! in_array($param1, ['en', 'zh_CN', 'fr', 'de', 'he', 'it', 'mt', 'es'], true))
+                ? $param1
+                : (is_string($param2) ? $param2 : null);
+            $tag = $slug ? BlogTag::where('slug', $slug)->first() : null;
+            if (! $tag) {
+                abort(404);
+            }
+        }
         $query = BlogPost::where('is_published', true)
             ->whereNotNull('published_at')
             ->whereHas('tags', fn ($q) => $q->where('blog_tags.id', $tag->id))
