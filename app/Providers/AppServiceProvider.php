@@ -21,5 +21,17 @@ class AppServiceProvider extends ServiceProvider
     {
         // Ensure tourForLanguageSwitch is always set for the language switcher (avoids errors on non-tour pages)
         view()->share('tourForLanguageSwitch', null);
+
+        // Prevent /public from appearing in URLs when site is served from document root.
+        // Use FORCE_APP_URL in .env to override, or we strip /public from APP_URL.
+        $forceUrl = env('FORCE_APP_URL');
+        if ($forceUrl) {
+            \Illuminate\Support\Facades\URL::forceRootUrl(rtrim($forceUrl, '/'));
+        } else {
+            $appUrl = config('app.url');
+            if (str_ends_with(rtrim($appUrl, '/'), '/public')) {
+                \Illuminate\Support\Facades\URL::forceRootUrl(preg_replace('#/public/?$#', '', $appUrl) ?: $appUrl);
+            }
+        }
     }
 }
