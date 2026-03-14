@@ -16,7 +16,7 @@
 
     $navUrl = function ($item) {
         $url = $item['url'] ?? '#';
-        return (is_string($url) && str_starts_with($url, 'http')) ? $url : url($url);
+        return localized_url($url);
     };
     $navIsActive = function ($url) {
         $path = ltrim(parse_url($url, PHP_URL_PATH) ?? '', '/');
@@ -32,7 +32,7 @@
         <div class="flex items-center justify-between h-16 lg:h-[68px]">
 
             {{-- Logo --}}
-            <a href="{{ route('home') }}" class="flex items-center h-[30px] flex-shrink-0">
+            <a href="{{ localized_route('home') }}" class="flex items-center h-[30px] flex-shrink-0">
                 @if($siteLogo = \App\Models\Setting::get('site_logo'))
                     <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($siteLogo) }}" alt="{{ $siteName }}" class="h-[30px] w-auto" />
                 @else

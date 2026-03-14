@@ -308,31 +308,31 @@
                                                     @foreach($day->highlights as $hl)
                                                         @php $city = $hl->cities->first(); @endphp
                                                         @if($city)
-                                                            <a href="{{ route('cities.highlights.show', [$city->slug, $hl->slug]) }}" class="flex gap-3 p-3 rounded-lg border border-gray-200 bg-white hover:border-brand-navy hover:bg-blue-50/30 transition">
+                                                            <a href="{{ localized_route('cities.highlights.show', ['city' => $city->slug, 'highlight' => $hl->slug]) }}" class="flex gap-3 p-3 rounded-lg border border-gray-200 bg-white hover:border-brand-navy hover:bg-blue-50/30 transition">
                                                                 @if($hl->image_url)
-                                                                    <img src="{{ $hl->image_url }}" alt="{{ $hl->title }}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                                                                    <img src="{{ $hl->image_url }}" alt="{{ $hl->translate('title') }}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
                                                                 @else
                                                                     <div class="w-16 h-16 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0">
                                                                         <i class="fa-solid fa-camera text-gray-400"></i>
                                                                     </div>
                                                                 @endif
                                                                 <div class="min-w-0 flex-1">
-                                                                    <h4 class="font-semibold text-gray-900 text-sm">{{ $hl->title }}</h4>
-                                                                    <p class="text-xs text-gray-500 truncate">{{ $city->name }}</p>
+                                                                    <h4 class="font-semibold text-gray-900 text-sm">{{ $hl->translate('title') }}</h4>
+                                                                    <p class="text-xs text-gray-500 truncate">{{ $city->translate('name') }}</p>
                                                                 </div>
                                                                 <i class="fa-solid fa-chevron-right text-gray-400 self-center"></i>
                                                             </a>
                                                         @else
                                                             <div class="flex gap-3 p-3 rounded-lg border border-gray-200 bg-gray-50/50">
                                                                 @if($hl->image_url)
-                                                                    <img src="{{ $hl->image_url }}" alt="{{ $hl->title }}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                                                                    <img src="{{ $hl->image_url }}" alt="{{ $hl->translate('title') }}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
                                                                 @else
                                                                     <div class="w-16 h-16 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0">
                                                                         <i class="fa-solid fa-camera text-gray-400"></i>
                                                                     </div>
                                                                 @endif
                                                                 <div class="min-w-0 flex-1">
-                                                                    <h4 class="font-semibold text-gray-900 text-sm">{{ $hl->title }}</h4>
+                                                                    <h4 class="font-semibold text-gray-900 text-sm">{{ $hl->translate('title') }}</h4>
                                                                 </div>
                                                             </div>
                                                         @endif
@@ -344,16 +344,16 @@
                                         @if($day->hotel)
                                             <div class="pt-2">
                                                 <p class="font-medium text-gray-700 mb-3">Accommodation:</p>
-                                                <a href="{{ route('hotels.show', $day->hotel->slug) }}" class="flex gap-4 p-4 rounded-lg border border-gray-200 bg-gray-50/50 hover:border-brand-navy hover:bg-blue-50/30 transition">
+                                                <a href="{{ localized_route('hotels.show', ['slug' => $day->hotel->slug]) }}" class="flex gap-4 p-4 rounded-lg border border-gray-200 bg-gray-50/50 hover:border-brand-navy hover:bg-blue-50/30 transition">
                                                     <div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gray-200">
                                                         @if($day->hotel->image_url)
-                                                            <img src="{{ $day->hotel->image_url }}" alt="{{ $day->hotel->name }}" class="w-full h-full object-cover" loading="lazy">
+                                                            <img src="{{ $day->hotel->image_url }}" alt="{{ $day->hotel->translate('name') }}" class="w-full h-full object-cover" loading="lazy">
                                                         @else
                                                             <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">No image</div>
                                                         @endif
                                                     </div>
                                                     <div class="flex-1 min-w-0">
-                                                        <h4 class="font-semibold text-gray-900">{{ $day->hotel->name }}</h4>
+                                                                    <h4 class="font-semibold text-gray-900">{{ $day->hotel->translate('name') }}</h4>
                                                         <div class="mt-1 flex items-center gap-2">
                                                             @if($day->hotel->stars_rating)
                                                                 <x-review-stars :rating="(float) $day->hotel->stars_rating" />
@@ -438,14 +438,14 @@
                 <div class="bg-white border border-gray-200 rounded-xl p-6 md:p-8 shadow-sm">
                     <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">Cancellation Policy</h2>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">For detailed Booking Terms and the Cancellation Policy, please read more</p>
-                    <a href="{{ route('terms') }}" class="inline-flex items-center px-5 py-2 bg-white border border-gray-800 text-black font-medium rounded-md hover:bg-gray-50 transition-colors">
+                    <a href="{{ localized_route('terms') }}" class="inline-flex items-center px-5 py-2 bg-white border border-gray-800 text-black font-medium rounded-md hover:bg-gray-50 transition-colors">
                         Show more
                     </a>
                 </div>
                 <div class="bg-white border border-gray-200 rounded-xl p-6 md:p-8 shadow-sm">
                     <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">Questions?</h2>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">Feel free to contact us directly for any further questions via E-mail or WhatsApp.</p>
-                    <a href="{{ route('contact') }}" class="inline-flex items-center px-5 py-2 bg-white border border-gray-800 text-black font-medium rounded-md hover:bg-gray-50 transition-colors">
+                    <a href="{{ localized_route('contact') }}" class="inline-flex items-center px-5 py-2 bg-white border border-gray-800 text-black font-medium rounded-md hover:bg-gray-50 transition-colors">
                         Show more
                     </a>
                 </div>

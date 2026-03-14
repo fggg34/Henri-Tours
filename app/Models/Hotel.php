@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Hotel extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasTranslations;
 
     protected $fillable = [
         'city_id',
@@ -36,6 +38,11 @@ class Hotel extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function translations(): HasMany
+    {
+        return $this->hasMany(HotelTranslation::class);
     }
 
     protected function casts(): array

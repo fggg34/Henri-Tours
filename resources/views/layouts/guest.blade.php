@@ -21,7 +21,7 @@
 
         <main class="py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-sm mx-auto">
-                <a href="{{ route('home') }}" class="block text-center mb-8">
+                <a href="{{ localized_route('home') }}" class="block text-center mb-8">
                     <span class="text-2xl font-bold text-brand-navy">{{ \App\Models\Setting::get('site_name', config('app.name')) }}</span>
                 </a>
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,7 +12,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class City extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasTranslations;
 
     protected $fillable = [
         'name',
@@ -23,6 +24,11 @@ class City extends Model
         'city_image',
         'gallery',
     ];
+
+    public function translations(): HasMany
+    {
+        return $this->hasMany(CityTranslation::class);
+    }
 
     protected function casts(): array
     {

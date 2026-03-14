@@ -6,7 +6,7 @@
     $postExcerpt = $post->translate('excerpt') ?? $post->translate('content');
 @endphp
 <article class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-3">
-    <a href="{{ route('blog.show', $post->slug) }}" class="block">
+    <a href="{{ localized_route('blog.show', ['slug' => $post->slug]) }}" class="block">
         <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 mb-4">
             <img src="{{ $imageUrl }}" alt="{{ $postTitle }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
             @if($post->published_at)

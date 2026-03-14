@@ -32,7 +32,7 @@
             <img src="https://albaniainbound.com/wp-content/uploads/2026/01/Best-Price.svg" alt="Best price guarantee" class="h-14 md:h-[72px] w-auto" />
         </div>
 
-        <x-hero-search-form :action="route('tours.search')" :cities="$cities ?? collect()" />
+        <x-hero-search-form :action="localized_route('tours.search')" :cities="$cities ?? collect()" />
     </div>
 </section>
 
@@ -64,7 +64,7 @@
                     <div class="aspect-[4/3] w-full h-full">
                         @if($highlight->image_url)
                             <img src="{{ $highlight->image_url }}"
-                                 alt="{{ $highlight->title }}"
+                                 alt="{{ $highlight->translate('title') }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
                         @else
                             <div class="w-full h-full bg-gradient-to-tr from-sky-900 via-sky-600 to-emerald-500"></div>
@@ -73,11 +73,11 @@
                     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="absolute inset-x-0 bottom-0 p-2.5 sm:p-3 text-center">
                         <p class="text-[11px] sm:text-xs md:text-sm font-semibold text-white leading-snug drop-shadow-sm">
-                            {{ $highlight->title }}
+                            {{ $highlight->translate('title') }}
                         </p>
                     </div>
                     @if($city)
-                        <a href="{{ route('cities.highlights.show', [$city->slug, $highlight->slug]) }}" class="absolute inset-0 z-10" aria-label="{{ $highlight->title }}"></a>
+                        <a href="{{ localized_route('cities.highlights.show', ['city' => $city->slug, 'highlight' => $highlight->slug]) }}" class="absolute inset-0 z-10" aria-label="{{ $highlight->translate('title') }}"></a>
                     @endif
                 </div>
             @endforeach
@@ -277,7 +277,7 @@
             <div class="text-center md:text-left">
                 <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">{{ __('messages.private_group_cta') }}</p>
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">{{ __('messages.private_group_title') }}</h2>
-                <a href="{{ route('contact') }}" class="inline-flex items-center px-8 py-3 border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white font-semibold rounded-md transition-colors">
+                <a href="{{ localized_route('contact') }}" class="inline-flex items-center px-8 py-3 border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white font-semibold rounded-md transition-colors">
                     {{ __('messages.view_more') }}
                 </a>
             </div>

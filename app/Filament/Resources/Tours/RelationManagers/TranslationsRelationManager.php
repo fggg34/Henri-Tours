@@ -24,6 +24,7 @@ use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Tiptap\Editor;
 
 class TranslationsRelationManager extends RelationManager
 {
@@ -35,16 +36,22 @@ class TranslationsRelationManager extends RelationManager
 
     protected static array $supportedLocales = ['en', 'zh_CN', 'fr', 'de', 'he', 'it', 'mt', 'es'];
 
+    protected static array $translatableLocales = ['zh_CN', 'fr', 'de', 'he', 'it', 'mt', 'es'];
+
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 Select::make('locale')
                     ->label('Language')
-                    ->options(fn () => array_combine(static::$supportedLocales, array_map(
-                        fn ($l) => __("locales.{$l}"),
-                        static::$supportedLocales
-                    )))
+                    ->options(function () {
+                        $all = array_combine(static::$translatableLocales, array_map(
+                            fn ($l) => __("locales.{$l}"),
+                            static::$translatableLocales
+                        ));
+                        $used = $this->getOwnerRecord()->translations()->pluck('locale')->toArray();
+                        return array_diff_key($all, array_flip($used)) ?: $all;
+                    })
                     ->required(fn ($get) => ! $get('id'))
                     ->disabled(fn ($get) => (bool) $get('id'))
                     ->dehydrated(true)
@@ -154,11 +161,12 @@ class TranslationsRelationManager extends RelationManager
                                                 $locale = $record?->locale ?? request()->input('locale', 'en');
                                                 return $tour->itineraries->map(function ($it) use ($locale) {
                                                     $tr = $it->translations()->where('locale', $locale)->first();
+                                                    $desc = $tr?->description ?? $it->description;
                                                     return [
                                                         'tour_itinerary_id' => $it->id,
                                                         'day' => $it->day,
                                                         'title' => $tr?->title ?? $it->title,
-                                                        'description' => $tr?->description ?? $it->description,
+                                                        'description' => is_string($desc) && filled($desc) ? static::htmlToDocument($desc) : $desc,
                                                     ];
                                                 })->values()->toArray();
                                             })
@@ -202,6 +210,7 @@ class TranslationsRelationManager extends RelationManager
                         $itineraryItems = $data['itinerary_items'] ?? [];
                         $activities = $data['activities'] ?? [];
                         unset($data['itinerary_items'], $data['activities']);
+                        static::documentFieldsToHtml($data, ['description', 'important_notes']);
                         $record = $this->getOwnerRecord()->translations()->create($data);
                         $record->activities()->sync($activities);
                         $this->syncItineraryTranslations($record, $itineraryItems);
@@ -214,16 +223,23 @@ class TranslationsRelationManager extends RelationManager
                     ->modalWidth('5xl')
                     ->fillForm(function (mixed $livewire, TourTranslation $record): array {
                         $data = [...$record->attributesToArray(), 'activities' => $record->activities->pluck('id')->toArray()];
+
+                        foreach (['description', 'important_notes'] as $field) {
+                            if (is_string($data[$field] ?? null) && filled($data[$field])) {
+                                $data[$field] = static::htmlToDocument($data[$field]);
+                            }
+                        }
+
                         return $data;
                     })
                     ->using(function (TourTranslation $record, array $data) {
                         $itineraryItems = $data['itinerary_items'] ?? [];
                         $activityIds = $data['activities'] ?? [];
                         unset($data['itinerary_items'], $data['activities']);
-                        // Disabled fields aren't submitted – preserve locale from record
                         if (! isset($data['locale'])) {
                             $data['locale'] = $record->locale;
                         }
+                        static::documentFieldsToHtml($data, ['description', 'important_notes']);
                         $record->update($data);
                         $record->activities()->sync($activityIds);
                         $this->syncItineraryTranslations($record, $itineraryItems);
@@ -236,6 +252,37 @@ class TranslationsRelationManager extends RelationManager
                     DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    protected static function htmlToDocument(?string $html): ?array
+    {
+        if (! is_string($html) || blank($html)) {
+            return null;
+        }
+
+        return (new Editor)->setContent($html)->getDocument();
+    }
+
+    protected static function documentToHtml(mixed $value): ?string
+    {
+        if (is_string($value)) {
+            return $value;
+        }
+
+        if (is_array($value)) {
+            return (new Editor)->setContent($value)->getHTML();
+        }
+
+        return null;
+    }
+
+    protected static function documentFieldsToHtml(array &$data, array $fields): void
+    {
+        foreach ($fields as $field) {
+            if (isset($data[$field]) && is_array($data[$field])) {
+                $data[$field] = static::documentToHtml($data[$field]);
+            }
+        }
     }
 
     protected function syncItineraryTranslations(TourTranslation $translation, array $itineraryItems): void
@@ -253,7 +300,7 @@ class TranslationsRelationManager extends RelationManager
                 ],
                 [
                     'title' => $item['title'] ?? '',
-                    'description' => $item['description'] ?? null,
+                    'description' => static::documentToHtml($item['description'] ?? null),
                 ]
             );
         }

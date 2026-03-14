@@ -120,8 +120,13 @@ class BlogController extends Controller
         ]);
     }
 
-    public function categoryArchive(BlogCategory $category)
+    /**
+     * Category archive. For non-localized: (category). For localized: (locale, category).
+     * Laravel passes route params by position.
+     */
+    public function categoryArchive(BlogCategory|string $param1, BlogCategory|null $param2 = null)
     {
+        $category = $param2 ?? $param1;
         $query = BlogPost::where('is_published', true)
             ->whereNotNull('published_at')
             ->where('blog_category_id', $category->id)
@@ -144,8 +149,12 @@ class BlogController extends Controller
         ]);
     }
 
-    public function tagArchive(BlogTag $tag)
+    /**
+     * Tag archive. For non-localized: (tag). For localized: (locale, tag).
+     */
+    public function tagArchive(BlogTag|string $param1, BlogTag|null $param2 = null)
     {
+        $tag = $param2 ?? $param1;
         $query = BlogPost::where('is_published', true)
             ->whereNotNull('published_at')
             ->whereHas('tags', fn ($q) => $q->where('blog_tags.id', $tag->id))
@@ -168,8 +177,12 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show(string $slug)
+    /**
+     * Single post. For non-localized: (slug). For localized: (locale, slug).
+     */
+    public function show(string $param1, ?string $param2 = null)
     {
+        $slug = $param2 ?? $param1;
         $post = BlogPost::where('slug', $slug)->where('is_published', true)
             ->with(['category', 'tags'])
             ->firstOrFail();

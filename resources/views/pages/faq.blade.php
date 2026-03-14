@@ -22,7 +22,7 @@
     $ctaTitle = \App\Models\Setting::get('page_faq_cta_title', 'Still have questions?');
     $ctaDescription = \App\Models\Setting::get('page_faq_cta_description', "Can't find what you're looking for? Our team is happy to help.");
     $ctaButtonText = \App\Models\Setting::get('page_faq_cta_button_text', 'Contact us');
-    $ctaButtonUrl = \App\Models\Setting::get('page_faq_cta_button_url', '') ?: route('contact');
+    $ctaButtonUrl = \App\Models\Setting::get('page_faq_cta_button_url', '') ?: localized_route('contact');
 @endphp
 @extends('layouts.site')
 
@@ -39,7 +39,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10">
             <nav class="text-sm mb-4" aria-label="Breadcrumb">
                 <ol class="flex items-center gap-1.5">
-                    <li><a href="{{ route('home') }}" class="text-white/70 hover:text-white transition">Home</a></li>
+                    <li><a href="{{ localized_route('home') }}" class="text-white/70 hover:text-white transition">Home</a></li>
                     <li class="text-white/50">/</li>
                     <li class="text-white">FAQ</li>
                 </ol>
@@ -86,7 +86,7 @@
         <i class="fa-solid fa-comment-dots text-3xl text-brand-btn mb-4"></i>
         <h2 class="text-xl font-bold text-gray-900 mb-2">{{ $ctaTitle }}</h2>
         <p class="text-gray-500 mb-6 max-w-md mx-auto">{{ $ctaDescription }}</p>
-        <a href="{{ $ctaButtonUrl }}" class="inline-flex px-8 py-3.5 bg-brand-btn hover:bg-brand-btn-hover text-white font-medium rounded-xl transition-colors">
+        <a href="{{ localized_url($ctaButtonUrl) }}" class="inline-flex px-8 py-3.5 bg-brand-btn hover:bg-brand-btn-hover text-white font-medium rounded-xl transition-colors">
             {{ $ctaButtonText }}
         </a>
     </section>

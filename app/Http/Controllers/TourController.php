@@ -195,8 +195,24 @@ class TourController extends Controller
         return view('pages.tours.search', compact('tours', 'categories', 'cities', 'wishlistedIds', 'durationOptions', 'priceRange', 'seasonOptions'));
     }
 
-    public function categoryArchive(Request $request, TourCategory $category)
+    /**
+     * Category archive. For non-localized routes: (Request, category).
+     * For localized routes {locale}/tours/category/{category}: (Request, locale, category).
+     * Laravel may inject by route param name; pick the TourCategory explicitly.
+     */
+    public function categoryArchive(Request $request, TourCategory|string $param1, TourCategory|string|null $param2 = null)
     {
+        // Pick TourCategory: Laravel may pass (locale, category) or (category, locale) depending on param order
+        $category = $param1 instanceof TourCategory ? $param1 : ($param2 instanceof TourCategory ? $param2 : null);
+        if (! $category instanceof TourCategory) {
+            $locales = ['en', 'zh_CN', 'fr', 'de', 'he', 'it', 'mt', 'es'];
+            $slug = (is_string($param1) && ! in_array($param1, $locales, true)) ? $param1
+                : (is_string($param2) && ! in_array($param2, $locales, true) ? $param2 : null);
+            $category = $slug ? TourCategory::where('slug', $slug)->first() : null;
+            if (! $category) {
+                abort(404);
+            }
+        }
         $query = Tour::where('is_active', true)->where('category_id', $category->id)
             ->with(['category', 'cities', 'images', 'approvedReviews']);
 
@@ -286,14 +302,26 @@ class TourController extends Controller
         return view('pages.tours.category', compact('tours', 'categories', 'category', 'cities', 'wishlistedIds', 'durationOptions', 'priceRange', 'seasonOptions'));
     }
 
-    public function show(string $slug)
+    /**
+     * Handle both non-localized (slug) and localized (locale, slug) routes.
+     * Laravel passes route params by position; prefixed routes add locale first.
+     */
+    public function show(string $param1, ?string $param2 = null)
     {
-        $tour = Tour::where('slug', $slug)->where('is_active', true)
+        $slug = $param2 ?? $param1;
+        $tour = Tour::where('is_active', true)
+            ->where(function ($q) use ($slug) {
+                $q->where('slug', $slug)
+                    ->orWhereHas('translations', fn ($t) => $t->where('slug', $slug));
+            })
             ->with(['category', 'cities', 'images', 'activities', 'itineraries.hotel', 'itineraries.highlights.cities', 'pricingTiers', 'dates' => fn ($q) => $q->where('is_active', true)->where('date', '>=', now())->orderBy('date')])
             ->withCount(['approvedReviews'])
             ->firstOrFail();
 
         $tour->load('approvedReviews.user');
+
+        // Share tour for language switcher: always use base slug with locale prefix
+        view()->share('tourForLanguageSwitch', $tour);
 
         $userHasReviewed = auth()->check()
             ? $tour->reviews()->where('user_id', auth()->id())->exists()

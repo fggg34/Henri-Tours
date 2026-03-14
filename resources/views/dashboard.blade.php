@@ -59,7 +59,7 @@
                             <h2 class="text-lg font-semibold text-gray-900">My bookings</h2>
                             <p class="text-sm text-gray-500 mt-0.5">Your upcoming and past reservations</p>
                         </div>
-                        <a href="{{ route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition-colors hidden sm:inline-flex items-center gap-1">
+                        <a href="{{ localized_route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition-colors hidden sm:inline-flex items-center gap-1">
                             Browse tours
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
@@ -73,7 +73,7 @@
                                 </div>
                                 <p class="text-gray-600 font-medium">No bookings yet</p>
                                 <p class="text-sm text-gray-500 mt-1 mb-6">Discover amazing tours and start planning your next adventure.</p>
-                                <a href="{{ route('tours.index') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-btn hover:bg-brand-btn-hover text-white text-sm font-medium rounded-lg transition-colors">
+                                <a href="{{ localized_route('tours.index') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-btn hover:bg-brand-btn-hover text-white text-sm font-medium rounded-lg transition-colors">
                                     <i class="fa-solid fa-compass"></i>
                                     Browse tours
                                 </a>
@@ -89,7 +89,7 @@
                                     <li class="group">
                                         <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-6 hover:bg-gray-50/50 transition-colors">
                                             <div class="flex-1 min-w-0">
-                                                <a href="{{ route('bookings.confirmation', ['token' => $booking->confirmation_token]) }}" class="font-semibold text-gray-900 hover:text-brand-navy transition line-clamp-2">
+                                                <a href="{{ localized_route('bookings.confirmation', ['token' => $booking->confirmation_token]) }}" class="font-semibold text-gray-900 hover:text-brand-navy transition line-clamp-2">
                                                     {{ $booking->tour->title }}
                                                 </a>
                                                 <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
@@ -111,7 +111,7 @@
                                                     @else bg-blue-50 text-brand-navy @endif">
                                                     {{ ucfirst($booking->status) }}
                                                 </span>
-                                                <a href="{{ route('bookings.confirmation', ['token' => $booking->confirmation_token]) }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition">
+                                                <a href="{{ localized_route('bookings.confirmation', ['token' => $booking->confirmation_token]) }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition">
                                                     View details
                                                 </a>
                                             </div>
@@ -126,7 +126,7 @@
                     </div>
                     @if(!$bookings->isEmpty())
                         <div class="mt-4 text-center sm:hidden">
-                            <a href="{{ route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy">Browse more tours</a>
+                            <a href="{{ localized_route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy">Browse more tours</a>
                         </div>
                     @endif
                 </section>
@@ -138,7 +138,7 @@
                             <h2 class="text-lg font-semibold text-gray-900">Saved tours</h2>
                             <p class="text-sm text-gray-500 mt-0.5">Tours you've added to your wishlist</p>
                         </div>
-                        <a href="{{ route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition-colors hidden sm:inline-flex items-center gap-1">
+                        <a href="{{ localized_route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy transition-colors hidden sm:inline-flex items-center gap-1">
                             Explore tours
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
@@ -152,7 +152,7 @@
                                 </div>
                                 <p class="text-gray-600 font-medium">No saved tours yet</p>
                                 <p class="text-sm text-gray-500 mt-1 mb-6">Save tours you love and they'll appear here for easy access.</p>
-                                <a href="{{ route('tours.index') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-btn hover:bg-brand-btn-hover text-white text-sm font-medium rounded-lg transition-colors">
+                                <a href="{{ localized_route('tours.index') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-btn hover:bg-brand-btn-hover text-white text-sm font-medium rounded-lg transition-colors">
                                     <i class="fa-solid fa-compass"></i>
                                     Explore tours
                                 </a>
@@ -169,7 +169,7 @@
                                                     <i class="fa-solid fa-heart text-sm"></i>
                                                 </button>
                                             </form>
-                                            <a href="{{ route('tours.show', $tour->slug) }}" class="block">
+                                            <a href="{{ localized_route('tours.show', ['slug' => $tour->slug]) }}" class="block">
                                                 @php
                                                     $firstImg = $tour->images->first();
                                                     $imageUrl = $firstImg?->url ?? 'https://placehold.co/400x300/e5e7eb/6b7280?text=Tour';
@@ -190,7 +190,7 @@
                     </div>
                     @if(!$wishlistTours->isEmpty())
                         <div class="mt-4 text-center sm:hidden">
-                            <a href="{{ route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy">Explore more tours</a>
+                            <a href="{{ localized_route('tours.index') }}" class="text-sm font-medium text-brand-navy hover:text-brand-navy">Explore more tours</a>
                         </div>
                     @endif
                 </section>

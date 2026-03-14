@@ -40,7 +40,7 @@
         @if($categories->isNotEmpty())
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ min($categories->count(), 4) }} gap-6 md:gap-8">
             @foreach($categories as $cat)
-            <a href="{{ route('tours.category', $cat->slug) }}" class="group block bg-white rounded-xl border border-gray-200 shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <a href="{{ localized_route('tours.category', ['category' => $cat->slug]) }}" class="group block bg-white rounded-xl border border-gray-200 shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                 <div class="aspect-[4/3] overflow-hidden bg-gray-100">
                     @if($cat->image_url)
                         <img src="{{ $cat->image_url }}" alt="{{ $cat->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -94,7 +94,7 @@
                         </li>
                     </ul>
 
-                    <a href="{{ route('confirmed-departures') }}" class="inline-block px-6 py-2.5 bg-brand-btn text-white text-sm font-semibold rounded-full hover:bg-brand-btn-hover transition-colors">View Available Dates</a>
+                    <a href="{{ localized_route('confirmed-departures') }}" class="inline-block px-6 py-2.5 bg-brand-btn text-white text-sm font-semibold rounded-full hover:bg-brand-btn-hover transition-colors">View Available Dates</a>
                 </div>
 
                 <div class="flex-1 max-w-md lg:max-w-lg">

@@ -6,7 +6,7 @@ use App\Models\Hotel;
 
 class HotelController extends Controller
 {
-    public function show(string $slug)
+    public function show(string $slug, ?string $locale = null)
     {
         $hotel = Hotel::where('slug', $slug)
             ->with(['city.tours', 'city.hotels', 'city.highlights', 'amenities'])

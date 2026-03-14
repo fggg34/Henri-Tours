@@ -31,13 +31,11 @@ class TranslationsRelationManager extends RelationManager
                 Select::make('locale')
                     ->label('Language')
                     ->options(function () {
-                        $all = array_combine(static::$supportedLocales, array_map(
-                            fn ($l) => __("locales.{$l}"),
-                            static::$supportedLocales
-                        ));
+                        $nonEn = array_filter(static::$supportedLocales, fn ($l) => $l !== 'en');
+                        $all = array_combine($nonEn, array_map(fn ($l) => __("locales.{$l}"), $nonEn));
                         $used = $this->getOwnerRecord()->translations()->pluck('locale')->toArray();
                         $available = array_diff_key($all, array_flip($used));
-                        return ! empty($available) ? $available : $all;
+                        return $available ?: ['__empty' => __('No languages left to add')];
                     })
                     ->required()
                     ->disabled(fn ($get) => (bool) $get('id')),
@@ -56,7 +54,7 @@ class TranslationsRelationManager extends RelationManager
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->visible(fn () => $this->getOwnerRecord()->translations()->count() < count(static::$supportedLocales)),
+                    ->visible(fn () => $this->getOwnerRecord()->translations()->count() < count(array_filter(static::$supportedLocales, fn ($l) => $l !== 'en'))),
             ])
             ->recordActions([
                 EditAction::make(),

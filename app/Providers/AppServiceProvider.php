@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        //
+        // Ensure tourForLanguageSwitch is always set for the language switcher (avoids errors on non-tour pages)
+        view()->share('tourForLanguageSwitch', null);
     }
 }

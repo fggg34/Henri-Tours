@@ -7,7 +7,7 @@ use App\Models\Highlight;
 
 class HighlightController extends Controller
 {
-    public function show(string $city, string $highlight)
+    public function show(string $city, string $highlight, ?string $locale = null)
     {
         $city = City::where('slug', $city)->firstOrFail();
         $highlight = Highlight::where('slug', $highlight)->firstOrFail();

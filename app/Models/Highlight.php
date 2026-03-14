@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Highlight extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasTranslations;
 
     protected $fillable = [
         'title',
@@ -19,6 +21,11 @@ class Highlight extends Model
         'image',
         'sort_order',
     ];
+
+    public function translations(): HasMany
+    {
+        return $this->hasMany(HighlightTranslation::class);
+    }
 
     protected function casts(): array
     {

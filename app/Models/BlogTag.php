@@ -22,6 +22,11 @@ class BlogTag extends Model
             ->saveSlugsTo('slug');
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function translations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(BlogTagTranslation::class);

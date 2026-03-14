@@ -6,7 +6,7 @@
     $rating = $tour->average_rating ?? $tour->approvedReviews->avg('rating');
     $reviewCount = $tour->approvedReviews->count();
     $tourTitle = $tour->translate('title');
-    $tourUrl = route('tours.show', $tour->slug);
+    $tourUrl = localized_route('tours.show', ['slug' => $tour->slug]);
     if (!empty($queryParams)) {
         $tourUrl .= '?' . http_build_query($queryParams);
     }

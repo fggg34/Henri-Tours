@@ -22,6 +22,11 @@ class BlogCategory extends Model
             ->saveSlugsTo('slug');
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function translations(): HasMany
     {
         return $this->hasMany(BlogCategoryTranslation::class);

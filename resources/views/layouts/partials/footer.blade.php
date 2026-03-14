@@ -46,7 +46,7 @@
                     @if(!empty($footerMenu1['items']))
                     <ul class="space-y-3 text-sm">
                         @foreach($footerMenu1['items'] as $item)
-                        <li><a href="{{ str_starts_with($item['url'] ?? '', 'http') ? $item['url'] : url($item['url'] ?? '#') }}" class="text-gray-500 hover:text-brand-navy transition">{{ $item['label'] ?? '' }}</a></li>
+                        <li><a href="{{ localized_url($item['url'] ?? '#') }}" class="text-gray-500 hover:text-brand-navy transition">{{ $item['label'] ?? '' }}</a></li>
                         @endforeach
                     </ul>
                     @endif
@@ -58,7 +58,7 @@
                     @if(!empty($footerMenu2['items']))
                     <ul class="space-y-3 text-sm">
                         @foreach($footerMenu2['items'] as $item)
-                        <li><a href="{{ str_starts_with($item['url'] ?? '', 'http') ? $item['url'] : url($item['url'] ?? '#') }}" class="text-gray-500 hover:text-brand-navy transition">{{ $item['label'] ?? '' }}</a></li>
+                        <li><a href="{{ localized_url($item['url'] ?? '#') }}" class="text-gray-500 hover:text-brand-navy transition">{{ $item['label'] ?? '' }}</a></li>
                         @endforeach
                     </ul>
                     @endif

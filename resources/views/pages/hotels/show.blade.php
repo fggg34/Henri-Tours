@@ -1,11 +1,12 @@
 @extends('layouts.site')
 
-@section('title', $hotel->name . ' - ' . config('app.name'))
-@section('description', Str::limit(strip_tags($hotel->description), 160))
+@php $locale = app()->getLocale(); @endphp
+@section('title', ($hotel->translate('name', $locale) ?? $hotel->name) . ' - ' . config('app.name'))
+@section('description', Str::limit(strip_tags($hotel->translate('description', $locale) ?? $hotel->description ?? ''), 160))
 
 @push('meta')
-<meta property="og:title" content="{{ $hotel->name }}">
-<meta property="og:description" content="{{ Str::limit(strip_tags($hotel->description), 200) }}">
+<meta property="og:title" content="{{ $hotel->translate('name', $locale) ?? $hotel->name }}">
+<meta property="og:description" content="{{ Str::limit(strip_tags($hotel->translate('description', $locale) ?? $hotel->description ?? ''), 200) }}">
 <meta property="og:url" content="{{ request()->url() }}">
 @if($hotel->image_url)
 <meta property="og:image" content="{{ request()->getSchemeAndHttpHost() . $hotel->image_url }}">
@@ -18,19 +19,19 @@
     {{-- Breadcrumb --}}
     <nav class="text-sm text-gray-500 mb-5" aria-label="Breadcrumb">
         <ol class="flex items-center gap-1.5 flex-wrap">
-            <li><a href="{{ route('home') }}" class="text-brand-navy hover:text-brand-navy transition">Home</a></li>
+            <li><a href="{{ localized_route('home') }}" class="text-brand-navy hover:text-brand-navy transition">Home</a></li>
             <li>/</li>
             @if($hotel->city)
-                <li><a href="{{ route('cities.show', $hotel->city->slug) }}" class="text-brand-navy hover:text-brand-navy transition">{{ $hotel->city->name }}</a></li>
+                <li><a href="{{ localized_route('cities.show', ['slug' => $hotel->city->slug]) }}" class="text-brand-navy hover:text-brand-navy transition">{{ $hotel->city->translate('name') }}</a></li>
                 <li>/</li>
             @endif
-            <li class="text-gray-700">{{ $hotel->name }}</li>
+            <li class="text-gray-700">{{ $hotel->translate('name', $locale) ?? $hotel->name }}</li>
         </ol>
     </nav>
 
     {{-- Name + rating + reviews --}}
     <div class="mb-6">
-        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $hotel->name }}</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $hotel->translate('name', $locale) ?? $hotel->name }}</h1>
         <div class="mt-2 flex flex-wrap items-center gap-3 text-gray-600">
             @if($hotel->stars_rating)
                 <span class="flex items-center gap-0.5 text-amber-400" aria-label="{{ $hotel->stars_rating }} stars">
@@ -48,7 +49,7 @@
             </span>
             @if($hotel->city)
                 <span class="text-gray-300">·</span>
-                <a href="{{ route('cities.show', $hotel->city->slug) }}" class="text-sm text-brand-navy hover:text-brand-navy transition">{{ $hotel->city->name }}, {{ $hotel->city->country }}</a>
+                <a href="{{ localized_route('cities.show', ['slug' => $hotel->city->slug]) }}" class="text-sm text-brand-navy hover:text-brand-navy transition">{{ $hotel->city->translate('name') }}, {{ $hotel->city->country }}</a>
             @endif
         </div>
     </div>
@@ -63,13 +64,13 @@
     <div class="mb-10 hotel-gallery">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 overflow-hidden rounded-2xl bg-gray-200" style="height: 480px;">
             <a href="{{ $allImages[0] }}" class="glightbox block relative overflow-hidden h-full" data-gallery="hotel-gallery-{{ $hotel->id }}">
-                <img src="{{ $allImages[0] }}" alt="{{ $hotel->name }}" class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                <img src="{{ $allImages[0] }}" alt="{{ $hotel->translate('name', $locale) ?? $hotel->name }}" class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500">
             </a>
             <div class="hotel-gallery grid grid-cols-2 grid-rows-2 gap-2 h-full">
                 @for($i = 0; $i < 4; $i++)
                     @if(isset($gridImages[$i]))
                         <a href="{{ $gridImages[$i] }}" class="glightbox block relative overflow-hidden bg-gray-300" data-gallery="hotel-gallery-{{ $hotel->id }}">
-                            <img src="{{ $gridImages[$i] }}" alt="{{ $hotel->name }} - {{ $i + 2 }}" class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <img src="{{ $gridImages[$i] }}" alt="{{ $hotel->translate('name', $locale) ?? $hotel->name }} - {{ $i + 2 }}" class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
                         </a>
                     @else
                         <div class="relative overflow-hidden bg-gray-200"></div>
@@ -88,7 +89,7 @@
             <section>
                 <h2 class="text-xl font-bold text-gray-900 mb-4">About this hotel</h2>
                 <div class="prose prose-gray max-w-none text-gray-600">
-                    {!! $hotel->description !!}
+                    {!! $hotel->translate('description', $locale) ?? $hotel->description !!}
                 </div>
             </section>
             @endif
@@ -109,7 +110,7 @@
                     @endif
                     <div class="p-4 flex flex-wrap items-center justify-between gap-3">
                         @if($hotel->location)
-                            <p class="text-sm text-gray-600"><i class="fa-solid fa-location-dot text-gray-400 mr-1.5"></i>{{ $hotel->location }}</p>
+                            <p class="text-sm text-gray-600"><i class="fa-solid fa-location-dot text-gray-400 mr-1.5"></i>{{ $hotel->translate('location', $locale) ?? $hotel->location }}</p>
                         @endif
                         @if($hotel->google_maps_url)
                             <a href="{{ $hotel->google_maps_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-brand-btn hover:bg-brand-btn-hover transition">
@@ -206,28 +207,28 @@
 
                 @if($hotel->city)
                 <div class="rounded-2xl border border-gray-100 bg-white overflow-hidden shadow-sm">
-                    <a href="{{ route('cities.show', $hotel->city->slug) }}" class="group block p-5 text-center hover:bg-gray-50/50 transition">
+                    <a href="{{ localized_route('cities.show', ['slug' => $hotel->city->slug]) }}" class="group block p-5 text-center hover:bg-gray-50/50 transition">
                         <i class="fa-solid fa-map-location-dot text-2xl text-gray-300 group-hover:text-brand-navy transition mb-2"></i>
                         <span class="text-sm text-gray-500 block">Explore</span>
-                        <span class="font-bold text-gray-900 text-lg block group-hover:text-brand-navy transition">{{ $hotel->city->name }}</span>
+                        <span class="font-bold text-gray-900 text-lg block group-hover:text-brand-navy transition">{{ $hotel->city->translate('name', $locale) ?? $hotel->city->name }}</span>
                     </a>
                     <div class="flex flex-wrap items-center justify-center gap-4 px-5 pb-5 pt-5 border-t border-gray-100">
                         @if($hotel->city->tours->count())
-                            <a href="{{ route('cities.show', $hotel->city->slug) }}" class="flex items-center gap-2 text-sm hover:text-brand-navy transition">
+                            <a href="{{ localized_route('cities.show', ['slug' => $hotel->city->slug]) }}" class="flex items-center gap-2 text-sm hover:text-brand-navy transition">
                                 <span class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-route text-brand-navy text-xs"></i></span>
                                 <span class="font-semibold text-gray-900">{{ $hotel->city->tours->where('is_active', true)->count() }}</span>
                                 <span class="text-gray-500">Tours</span>
                             </a>
                         @endif
                         @if($hotel->city->hotels->count())
-                            <a href="{{ route('cities.show', $hotel->city->slug) }}" class="flex items-center gap-2 text-sm hover:text-brand-navy transition">
+                            <a href="{{ localized_route('cities.show', ['slug' => $hotel->city->slug]) }}" class="flex items-center gap-2 text-sm hover:text-brand-navy transition">
                                 <span class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-hotel text-brand-navy text-xs"></i></span>
                                 <span class="font-semibold text-gray-900">{{ $hotel->city->hotels->count() }}</span>
                                 <span class="text-gray-500">Hotels</span>
                             </a>
                         @endif
                         @if($hotel->city->highlights->count())
-                            <a href="{{ route('cities.show', $hotel->city->slug) }}" class="flex items-center gap-2 text-sm hover:text-brand-navy transition">
+                            <a href="{{ localized_route('cities.show', ['slug' => $hotel->city->slug]) }}" class="flex items-center gap-2 text-sm hover:text-brand-navy transition">
                                 <span class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-camera text-brand-navy text-xs"></i></span>
                                 <span class="font-semibold text-gray-900">{{ $hotel->city->highlights->count() }}</span>
                                 <span class="text-gray-500">Attractions</span>
@@ -248,7 +249,7 @@
                 <p class="text-xs font-medium uppercase tracking-wider text-gray-400 mb-1">Other places to stay</p>
                 <h2 class="text-2xl font-bold text-gray-900">
                     @if($hotel->city)
-                        Related hotels in {{ $hotel->city->name }}
+                        Related hotels in {{ $hotel->city->translate('name', $locale) ?? $hotel->city->name }}
                     @else
                         Related hotels
                     @endif
@@ -267,16 +268,16 @@
             <div class="swiper-wrapper">
                 @foreach($otherHotels as $other)
                 <div class="swiper-slide">
-                    <a href="{{ route('hotels.show', $other->slug) }}" class="group block bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-blue-300 hover:shadow-lg transition-all duration-300">
+                    <a href="{{ localized_route('hotels.show', ['slug' => $other->slug]) }}" class="group block bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-blue-300 hover:shadow-lg transition-all duration-300">
                         <div class="aspect-[4/3] bg-gray-200 overflow-hidden">
                             @if($other->image_url)
-                                <img src="{{ $other->image_url }}" alt="{{ $other->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                                <img src="{{ $other->image_url }}" alt="{{ $other->translate('name', $locale) ?? $other->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                             @else
                                 <div class="w-full h-full flex items-center justify-center text-gray-400 text-sm">No image</div>
                             @endif
                         </div>
                         <div class="p-4">
-                            <h3 class="font-semibold text-gray-900 group-hover:text-brand-navy transition">{{ $other->name }}</h3>
+                            <h3 class="font-semibold text-gray-900 group-hover:text-brand-navy transition">{{ $other->translate('name', $locale) ?? $other->name }}</h3>
                             
                             <div class="mt-2 flex items-center gap-3 text-sm">
                                 @if($other->stars_rating)
@@ -300,7 +301,7 @@
     @elseif($hotel->city)
     <section class="mt-16 pt-10 border-t border-gray-200 text-center">
         <p class="text-gray-500 text-sm">No other hotels in this city yet.</p>
-        <a href="{{ route('cities.show', $hotel->city->slug) }}" class="inline-block mt-2 text-sm font-medium text-brand-navy hover:text-brand-navy transition">Explore {{ $hotel->city->name }} &rarr;</a>
+        <a href="{{ localized_route('cities.show', ['slug' => $hotel->city->slug]) }}" class="inline-block mt-2 text-sm font-medium text-brand-navy hover:text-brand-navy transition">Explore {{ $hotel->city->translate('name') }} &rarr;</a>
     </section>
     @endif
 </div>

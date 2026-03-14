@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Cities;
 
+use App\Filament\Resources\Cities\Pages\EditCity;
 use App\Filament\Resources\Cities\Pages\ManageCities;
 use App\Models\City;
 use BackedEnum;
@@ -124,10 +125,18 @@ class CityResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\TranslationsRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ManageCities::route('/'),
+            'edit' => Pages\EditCity::route('/{record}/edit'),
         ];
     }
 }

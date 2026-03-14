@@ -9,7 +9,7 @@
     $sidebarTitle = \App\Models\Setting::getTranslated('page_contact_sidebar_title', $locale, 'Need quick help?');
     $sidebarDescription = \App\Models\Setting::getTranslated('page_contact_sidebar_description', $locale, 'Check our frequently asked questions for instant answers.');
     $sidebarButtonText = \App\Models\Setting::getTranslated('page_contact_sidebar_button_text', $locale, 'Browse tours');
-    $sidebarButtonUrl = \App\Models\Setting::get('page_contact_sidebar_button_url', '') ?: route('tours.index');
+    $sidebarButtonUrl = \App\Models\Setting::get('page_contact_sidebar_button_url', '') ?: localized_route('tours.index');
 @endphp
 @extends('layouts.site')
 
@@ -26,7 +26,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10">
             <nav class="text-sm mb-4" aria-label="Breadcrumb">
                 <ol class="flex items-center gap-1.5">
-                    <li><a href="{{ route('home') }}" class="text-white/70 hover:text-white transition">Home</a></li>
+                    <li><a href="{{ localized_route('home') }}" class="text-white/70 hover:text-white transition">Home</a></li>
                     <li class="text-white/50">/</li>
                     <li class="text-white">Contact</li>
                 </ol>
@@ -54,7 +54,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('contact.store') }}" method="POST" class="space-y-5">
+            <form action="{{ localized_route('contact.store') }}" method="POST" class="space-y-5">
                 @csrf
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
@@ -141,7 +141,7 @@
                     <i class="fa-solid fa-headset text-3xl text-brand-btn mb-4"></i>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $sidebarTitle }}</h3>
                     <p class="text-sm text-gray-500 mb-5">{{ $sidebarDescription }}</p>
-                    <a href="{{ $sidebarButtonUrl }}" class="inline-flex px-6 py-2.5 bg-brand-btn hover:bg-brand-btn-hover text-white text-sm font-medium rounded-lg transition-colors">
+                    <a href="{{ localized_url($sidebarButtonUrl) }}" class="inline-flex px-6 py-2.5 bg-brand-btn hover:bg-brand-btn-hover text-white text-sm font-medium rounded-lg transition-colors">
                         {{ $sidebarButtonText }}
                     </a>
                 </div>

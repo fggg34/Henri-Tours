@@ -14,8 +14,14 @@
     <div x-show="langOpen" x-cloak x-transition
          class="absolute right-0 top-full mt-1 p-2 bg-white rounded-md shadow-lg border border-gray-100 ring-1 ring-black ring-opacity-5 z-50 flex flex-wrap gap-1 max-w-[140px]">
         @foreach($locales as $locale)
-            @php $flag = $localeFlags[$locale] ?? 'gb'; @endphp
-            <a href="{{ route('locale.switch', $locale) }}"
+            @php
+                $flag = $localeFlags[$locale] ?? 'gb';
+                $tour = view()->shared('tourForLanguageSwitch', null);
+                $href = $tour
+                    ? localized_route('tours.show', ['slug' => $tour->slug], true, $locale)
+                    : url('/lang/' . $locale . '?redirect=' . urlencode(request()->fullUrl()));
+            @endphp
+            <a href="{{ $href }}"
                title="{{ __('locales.' . $locale) }}"
                class="flex items-center justify-center p-1.5 rounded hover:bg-gray-50 {{ $locale === $currentLocale ? 'ring-2 ring-brand-navy ring-offset-1' : '' }}">
                 <img src="https://flagcdn.com/w40/{{ $flag }}.png" alt="{{ __('locales.' . $locale) }}" class="w-7 h-5 object-cover rounded-sm" width="28" height="20" loading="lazy" />

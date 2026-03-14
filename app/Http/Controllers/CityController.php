@@ -16,7 +16,7 @@ class CityController extends Controller
         return view('pages.cities.index', compact('cities'));
     }
 
-    public function show(string $slug)
+    public function show(string $slug, ?string $locale = null)
     {
         $city = City::where('slug', $slug)
             ->with(['hotels', 'highlights', 'tours' => fn ($q) => $q->where('is_active', true)])
