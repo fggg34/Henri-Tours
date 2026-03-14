@@ -16,7 +16,7 @@ class EditHotel extends EditRecord
             Action::make('preview')
                 ->label('Preview')
                 ->icon('heroicon-o-arrow-top-right-on-square')
-                ->url(fn (): string => route('hotels.show', $this->record->slug))
+                ->url(fn (): string => route('hotels.show', ['slug' => $this->record->slug]))
                 ->openUrlInNewTab()
                 ->visible(fn (): bool => (bool) $this->record->slug),
         ];

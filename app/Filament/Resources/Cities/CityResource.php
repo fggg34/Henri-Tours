@@ -112,7 +112,7 @@ class CityResource extends Resource
                 Action::make('preview')
                     ->label('Preview')
                     ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->url(fn (City $record): string => route('cities.show', $record->slug))
+                    ->url(fn (City $record): string => route('cities.show', ['slug' => $record->slug]))
                     ->openUrlInNewTab()
                     ->visible(fn (City $record): bool => (bool) $record->slug),
                 EditAction::make(),

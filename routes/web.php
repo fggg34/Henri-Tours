@@ -15,6 +15,10 @@ use App\Http\Controllers\TourPackageController;
 use App\Http\Controllers\ConfirmedDeparturesController;
 use Illuminate\Support\Facades\Route;
 
+// Pass city/highlight route params as strings (slug lookup in controller); prevents implicit model binding by id
+Route::bind('city', fn (string $value) => $value);
+Route::bind('highlight', fn (string $value) => $value);
+
 Route::get('/lang/{locale}', [LocaleController::class, 'switch'])->name('locale.switch')->where('locale', 'en|zh_CN|fr|de|he|it|mt|es');
 
 $frontendRoutes = function (): void {

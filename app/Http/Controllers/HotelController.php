@@ -6,9 +6,16 @@ use App\Models\Hotel;
 
 class HotelController extends Controller
 {
-    public function show(string $slug, ?string $locale = null)
+    /**
+     * For non-localized: (slug). For localized {locale}/hotels/{slug}: (locale, slug).
+     */
+    public function show(string $param1, ?string $param2 = null)
     {
-        $hotel = Hotel::where('slug', $slug)
+        $slug = $param2 ?? $param1;
+        $hotel = Hotel::where(function ($q) use ($slug) {
+            $q->where('slug', $slug)
+                ->orWhereHas('translations', fn ($t) => $t->where('slug', $slug));
+        })
             ->with(['city.tours', 'city.hotels', 'city.highlights', 'amenities'])
             ->firstOrFail();
 

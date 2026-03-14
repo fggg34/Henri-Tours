@@ -71,7 +71,7 @@ class HotelResource extends Resource
                 Action::make('preview')
                     ->label('Preview')
                     ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->url(fn (Hotel $record): string => route('hotels.show', $record->slug))
+                    ->url(fn (Hotel $record): string => route('hotels.show', ['slug' => $record->slug]))
                     ->openUrlInNewTab()
                     ->visible(fn (Hotel $record): bool => (bool) $record->slug),
                 EditAction::make(),
